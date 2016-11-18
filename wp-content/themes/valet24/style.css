@@ -131,6 +131,7 @@ body{
     margin-bottom: 30px;
     /*max-height: 263px;*/
     max-height: 262px;
+    position: relative;
 }
 
 .inner-cat-item{
@@ -1595,4 +1596,14 @@ button.bootbox-close-button.close {
     color: #7a7a7a;
     padding-left: 14px;
 
+}
+.cat-item.name-visible .cat-title-holder {
+    display: block;
+    position: absolute;
+    top: 107px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
 }

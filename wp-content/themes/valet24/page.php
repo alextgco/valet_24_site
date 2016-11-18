@@ -99,11 +99,13 @@
                 $name = $value[array_search('name',$columns)];
                 $image = (strlen($value[array_search('image',$columns)]) > 0) ? $value[array_search('image',$columns)] : $global_images_dir . 'cat-default.jpg';
 
+                $alt_name = (strpos($image, 'cat-default.jpg'))? 'name-visible' : '';
 
 //                var_dump($value);
 
+
                 $cats_html .= '<div class="col-md-2 notd">'.
-                                    '<a href="/category_'.$id.'/"><div class="cat-item" data-id="'.$id.'">'.
+                                    '<a href="/category_'.$id.'/"><div class="cat-item '.$alt_name.'" data-id="'.$id.'">'.
                                         '<div class="cat-image-holder"><img src="'.$image.'" alt=" '.$name.'"/></div>'.
                                         '<div class="cat-title-holder">'.$name.'</div>'.
                                     '</div></a>'.
