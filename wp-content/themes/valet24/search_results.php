@@ -214,7 +214,7 @@ include 'float_cart.php';
 
                             $id = $val2[array_search('id',$columns2)];
                             $name = $val2[array_search('name',$columns2)];
-                            $price = $val2[array_search('price',$columns2)];
+                            $price = $val2[array_search('price_site',$columns2)];
 
                             $image = (strlen($val2[array_search('image',$columns2)]) > 0) ? $val2[array_search('image',$columns2)] : $global_images_dir . 'cat-default.jpg';
 

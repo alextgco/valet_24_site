@@ -157,7 +157,8 @@ include 'header.php';
 
                                 (int)$delivery_price = (date('H') >= 00 and date('H') < 10)? 250 : 150 ;
 
-                                $total_price_with_delivery = (int)$delivery_price + (int)$cart_amount;
+
+                                $total_price_with_delivery = round($delivery_price,2) + round($cart_amount,2);
 
                                 ?>
 
@@ -194,7 +195,7 @@ include 'header.php';
 
                             $id = $cp_value['product_id'];
                             $name = $cp_value['name'];
-                            $price = $cp_value['price'];
+                            $price = $cp_value['price_site'];
                             $product_count = $cp_value['product_count'];
                             $total = number_format($price * $product_count,2);
 
@@ -240,7 +241,9 @@ include 'header.php';
 
                                 (int)$delivery_price = (date('H') >= 00 and date('H') < 10)? 250 : 150 ;
 
-                                $total_price_with_delivery = (int)$delivery_price + (int)$cart_amount;
+
+
+                                $total_price_with_delivery = round($delivery_price,2) + round($cart_amount,2);
 
                                 ?>
 

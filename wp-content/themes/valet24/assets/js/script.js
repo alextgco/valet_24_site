@@ -276,7 +276,7 @@ $(document).ready(function () {
                         '<div class="product-item" data-id="{{id}}">'+
                         '<a href="/product_{{id}}"><div class="product-image-holder"><img src="{{image}}" alt="{{name}}"/></div></a>'+
                         '<a href="/product_{{id}}"><div class="product-title-holder">{{name}}</div></a>'+
-                        '<div class="product-price-holder">{{price}}&nbsp;<i class="fa fa-ruble"></i></div>'+
+                        '<div class="product-price-holder">{{price_site}}&nbsp;<i class="fa fa-ruble"></i></div>'+
 
 
                         '<div class="product-add-holder sc-product-add"  data-id="{{id}}">' +

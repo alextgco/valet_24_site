@@ -277,7 +277,7 @@ $(document).ready(function () {
                     var tpl = '{{#products}}<a class="product-item" data-id="{{id}}">'+
                                 '<div class="product-image-holder"><img src="{{image}}" alt=" {{name}}"/></div>'+
                                 '<div class="product-info-holder"><div class="product-name-holder">{{name}}</div>'+
-                                '<div class="product-price-holder">{{price}}&nbsp;<i class="fa fa-ruble"></i></div></div>'+
+                                '<div class="product-price-holder">{{price_site}}&nbsp;<i class="fa fa-ruble"></i></div></div>'+
 
                                 '<div class="product-add-holder sc-product-add "  data-id="{{id}}">{{{btn_html}}}</div></a>{{/products}}';
 

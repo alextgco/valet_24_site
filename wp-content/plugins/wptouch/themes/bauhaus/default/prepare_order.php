@@ -181,7 +181,7 @@
 
                             (int)$delivery_price = (date('H') >= 00 and date('H') < 10)? 250 : 150 ;
 
-                            $total_price_with_delivery = (int)$delivery_price + (int)$cart_amount;
+                            $total_price_with_delivery = round($delivery_price,2) + round($cart_amount,2);
 
                             ?>
 

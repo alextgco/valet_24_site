@@ -147,7 +147,7 @@ include 'header.php';
                     $id = $data2[array_search('id',$columns2)];
                     $name = $data2[array_search('name',$columns2)];
                     $desc = (count($data2[array_search('description',$columns2)]) > 1) ? $data2[array_search('description',$columns2)] : 'Описание отсутствует';
-                    $price = $data2[array_search('price',$columns2)];
+                    $price = $data2[array_search('price_site',$columns2)];
 
                     $image = (strlen($data2[array_search('image',$columns2)]) > 0) ? $data2[array_search('image',$columns2)] : $global_images_dir . 'cat-default.jpg';
 

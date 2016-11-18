@@ -51,7 +51,7 @@ include 'header.php';
 
                     $id = $cp_value['product_id'];
                     $name = $cp_value['name'];
-                    $price = $cp_value['price'];
+                    $price = $cp_value['price_site'];
                     $product_count = $cp_value['product_count'];
                     $total = number_format($price * $product_count,2);
 
