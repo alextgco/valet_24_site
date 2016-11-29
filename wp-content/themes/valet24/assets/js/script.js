@@ -3,6 +3,8 @@ $(document).ready(function () {
     var page_no = 1;
     var perPage = 30;
 
+    var gt_info = 'Внимание! Конечный вес продукта может отличаться от заказанного.';
+
     var vs = {
 
         getNoun : function(number, one, two, five) {
@@ -19,6 +21,119 @@ $(document).ready(function () {
                 return two;
             }
             return five;
+        },
+
+        disableGtButtons: function(){
+
+            $('.gt-dd').each(function(i,e){
+
+                var gr_dec = $(e).find('.sc-gr-dec');
+                var kg_dec = $(e).find('.sc-kg-dec');
+
+                gr_dec.removeClass('disabled');
+                kg_dec.removeClass('disabled');
+
+                var weight = +$(e).find('.gt-value').html();
+
+                if(weight < 0.1){
+                    gr_dec.addClass('disabled');
+                }
+
+                if(weight < 1){
+                    kg_dec.addClass('disabled');
+                }
+
+            });
+
+        },
+
+        setGtHandlers: function(){
+
+            $('.sc-gr-dec').off('click').on('click', function(){
+
+                if($(this).hasClass('disabled')){
+                    return;
+                }
+
+                var p = $(this).parents('.gt-dd').eq(0);
+                var weight_holder = p.find('.gt-value');
+                var price_holder = p.find('.gt-price-total');
+                var weight = +weight_holder.html();
+
+                var price = +p.find('.product-item-price-int').html();
+
+                var newWeight = weight -= 0.1;
+                var newPrice = price * newWeight;
+
+                weight_holder.html(parseFloat(newWeight).toFixed(1));
+                price_holder.html(parseFloat(newPrice).toFixed(2));
+
+                vs.disableGtButtons();
+
+            });
+
+            $('.sc-gr-inc').off('click').on('click', function(){
+                if($(this).hasClass('disabled')){
+                    return;
+                }
+
+
+                var p = $(this).parents('.gt-dd').eq(0);
+                var weight_holder = p.find('.gt-value');
+                var price_holder = p.find('.gt-price-total');
+                var weight = +weight_holder.html();
+                var price = +p.find('.product-item-price-int').html();
+
+                var newWeight = weight + 0.1;
+                var newPrice = price * newWeight;
+
+                weight_holder.html(parseFloat(newWeight).toFixed(1));
+                price_holder.html(parseFloat(newPrice).toFixed(2));
+
+                vs.disableGtButtons();
+
+            });
+
+            $('.sc-kg-dec').off('click').on('click', function(){
+                if($(this).hasClass('disabled')){
+                    return;
+                }
+
+                var p = $(this).parents('.gt-dd').eq(0);
+                var weight_holder = p.find('.gt-value');
+                var price_holder = p.find('.gt-price-total');
+                var weight = +weight_holder.html();
+                var price = +p.find('.product-item-price-int').html();
+
+                var newWeight = weight -= 1;
+                var newPrice = price * newWeight;
+
+                weight_holder.html(parseFloat(newWeight).toFixed(1));
+                price_holder.html(parseFloat(newPrice).toFixed(2));
+
+                vs.disableGtButtons();
+            });
+
+            $('.sc-kg-inc').off('click').on('click', function(){
+                if($(this).hasClass('disabled')){
+                    return;
+                }
+
+                var p = $(this).parents('.gt-dd').eq(0);
+                var weight_holder = p.find('.gt-value');
+                var price_holder = p.find('.gt-price-total');
+                var weight = +weight_holder.html();
+                var price = +p.find('.product-item-price-int').html();
+
+                var newWeight = weight += 1;
+                var newPrice = price * newWeight;
+
+                weight_holder.html(parseFloat(newWeight).toFixed(1));
+                price_holder.html(parseFloat(newPrice).toFixed(2));
+
+                vs.disableGtButtons();
+            });
+
         },
 
         setHandlers: function(){
@@ -85,35 +200,75 @@ $(document).ready(function () {
 
                 var btn = $(this).parents('.product-add-holder').eq(0);
                 var pid = btn.attr('data-id');
+                var p_card = btn.parents('.product-item').eq(0);
+                var price_html = p_card.find('.product-price-holder').html();
+                var p_card_width = p_card.outerWidth();
 
-                if(!btn.hasClass('added')){
-                    btn.html('<div class="cart-add-loader-holder"><i class="fa cart-add-loader fa-cog fa-spin"></i></div>');
+                if($(this).hasClass('gramm-type')){
+                    console.log('HER');
+                    var dd = '<div class="gt-dd" style="width: '+p_card_width+'px;">' +
+                        '<div class="gt-dd-inner">' +
+
+                            '<div class="gt-price">Цена: '+price_html+'</div>' +
+
+                            '<div class="gt-gr-controls">' +
+                                '<div class="gr-dec sc-gr-dec gt-control unselectable">100 гр<i class="fa fa-minus"></i></div>' +
+                                '<div class="gr-inc sc-gr-inc gt-control unselectable">100 гр<i class="fa fa-plus"></i></div>' +
+                            '</div>' +
+
+                            '<div class="gt-kg-controls">' +
+                                '<div class="kg-dec sc-kg-dec gt-control unselectable">1 кг<i class="fa fa-minus"></i></div>' +
+                                '<div class="kg-inc sc-kg-inc gt-control unselectable">1 кг<i class="fa fa-plus"></i></div>' +
+                            '</div>' +
+
+                            '<div class="gt-value-holder"><span class="gt-value">0.0</span> кг</div>' +
+
+                            '<div class="gt-total-price-holder"><span class="gt-price-total">0.00</span> руб.</div>' +
+
+                            '<div class="gt-info">'+gt_info+'</div>' +
+
+                            '<div class="gt-confirm">Подтвердить</div>'+
+
+                        '</div>' +
+                        '</div>';
+
+                    btn.html(dd);
+                    vs.setGtHandlers();
+                    vs.disableGtButtons();
+
+                }else{
+
+                    if(!btn.hasClass('added')){
+                        btn.html('<div class="cart-add-loader-holder"><i class="fa cart-add-loader fa-cog fa-spin"></i></div>');
+                    }
+
+                    var inc_html = '<div class="inc-btn-holder"><div class="inc-btn-dec" data-id="{{pid}}">-</div><div class="inc-btn-value">{{product_count}}</div><div class="inc-btn-inc" data-id="{{pid}}">+</div></div>';
+
+
+                    var o = {
+                        command: 'add_product_in_cart',
+                        params: {
+                            product_id: pid
+                        }
+                    };
+
+                    socketQuery_site(o, function(res){
+
+                        var p_count = res.product.product_count;
+                        var mO = {product_count: p_count, pid: pid};
+
+                        btn.html(Mustache.to_html(inc_html, mO));
+                        btn.addClass('added');
+
+
+                        console.log(res);
+
+                        vs.updateBasket(res.cart);
+                        vs.setHandlers();
+                    });
                 }
 
-                var inc_html = '<div class="inc-btn-holder"><div class="inc-btn-dec" data-id="{{pid}}">-</div><div class="inc-btn-value">{{product_count}}</div><div class="inc-btn-inc" data-id="{{pid}}">+</div></div>';
 
-
-                var o = {
-                    command: 'add_product_in_cart',
-                    params: {
-                        product_id: pid
-                    }
-                };
-
-                socketQuery_site(o, function(res){
-
-                    var p_count = res.product.product_count;
-                    var mO = {product_count: p_count, pid: pid};
-
-                    btn.html(Mustache.to_html(inc_html, mO));
-                    btn.addClass('added');
-
-
-                    console.log(res);
-
-                    vs.updateBasket(res.cart);
-                    vs.setHandlers();
-                });
 
             });
 
@@ -193,7 +348,6 @@ $(document).ready(function () {
 
             });
 
-
             $('.cart-item-qnt-dec').off('click').on('click', function(){
 
                 var pid = $(this).attr('data-id');
@@ -238,7 +392,6 @@ $(document).ready(function () {
                 });
 
             });
-
 
             $('.load-next').off('click').on('click', function(){
 
@@ -395,6 +548,15 @@ $(document).ready(function () {
 
             });
 
+            $('.to-top').off('click').on('click', function(){
+
+                $('html,body').animate({
+                    scrollTop: 0
+                }, 400, function(){
+
+                });
+
+            });
 
         },
 

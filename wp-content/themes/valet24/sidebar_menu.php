@@ -169,40 +169,41 @@
 
                 <ul class="sub-menu">
 
+                    <?php
+
+                    $count = 0;
+
+                    ?>
+
                     <?php foreach($dataChilds as $item2):?>
 
                         <?php if($item2['parent'] == $item1['id']):?>
 
                             <li class="menu-item">
 
-
                                 <?php
 
                                 $is_curr_cat = ($category_id == $item2['id'])? 'active' : '';
-
+                                $count++;
                                 ?>
 
                                 <a href="/category_<?php echo $item2['id'] ?>/" class="<?php echo $is_curr_cat ?>"><?php echo $item2['name'] ?></a>
-
-
-<!--                                <ul class="sub-menu">-->
-<!---->
-<!--                                    --><?php //foreach($dataChilds as $item3):?>
-<!---->
-<!--                                        --><?php //if($item3['parent'] == $item2['id']):?>
-<!--                                            <li class="menu-item"><a href="#" onclick="return false;">3ур - --><?php //echo $item3['name'] ?><!--</a></li>-->
-<!--                                        --><?php //endif ?>
-<!---->
-<!--                                    --><?php //endforeach ?>
-<!---->
-<!--                                </ul>-->
-
 
                             </li>
 
                         <?php endif ?>
 
                     <?php endforeach ?>
+
+                    <?php
+
+                    if($count == 0){
+
+                        echo '<li class="empty-menu-item">Товары отсутствуют.</li>';
+
+                    }
+
+                    ?>
 
                 </ul>
 

@@ -55,6 +55,8 @@
 
         </div>
 
+        <div class="to-top"><i class="fa fa-arrow-up"></i><br/>Наверх</div>
+
         <?php
 
             include "basket_top.php";

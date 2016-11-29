@@ -131,7 +131,6 @@
 
 
 
-
 ?>
 
 <!DOCTYPE html>
@@ -149,8 +148,6 @@ include 'header.php';
 include 'float_cart.php';
 
 ?>
-
-
 
 <div class="after-header">
     <div class="container">
@@ -197,6 +194,7 @@ include 'float_cart.php';
                         $name = $val1[array_search('name',$columns)];
                         $image = (strlen($val1[array_search('image',$columns)]) > 0) ? $val1[array_search('image',$columns)] : $global_images_dir . 'cat-default.jpg';
 
+
                         $cats_html .= '<div class="col-md-4">'.
                             '<a href="/category_'.$id.'"><div class="inner-cat-item" data-id="'.$id.'">'.
                             '<div class="cat-image-holder"><img src="'.$image.'" alt=" '.$name.'"/></div>'.
@@ -220,22 +218,38 @@ include 'float_cart.php';
 
                             $id = $val2[array_search('id',$columns2)];
                             $name = $val2[array_search('name',$columns2)];
-                            $price = $val2[array_search('price_site',$columns2)];
+
+
 
                             $image = (strlen($val2[array_search('image',$columns2)]) > 0) ? $val2[array_search('image',$columns2)] : $global_images_dir . 'cat-default.jpg';
 
                             $in_basket_count = $val2[array_search('in_basket_count',$columns2)];
 
-                            $btn_html = ($in_basket_count > 0)? '<div class="inc-btn-holder"><div class="inc-btn-dec" data-id="'.$id.'">-</div><div class="inc-btn-value">'.$in_basket_count.'</div><div class="inc-btn-inc" data-id="'.$id.'">+</div></div>' : '<div class="first-add-cart">В корзину</div>';
+                            $is_gramm = $val2[array_search('control_of_fractional_amounts',$columns2)];
+                            $is_gramm_html = ($is_gramm)? 'gramm-type': '';
+
+                            if($is_gramm){
+                                $btn_html = ($in_basket_count > 0)? '<div class="modify-gt-value" data-id="'.$id.'">'.$in_basket_count.'</div>' : '<div class="first-add-cart gramm-type">В корзину</div>';
+                            }else{
+                                $btn_html = ($in_basket_count > 0)? '<div class="inc-btn-holder"><div class="inc-btn-dec" data-id="'.$id.'">-</div><div class="inc-btn-value">'.$in_basket_count.'</div><div class="inc-btn-inc" data-id="'.$id.'">+</div></div>' : '<div class="first-add-cart">В корзину</div>';
+                            }
+
+                            $price = ($is_gramm)? '<span class="product-item-price-int">'.$val2[array_search('price_site',$columns2)].'</span>' . '<span class="price-rub">&nbsp;руб/кг</span>' : '<span class="product-item-price-int">'.$val2[array_search('price_site',$columns2)].'</span>' .'<span class="price-rub">&nbsp;руб.</span>';
 
                             $addedClass = ($in_basket_count > 0)?'added': '';
 
 
+
                             $products_html .= '<div class="col-md-4 notd">'.
                                 '<div class="product-item" data-id="'.$id.'">'.
-                                '<a href="/product_'.$id.'/"><div class="product-image-holder"><img src="'.$image.'" alt=" '.$name.'"/></div></a>'.
-                                '<a href="/product_'.$id.'/"><div class="product-title-holder">'.$name.'</div></a>'.
-                                '<div class="product-price-holder">'.$price.'&nbsp;<i class="fa fa-ruble"></i></div>'.
+                                //<a href="/product_'.$id.'/">
+                                '<div class="product-image-holder"><img src="'.$image.'" alt=" '.$name.'"/></div>'.
+                                //</a>
+                                //'<a href="/product_'.$id.'/">
+                                '<div class="product-title-holder">'.$name.'</div>'.
+                                //</a>
+                                '<div class="product-price-holder">'.$price.'</div>'.
+
                                 '<div class="product-add-holder sc-product-add '.$addedClass.'"  data-id="'.$id.'">'.$btn_html.'</div></div>'.
                                 '</div>';
 

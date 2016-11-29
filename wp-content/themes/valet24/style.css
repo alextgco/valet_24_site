@@ -151,7 +151,8 @@ body{
     overflow: hidden;
     cursor: pointer;
     margin-bottom: 30px;
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
+    box-shadow: 0 2px 1px rgba(0,0,0,0.25);
     height: 440px;
     position: relative;
 }
@@ -752,7 +753,7 @@ textarea.resizeVer{
     /*background-color: #ffea00;*/
     background-color: #e7fffe;
     background-image: url("assets/img/preheader-pattern.png");
-    background-repeat: repeat-x;
+    /*background-repeat: repeat-x;*/
 }
 .service-feature-holder{
     height: 160px;
@@ -1323,7 +1324,7 @@ button.bootbox-close-button.close {
     font-size: 20px;
 }
 .product-title-holder:hover {
-    color: #0a7e78;
+    /*color: #0a7e78;*/
 }
 .prod-item-image-holder {
     width: 100%;
@@ -1384,6 +1385,8 @@ button.bootbox-close-button.close {
     color: #000;
     text-shadow: 0 0 0 rgba(0,0,0,0);
     font-size: 22px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 5px;
 }
 #float-cart .cart-value {
     color: #000;
@@ -1435,9 +1438,11 @@ button.bootbox-close-button.close {
 .scrolled #float-cart{
     animation-name: showBasket;
     animation-duration: 0.4s;
-
     opacity: 1;
-    top: -1px;
+    top: 10px;
+    right: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 4px;
 }
 .redStar{
     color: red;
@@ -1606,4 +1611,206 @@ button.bootbox-close-button.close {
     font-size: 14px;
     font-weight: bold;
     color: #555;
+}
+.empty-menu-item{
+    background-color: #efefef;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    letter-spacing: 0.9px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.to-top{
+    position: fixed;
+    height: 100%;
+    width: 54px;
+    background-color: rgba(62, 58, 146, 0.50);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    padding-top: 20%;
+    cursor: pointer;
+    display: none;
+    border: 0;
+    z-index: 10;
+}
+
+.to-top:hover {
+    background-color: rgba(62, 58, 146, 1);
+    color: #fff;
+}
+body.scrolled .to-top {
+    display: block;
+}
+.sidebar-search-holder{
+    display: none;
+}
+
+.gt-dd {
+    position: absolute;
+    background-color: rgba(255,255,255,0.9);
+    bottom: -11px;
+    right: -16px;
+    z-index: 12;
+    padding-top: 20px;
+
+}
+.gt-control {
+    color: #000;
+    text-shadow: 0 0 0 rgba(0,0,0,0);
+    border: 1px solid #ccc;
+    width: 50%;
+    float: left;
+    height: 34px;
+    padding-top: 5px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 2px 0px rgba(0,0,0,0.25);
+    font-size: 18px;
+
+}
+.gt-control:hover{
+    background-color: #ffff00;
+}
+.gt-control:active{
+    box-shadow: 0 1px 0px rgba(0,0,0,0.25);
+    margin-top: 1px;
+    margin-bottom: -1px;
+}
+.gt-gr-controls .gt-control:first-child,
+.gt-kg-controls .gt-control:first-child{
+    border-right: 0;
+    border-radius: 15px 0 0 15px;
+}
+.gt-gr-controls .gt-control:last-child,
+.gt-kg-controls .gt-control:last-child{
+    border-radius: 0 15px 15px 0;
+}
+
+.gt-gr-controls,
+.gt-kg-controls{
+    padding: 7px;
+    width: 100%;
+    float: left;
+}
+.gt-price{
+    width: 100%;
+    color: #000;
+    text-align: center;
+    text-shadow: 0 0 0 rgba(0,0,0,0);
+    font-size: 24px;
+}
+.gt-price .price-rub{
+    font-size: 18px;
+    color: #555;
+}
+.price-rub {
+    font-size: 15px;
+    color: #555;
+}
+.gt-value-holder {
+    text-align: center;
+    font-size: 30px;
+    color: #000;
+    text-shadow: 0 0 0 rgba(0,0,0,0);
+}
+.gt-info {
+    padding: 7px;
+    color: #7b7b7b;
+    text-shadow: 0 0 0 rgba(0,0,0,0);
+    font-family: arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: normal;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.gt-confirm{
+    font-family: "Helvetica-semibold", Open Sans, arial, sans-serif;
+    font-size: 14px;
+    background-color: #0c9d96;
+    color: #fff;
+    padding: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.2);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+    letter-spacing: 0.3px;
+    height: 40px;
+    padding-top: 9px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.gt-confirm:hover{
+    background-color: #0b8a84;
+}
+.gt-control{
+    position: relative;
+}
+
+.gt-control i{
+    position: absolute;
+    font-size: 14px;
+    height: 28px;
+    background-color: #fff;
+    width: 28px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.1);
+    top: 2px;
+    padding-top: 7px;
+}
+
+.gr-inc i,
+.kg-inc i{
+    right: 2px;
+}
+.gr-dec i,
+.kg-dec i{
+    left: 2px;
+}
+
+.gr-inc,
+.kg-inc{
+    padding-right: 40px;
+}
+
+.gr-dec,
+.kg-dec{
+    padding-left: 40px;
+}
+*.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.gt-control.disabled{
+    color: #ccc;
+}
+.gt-total-price-holder{
+    text-align: center;
+    font-size: 18px;
+    color: #000;
+    border-top: 1px solid #ddd;
+    padding-top: 7px;
+    text-shadow: 0 0 0 rgba(0,0,0,0);
+    background-color: rgba(135, 255, 176, 0.05);
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ddd;
+    margin-top: 2px;
+}
+.gt-total-price-holder .gt-price{
+    font-size: 24px;
+}
+.gt-dd .product-item-price-int{
+    font-size: 24px;
+}
+.gt-dd .gt-price{
+    font-size: 18px;
 }
