@@ -209,6 +209,7 @@ include 'float_cart.php';
 
                 }else{
 
+
                     $products_html = '';
                     $poducts_counter = 0;
 
@@ -225,13 +226,34 @@ include 'float_cart.php';
 
                             $in_basket_count = $val2[array_search('in_basket_count',$columns2)];
 
-                            $is_gramm = $val2[array_search('control_of_fractional_amounts',$columns2)];
+                            $is_gramm = ($val2[array_search('qnt_type_sys',$columns2)] == 'KG');
                             $is_gramm_html = ($is_gramm)? 'gramm-type': '';
 
                             if($is_gramm){
-                                $btn_html = ($in_basket_count > 0)? '<div class="modify-gt-value" data-id="'.$id.'">'.$in_basket_count.'</div>' : '<div class="first-add-cart gramm-type">В корзину</div>';
+
+                                if($in_basket_count > 0){
+                                   $btn_html = '<div class="modify-gt-value gramm-type added" data-id="'.$id.'">'.
+                                                   '<div class="gt-ib-values-holder">'.
+                                                       '<div class="gt-ib-count"><span class="gt-ib-count-int">'.$in_basket_count.'</span> кг</div>'.
+                                                    '</div>'.
+                                                    '<div class="gt-ib-modify">'.
+                                                        '<div class="gt-ib-amount">'. round($in_basket_count * $val2[array_search('price_site',$columns2)], 2) .' р.</div>'.
+                                                        '<div class="gt-ib-modify-text">Изменить</div>'.
+                                                    '</div>'.
+                                                '</div>';
+
+                                }else{
+                                   $btn_html = '<div class="first-add-cart gramm-type">В корзину</div>';
+                                }
+
                             }else{
-                                $btn_html = ($in_basket_count > 0)? '<div class="inc-btn-holder"><div class="inc-btn-dec" data-id="'.$id.'">-</div><div class="inc-btn-value">'.$in_basket_count.'</div><div class="inc-btn-inc" data-id="'.$id.'">+</div></div>' : '<div class="first-add-cart">В корзину</div>';
+
+                                if($in_basket_count > 0){
+                                    $btn_html = '<div class="inc-btn-holder"><div class="inc-btn-dec" data-id="'.$id.'">-</div><div class="inc-btn-value">'.$in_basket_count.'</div><div class="inc-btn-inc" data-id="'.$id.'">+</div></div>';
+                                }else{
+                                    $btn_html = '<div class="first-add-cart">В корзину</div>';
+                                }
+
                             }
 
                             $price = ($is_gramm)? '<span class="product-item-price-int">'.$val2[array_search('price_site',$columns2)].'</span>' . '<span class="price-rub">&nbsp;руб/кг</span>' : '<span class="product-item-price-int">'.$val2[array_search('price_site',$columns2)].'</span>' .'<span class="price-rub">&nbsp;руб.</span>';
@@ -248,7 +270,7 @@ include 'float_cart.php';
                                 //'<a href="/product_'.$id.'/">
                                 '<div class="product-title-holder">'.$name.'</div>'.
                                 //</a>
-                                '<div class="product-price-holder">'.$price.'</div>'.
+                                '<div class="product-price-holder">Цена: '.$price.'</div>'.
 
                                 '<div class="product-add-holder sc-product-add '.$addedClass.'"  data-id="'.$id.'">'.$btn_html.'</div></div>'.
                                 '</div>';

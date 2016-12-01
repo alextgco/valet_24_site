@@ -269,3 +269,4 @@ var validator = {
         return reg.test(val);
     }
 };
+

@@ -8,6 +8,7 @@
         $PHPSESSID=session_id();
 
         $search_keyword = $_GET['search_keyword'];
+        $page_no = ($_GET['page_no']!="")? $_GET['page_no'] : '1';
 
         $href = request_url();
         $arr = parse_url($href);
@@ -89,7 +90,7 @@
 
         $url2 = $global_prot . '://' . $global_url. '/site_api';
 
-        $req2 = '{"command":"get_product","params":{"name":"'.$search_keyword.'","limit": "30","page_no":"1"}}';
+        $req2 = '{"command":"get_product","params":{"name":"'.$search_keyword.'","limit": "500","page_no":"'.$page_no.'"}}';
 
         $post_data2 = http_build_query(array(
             'sid' => $PHPSESSID,
@@ -228,8 +229,10 @@ include 'float_cart.php';
 
                             $products_html .= '<div class="col-md-4 notd">'.
                                 '<div class="product-item" data-id="'.$id.'">'.
-                                '<a href="/product_'.$id.'/"><div class="product-image-holder"><img src="'.$image.'" alt=" '.$name.'"/></div></a>'.
-                                '<a href="/product_'.$id.'/"><div class="product-title-holder">'.$name.'</div></a>'.
+//                                '<a href="/product_'.$id.'/">
+                                '<div class="product-image-holder"><img src="'.$image.'" alt=" '.$name.'"/></div>'.
+//                                '<a href="/product_'.$id.'/">
+                                '<div class="product-title-holder">'.$name.'</div>'.
                                 '<div class="product-price-holder">'.$price.'&nbsp;<i class="fa fa-ruble"></i></div>'.
                                 '<div class="product-add-holder sc-product-add  '.$addedClass.'"  data-id="'.$id.'">'.$btn_html.'</div></div>'.
                                 '</div>';
