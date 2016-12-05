@@ -50,13 +50,6 @@
     $columns = $jData['data_columns'];
     $data = $jData['data'];
 
-    //        "id",
-    //        "name",
-    //        "is_root",
-    //        "parent_category_id",
-    //        "parent_category",
-    //        "image",
-    //        "products_count",
 
     $children_arr = array();
     $products_arr = array();
@@ -126,3 +119,4 @@
 
     var_export($data2);
 ?>
+
