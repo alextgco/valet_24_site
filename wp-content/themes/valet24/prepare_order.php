@@ -34,7 +34,7 @@ include 'header.php';
 
         <div class="row">
 
-            <div class="col-md-8">
+            <div class=" col-md-8">
 
                 <div class="prepare-order-holder">
 
@@ -179,7 +179,7 @@ include 'header.php';
 
             </div>
 
-            <div class="col-md-4 posRel">
+            <div class="invis-sm col-md-4 posRel">
 
                 <div class="cart-total-holder">
                     <h3>Ваш заказ:</h3>

@@ -3,6 +3,8 @@ $(document).ready(function () {
     var page_no = 1;
     var perPage = 30;
 
+    var gt_info = 'Внимание! Конечный вес продукта может отличаться от заказанного.';
+
     var vs = {
 
         getNoun : function(number, one, two, five) {
@@ -19,6 +21,255 @@ $(document).ready(function () {
                 return two;
             }
             return five;
+        },
+
+        disableGtButtons: function(){
+
+            $('.gt-dd').each(function(i,e){
+
+                var gr_dec = $(e).find('.sc-gr-dec');
+                var kg_dec = $(e).find('.sc-kg-dec');
+
+                gr_dec.removeClass('disabled');
+                kg_dec.removeClass('disabled');
+
+                var weight = +$(e).find('.gt-value').html();
+
+                if(weight < 0.1){
+                    gr_dec.addClass('disabled');
+                }
+
+                if(weight < 1){
+                    kg_dec.addClass('disabled');
+                }
+
+            });
+
+        },
+
+        setGtHandlers: function(){
+
+            $('.sc-gr-dec').off('click').on('click', function(){
+
+                if($(this).hasClass('disabled')){
+                    return;
+                }
+
+                var p = $(this).parents('.gt-dd').eq(0);
+                var weight_holder = p.find('.gt-value');
+                var price_holder = p.find('.gt-price-total');
+                var weight = +weight_holder.html();
+
+                var price = +p.find('.product-item-price-int').html();
+
+                var newWeight = weight -= 0.1;
+                var newPrice = price * newWeight;
+
+                weight_holder.html(parseFloat(newWeight).toFixed(1));
+                price_holder.html(parseFloat(newPrice).toFixed(2));
+
+                vs.disableGtButtons();
+
+            });
+
+            $('.sc-gr-inc').off('click').on('click', function(){
+                if($(this).hasClass('disabled')){
+                    return;
+                }
+
+
+                var p = $(this).parents('.gt-dd').eq(0);
+                var weight_holder = p.find('.gt-value');
+                var price_holder = p.find('.gt-price-total');
+                var weight = +weight_holder.html();
+                var price = +p.find('.product-item-price-int').html();
+
+                var newWeight = weight + 0.1;
+                var newPrice = price * newWeight;
+
+                weight_holder.html(parseFloat(newWeight).toFixed(1));
+                price_holder.html(parseFloat(newPrice).toFixed(2));
+
+                vs.disableGtButtons();
+
+            });
+
+            $('.sc-kg-dec').off('click').on('click', function(){
+                if($(this).hasClass('disabled')){
+                    return;
+                }
+
+                var p = $(this).parents('.gt-dd').eq(0);
+                var weight_holder = p.find('.gt-value');
+                var price_holder = p.find('.gt-price-total');
+                var weight = +weight_holder.html();
+                var price = +p.find('.product-item-price-int').html();
+
+                var newWeight = weight -= 1;
+                var newPrice = price * newWeight;
+
+                weight_holder.html(parseFloat(newWeight).toFixed(1));
+                price_holder.html(parseFloat(newPrice).toFixed(2));
+
+                vs.disableGtButtons();
+            });
+
+            $('.sc-kg-inc').off('click').on('click', function(){
+                if($(this).hasClass('disabled')){
+                    return;
+                }
+
+                var p = $(this).parents('.gt-dd').eq(0);
+                var weight_holder = p.find('.gt-value');
+                var price_holder = p.find('.gt-price-total');
+                var weight = +weight_holder.html();
+                var price = +p.find('.product-item-price-int').html();
+
+                var newWeight = weight += 1;
+                var newPrice = price * newWeight;
+
+                weight_holder.html(parseFloat(newWeight).toFixed(1));
+                price_holder.html(parseFloat(newPrice).toFixed(2));
+
+                vs.disableGtButtons();
+            });
+
+            $('.gt-cancel').off('click').on('click', function(){
+
+                var p = $(this).parents('.gt-dd').eq(0);
+                p.remove();
+
+            });
+
+            $('.gt-confirm').off('click').on('click', function(){
+
+                var p = $(this).parents('.gt-dd').eq(0);
+                var pid = p.parents('.product-item').eq(0).attr('data-id') || p.parents('.cart-item').eq(0).attr('data-id');
+                var weight = p.find('.gt-value').html();
+
+
+                var o = {
+                    command: 'add_product_in_cart',
+                    params: {
+                        product_id: pid,
+                        is_replace: true,
+                        product_count: parseFloat(weight).toFixed(1)
+                    }
+                };
+
+                if($(this).parents('.cart-item').length > 0){
+                    vs.loader(true, p, 'Загрузка...');
+                }else{
+                    vs.loader(true, p, 'Загрузка...');
+                }
+
+                socketQuery_site(o, function(res){
+                    if(res.code){
+                        console.log(res);
+                        toastr[res.toastr.type](res.toastr.message);
+                        vs.loader(false);
+                        return false;
+                    }
+                    console.log(res);
+
+                    vs.updateBasket(res.cart);
+                    vs.reloadGtCard(pid);
+                });
+
+            });
+
+
+        },
+
+        reloadGtCard: function(pid){
+
+            var o = {
+                command: 'get_product',
+                params: {
+                    id: pid
+                }
+            };
+
+            socketQuery_site(o, function (res) {
+
+                if(!res.code){
+
+                    var jRes = jsonToObj(res);
+
+                    var btn_html = '';
+                    var added = '';
+
+                    if(jRes[0].in_basket_count == 0){
+                        btn_html = '<div class="first-add-cart gramm-type">В корзину</div>';
+                    }else{
+                        added = 'added';
+                        btn_html = '<div class="modify-gt-value gramm-type added" data-id="{{id}}">'+
+                            '<div class="gt-ib-values-holder">'+
+                            '<div class="gt-ib-count">'+
+                            '<span class="gt-ib-count-int">{{in_basket_count}}</span>'+
+                            'кг</div>'+
+                            '</div>'+
+                            '<div class="gt-ib-modify">'+
+                            '<div class="gt-ib-amount">{{amount}} р.</div>'+
+                            '<div class="gt-ib-modify-text">Изменить</div>';
+                    }
+
+
+
+                    var product_tpl =   '<div class="product-item" data-id="{{id}}">'+
+                        '<div class="product-image-holder">'+
+                            '<img src="{{image}}" alt="{{name}}"></div>'+
+                            '<div class="product-info-holder">'+
+                                '<div class="product-name-holder">Перец оранжевый 1кг</div>'+
+                                '<div class="product-price-holder">'+
+                                    '<span class="product-item-price-int">329.70</span>'+
+                                    '<span class="price-rub">&nbsp;руб/кг</span>'+
+                                '</div>'+
+                            '</div>'+
+                        '<div class="product-add-holder sc-product-add '+added+'" data-id="{{id}}">'+
+
+                        btn_html+
+
+                        '</div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>';
+
+                    jRes[0].amount = parseFloat(parseFloat(jRes[0].price_site).toFixed(2) * parseFloat(jRes[0].in_basket_count).toFixed(2)).toFixed(2);
+
+
+                    if(document.location.href.indexOf('cart') > -1 || document.location.href.indexOf('prepare_order') > -1){
+
+                        var cart_item_card = $('.cart-item[data-id="'+pid+'"]');
+
+                        if(jRes[0].in_basket_count == 0){
+                            cart_item_card.remove();
+                        }else{
+                            cart_item_card.find('.cart-item-qnt-value').html(jRes[0].in_basket_count);
+                            cart_item_card.find('.cart-item-total-value').html(jRes[0].amount);
+                            cart_item_card.find('.gt-dd').remove();
+                        }
+
+
+
+                    }else{
+                        $('.product-item[data-id="'+pid+'"]').replaceWith(Mustache.to_html(product_tpl, jRes[0]));
+                    }
+
+
+                    vs.setHandlers();
+
+                }else{
+                    console.log('ERROR');
+                }
+
+
+                vs.loader(false);
+            });
+
+
+
+
         },
 
         setHandlers: function(){
@@ -81,40 +332,101 @@ $(document).ready(function () {
 
             });
 
-            $('.first-add-cart, .inc-btn-inc').off('click').on('click', function(){
+            $('.first-add-cart, .inc-btn-inc, .modify-gt-value').off('click').on('click', function(){
 
                 var btn = $(this).parents('.product-add-holder').eq(0);
                 var pid = btn.attr('data-id');
 
-                if(!btn.hasClass('added')){
-                    btn.html('<div class="cart-add-loader-holder"><i class="fa cart-add-loader fa-cog fa-spin"></i></div>');
+                var p_card = btn.parents('.product-item').eq(0);
+                var price_html = p_card.find('.product-price-holder').html();
+                var p_card_width = p_card.outerWidth();
+
+                var name = p_card.find('.product-name-holder').html();
+
+                var current_weight = '0.0';
+                var current_amount = '0.00';
+
+                if(!isNaN(parseFloat(p_card.find('.gt-ib-count-int').html()).toFixed(1))){
+                    current_weight = parseFloat(p_card.find('.gt-ib-count-int').html()).toFixed(1);
+                    current_amount = parseFloat(parseFloat(p_card.find('.product-item-price-int').html()).toFixed(2) * current_weight).toFixed(2);
+                }
+
+                if($(this).hasClass('gramm-type')){
+
+                    var dd = '<div class="gt-dd" style="">' +
+                        '<div class="gt-dd-inner">' +
+
+                        '<div class="gt-name">'+name+'</div>' +
+                        '<div class="gt-price">Цена: '+price_html+'</div>' +
+
+                        '<div class="gt-gr-controls">' +
+                        '<div class="gr-dec sc-gr-dec gt-control unselectable">100 гр<i class="fa fa-minus"></i></div>' +
+                        '<div class="gr-inc sc-gr-inc gt-control unselectable">100 гр<i class="fa fa-plus"></i></div>' +
+                        '</div>' +
+
+                        '<div class="gt-kg-controls">' +
+                        '<div class="kg-dec sc-kg-dec gt-control unselectable">1 кг<i class="fa fa-minus"></i></div>' +
+                        '<div class="kg-inc sc-kg-inc gt-control unselectable">1 кг<i class="fa fa-plus"></i></div>' +
+                        '</div>' +
+
+                        '<div class="gt-value-holder"><span class="gt-value">'+current_weight+'</span> кг</div>' +
+
+                        '<div class="gt-total-price-holder"><span class="gt-price-total">'+current_amount+'</span> руб.</div>' +
+
+                        '<div class="gt-info">'+gt_info+'</div>' +
+
+                        '<div class="gt-buttons-holder">' +
+                        '<div class="gt-cancel">Отмена</div>'+
+                        '<div class="gt-confirm">Подтвердить</div>' +
+                        '</div>'+
+
+                        '</div>' +
+                        '</div>';
+
+                    btn.prepend(dd);
+                    vs.setGtHandlers();
+                    vs.disableGtButtons();
+
+                }else{
+                    if(!btn.hasClass('added')){
+                        btn.html('<div class="cart-add-loader-holder"><i class="fa cart-add-loader fa-cog fa-spin"></i></div>');
+                    }
+
+
+                    var inc_html = '<div class="inc-btn-holder"><div class="inc-btn-dec" data-id="{{pid}}">-</div><div class="inc-btn-value">{{product_count}}</div><div class="inc-btn-inc" data-id="{{pid}}">+</div></div>';
+
+                    var o = {
+                        command: 'add_product_in_cart',
+                        params: {
+                            product_id: pid
+                        }
+                    };
+
+                    socketQuery_site(o, function(res){
+
+                        var p_count = res.product.product_count;
+                        var mO = {product_count: p_count, pid: pid};
+
+                        btn.html(Mustache.to_html(inc_html, mO));
+                        btn.addClass('added');
+
+
+                        console.log(res);
+
+                        vs.updateBasket(res.cart);
+                        vs.setHandlers();
+                    });
+
                 }
 
 
-                var inc_html = '<div class="inc-btn-holder"><div class="inc-btn-dec" data-id="{{pid}}">-</div><div class="inc-btn-value">{{product_count}}</div><div class="inc-btn-inc" data-id="{{pid}}">+</div></div>';
 
 
-                var o = {
-                    command: 'add_product_in_cart',
-                    params: {
-                        product_id: pid
-                    }
-                };
-
-                socketQuery_site(o, function(res){
-
-                    var p_count = res.product.product_count;
-                    var mO = {product_count: p_count, pid: pid};
-
-                    btn.html(Mustache.to_html(inc_html, mO));
-                    btn.addClass('added');
 
 
-                    console.log(res);
 
-                    vs.updateBasket(res.cart);
-                    vs.setHandlers();
-                });
+
+
 
             });
 
@@ -159,84 +471,187 @@ $(document).ready(function () {
 
             $('.cart-item-qnt-inc').off('click').on('click', function(){
 
+
+                var btn = $(this).parents('.cart-item-qnt').eq(0);
                 var pid = $(this).attr('data-id');
+                var p_card = btn.parents('.cart-item').eq(0);
                 var value_place = $(this).parents('.cart-item-qnt').eq(0).find('.cart-item-qnt-value');
                 var item_total = $(this).parents('.cart-item-prices').eq(0).find('.cart-item-total-value');
                 var item_price = $(this).attr('data-price');
+                var price_html = p_card.find('.cart-item-single-price').html();
+                var name = p_card.find('.cart-item-title').html();
+
+                var current_weight = '0.0';
+                var current_amount = '0.00';
+
+                if(!isNaN(parseFloat(p_card.find('.cart-item-qnt-value').html()).toFixed(1))){
+                    current_weight = parseFloat(p_card.find('.cart-item-qnt-value').html()).toFixed(1);
+                    current_amount = parseFloat(parseFloat(p_card.find('.product-item-price-int').html()).toFixed(2) * current_weight).toFixed(2);
+                }
+
+                if($(this).hasClass('gramm-type')){
+
+                    var dd = '<div class="gt-dd">' +
+                        '<div class="gt-dd-inner">' +
+
+                        '<div class="gt-name">'+name+'</div>' +
+                        '<div class="gt-price">Цена: '+price_html+'</div>' +
+
+                        '<div class="gt-gr-controls">' +
+                        '<div class="gr-dec sc-gr-dec gt-control unselectable">100 гр<i class="fa fa-minus"></i></div>' +
+                        '<div class="gr-inc sc-gr-inc gt-control unselectable">100 гр<i class="fa fa-plus"></i></div>' +
+                        '</div>' +
+
+                        '<div class="gt-kg-controls">' +
+                        '<div class="kg-dec sc-kg-dec gt-control unselectable">1 кг<i class="fa fa-minus"></i></div>' +
+                        '<div class="kg-inc sc-kg-inc gt-control unselectable">1 кг<i class="fa fa-plus"></i></div>' +
+                        '</div>' +
+
+                        '<div class="gt-value-holder"><span class="gt-value">'+current_weight+'</span> кг</div>' +
+
+                        '<div class="gt-total-price-holder"><span class="gt-price-total">'+current_amount+'</span> руб.</div>' +
+
+                        '<div class="gt-info">'+gt_info+'</div>' +
+
+                        '<div class="gt-buttons-holder">' +
+                        '<div class="gt-cancel">Отмена</div>'+
+                        '<div class="gt-confirm">Подтвердить</div>' +
+                        '</div>'+
+
+                        '</div>' +
+                        '</div>';
+
+                    btn.prepend(dd);
+                    vs.setGtHandlers();
+                    vs.disableGtButtons();
+
+                }else{
+                    var o = {
+                        command: 'add_product_in_cart',
+                        params: {
+                            product_id: pid
+                        }
+                    };
+
+                    socketQuery_site(o, function(res){
+
+                        if(!res.code){
+                            var p_count = res.product.product_count;
+
+                            value_place.html(p_count);
+
+                            item_total.html(parseFloat(p_count * item_price).toFixed(2));
+
+                            vs.updateBasket(res.cart);
+                            vs.setHandlers();
+                        }else{
+                            toastr['error']('Ошибка: '+res.code + ' Сообщите нам пожалуйста, +7 906 063 88 66');
+                        }
 
 
-                var o = {
-                    command: 'add_product_in_cart',
-                    params: {
-                        product_id: pid
-                    }
-                };
 
-                socketQuery_site(o, function(res){
 
-                    if(!res.code){
-                        var p_count = res.product.product_count;
-
-                        value_place.html(p_count);
-
-                        item_total.html(parseFloat(p_count * item_price).toFixed(2));
-
-                        vs.updateBasket(res.cart);
-                        vs.setHandlers();
-                    }else{
-                        toastr['error']('Ошибка: '+res.code + ' Сообщите нам пожалуйста, +7 906 063 88 66');
-                    }
+                    });
+                }
 
 
 
-
-                });
 
             });
 
 
             $('.cart-item-qnt-dec').off('click').on('click', function(){
 
-                var pid = $(this).attr('data-id');
+                var btn = $(this).parents('.cart-item-qnt').eq(0);
                 var parent_row = $(this).parents('.cart-item').eq(0);
                 var value_place = $(this).parents('.cart-item-qnt').eq(0).find('.cart-item-qnt-value');
                 var item_total = $(this).parents('.cart-item-prices').eq(0).find('.cart-item-total-value');
                 var item_price = $(this).attr('data-price');
+                var pid = $(this).attr('data-id');
+                var p_card = btn.parents('.cart-item').eq(0);
+                var price_html = p_card.find('.cart-item-single-price').html();
+                var name = p_card.find('.cart-item-title').html();
+                var current_weight = '0.0';
+                var current_amount = '0.00';
 
+                if(!isNaN(parseFloat(p_card.find('.cart-item-qnt-value').html()).toFixed(1))){
+                    current_weight = parseFloat(p_card.find('.cart-item-qnt-value').html()).toFixed(1);
+                    current_amount = parseFloat(parseFloat(p_card.find('.product-item-price-int').html()).toFixed(2) * current_weight).toFixed(2);
+                }
 
-                var o = {
-                    command: 'remove_product_from_cart',
-                    params: {
-                        product_id: pid
-                    }
-                };
+                if($(this).hasClass('gramm-type')){
 
-                socketQuery_site(o, function(res){
+                    var dd = '<div class="gt-dd">' +
+                        '<div class="gt-dd-inner">' +
 
-                    if(!res.code){
-                        var p_count = res.product.product_count;
+                        '<div class="gt-name">'+name+'</div>' +
+                        '<div class="gt-price">Цена: '+price_html+'</div>' +
 
-                        if(p_count == 0){
+                        '<div class="gt-gr-controls">' +
+                        '<div class="gr-dec sc-gr-dec gt-control unselectable">100 гр<i class="fa fa-minus"></i></div>' +
+                        '<div class="gr-inc sc-gr-inc gt-control unselectable">100 гр<i class="fa fa-plus"></i></div>' +
+                        '</div>' +
 
-                            parent_row.remove();
+                        '<div class="gt-kg-controls">' +
+                        '<div class="kg-dec sc-kg-dec gt-control unselectable">1 кг<i class="fa fa-minus"></i></div>' +
+                        '<div class="kg-inc sc-kg-inc gt-control unselectable">1 кг<i class="fa fa-plus"></i></div>' +
+                        '</div>' +
 
-                            if(res.cart.products.length == 0){
-                                $('.empty-basket-holder').removeClass('hidden');
-                                $('.cart-prepare-order, .cart-clear').addClass('disabled');
+                        '<div class="gt-value-holder"><span class="gt-value">'+current_weight+'</span> кг</div>' +
+
+                        '<div class="gt-total-price-holder"><span class="gt-price-total">'+current_amount+'</span> руб.</div>' +
+
+                        '<div class="gt-info">'+gt_info+'</div>' +
+
+                        '<div class="gt-buttons-holder">' +
+                        '<div class="gt-cancel">Отмена</div>'+
+                        '<div class="gt-confirm">Подтвердить</div>' +
+                        '</div>'+
+
+                        '</div>' +
+                        '</div>';
+
+                    btn.prepend(dd);
+                    vs.setGtHandlers();
+                    vs.disableGtButtons();
+
+                }else{
+                    var o = {
+                        command: 'remove_product_from_cart',
+                        params: {
+                            product_id: pid
+                        }
+                    };
+
+                    socketQuery_site(o, function(res){
+
+                        if(!res.code){
+                            var p_count = res.product.product_count;
+
+                            if(p_count == 0){
+
+                                parent_row.remove();
+
+                                if(res.cart.products.length == 0){
+                                    $('.empty-basket-holder').removeClass('hidden');
+                                    $('.cart-prepare-order, .cart-clear').addClass('disabled');
+                                }
+
+                            }else{
+                                value_place.html(p_count);
+                                item_total.html(parseFloat(p_count * item_price).toFixed(2));
                             }
 
+                            vs.updateBasket(res.cart);
+                            vs.setHandlers();
                         }else{
-                            value_place.html(p_count);
-                            item_total.html(parseFloat(p_count * item_price).toFixed(2));
+                            toastr['error']('Ошибка: '+res.code + ' Сообщите нам пожалуйста, +7 906 063 88 66');
                         }
 
-                        vs.updateBasket(res.cart);
-                        vs.setHandlers();
-                    }else{
-                        toastr['error']('Ошибка: '+res.code + ' Сообщите нам пожалуйста, +7 906 063 88 66');
-                    }
+                    });
+                }
 
-                });
+
 
             });
 
@@ -281,20 +696,7 @@ $(document).ready(function () {
 
                                 '<div class="product-add-holder sc-product-add "  data-id="{{id}}">{{{btn_html}}}</div></a>{{/products}}';
 
-                    //var tpl =   '{{#products}}<div class="col-md-4 notd">'+
-                    //    '<div class="product-item" data-id="{{id}}">'+
-                    //    '<a href="/product_{{id}}"><div class="product-image-holder"><img src="{{image}}" alt="{{name}}"/></div></a>'+
-                    //    '<a href="/product_{{id}}"><div class="product-title-holder">{{name}}</div></a>'+
-                    //    '<div class="product-price-holder">{{price}}&nbsp;<i class="fa fa-ruble"></i></div>'+
-                    //
-                    //
-                    //    '<div class="product-add-holder sc-product-add"  data-id="{{id}}">' +
-                    //    '{{{btn_html}}}' +
-                    //    '</div>'+
-                    //
-                    //
-                    //    '</div>'+
-                    //    '</div>{{/products}}';
+
 
                     var jRes = jsonToObj(res);
                     var count = Object.keys(jRes).length;
@@ -457,8 +859,26 @@ $(document).ready(function () {
 
 
 
-        }
+        },
 
+        loader: function(state, elem, text){
+
+            if(!elem){
+                $('.mbw-loader-holder').remove();
+                return false;
+            }
+
+            if(state){
+                text = text || '';
+                var tpl = '<div class="mbw-loader-holder" style="display: block;">' +
+                    '<div class="mbw-loader-gif"></div>' +
+                    '<div class="mbw-loader-text">'+text+'</div>' +
+                    '<div class="mbw-loader-buttons"></div></div>';
+                elem.prepend(tpl);
+            }else{
+                elem.find('.mbw-loader-holder').remove();
+            }
+        }
 
     };
 

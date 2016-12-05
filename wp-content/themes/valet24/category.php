@@ -95,7 +95,7 @@
 
             $url2 = $global_prot . '://' . $global_url. '/site_api';
 
-            $req2 = '{"command":"get_product","params":{"category_id":"'.$category_id.'","limit": "30","page_no":"1"}}';
+            $req2 = '{"command":"get_product","params":{"category_id":"'.$category_id.'","limit": "'.$perPage.'","page_no":"1"}}';
 
             $post_data2 = http_build_query(array(
                 'sid' => $PHPSESSID,
@@ -163,7 +163,7 @@ include 'float_cart.php';
 
         <div class="row">
 
-            <div class="col-md-3">
+            <div class="col-sm-3 col-md-3">
 
                 <div class="sidebar-search-holder">
                     <i class="sidebar-search-icon fa fa-search"></i>
@@ -178,7 +178,7 @@ include 'float_cart.php';
 
             </div>
 
-            <div class="col-md-9">
+            <div class="col-sm-9 col-md-9">
 
 
 
@@ -195,7 +195,7 @@ include 'float_cart.php';
                         $image = (strlen($val1[array_search('image',$columns)]) > 0) ? $val1[array_search('image',$columns)] : $global_images_dir . 'cat-default.jpg';
 
 
-                        $cats_html .= '<div class="col-md-4">'.
+                        $cats_html .= '<div class="col-sm-6 col-md-4">'.
                             '<a href="/category_'.$id.'"><div class="inner-cat-item" data-id="'.$id.'">'.
                             '<div class="cat-image-holder"><img src="'.$image.'" alt=" '.$name.'"/></div>'.
                             '<div class="cat-title-holder">'.$name.'</div>'.
@@ -262,7 +262,7 @@ include 'float_cart.php';
 
 
 
-                            $products_html .= '<div class="col-md-4 notd">'.
+                            $products_html .= '<div class="col-sm-6 col-md-4 notd">'.
                                 '<div class="product-item" data-id="'.$id.'">'.
                                 //<a href="/product_'.$id.'/">
                                 '<div class="product-image-holder"><img src="'.$image.'" alt=" '.$name.'"/></div>'.
@@ -284,7 +284,7 @@ include 'float_cart.php';
 
                     echo $products_html;
 
-                    if($poducts_counter >= 30){
+                    if($poducts_counter >= $perPage){
                         echo '<div class="load-next-row"><div class="load-next" data-page="1" data-category="'.$category_id.'"  data-search="EMPTY" >Загрузить еще</div></div>';
                     }
 

@@ -12,7 +12,7 @@
 
     <div class="main-page-headline">Готовые наборы продуктов, если Вы спешите:</div>
 
-    <div class="col-md-3">
+    <div class="col-sm-6 col-md-3">
         <a class="notd" href="/category_139"><div class="cat-item" data-id="123">
             <div class="cat-image-holder"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/cat_old/cat-1.jpg" /></div>
             <div class="cat-title-holder">
@@ -21,7 +21,7 @@
         </div></a>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-sm-6 col-md-3">
         <a class="notd" href="/category_139"><div class="cat-item" data-id="123">
             <div class="cat-image-holder"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/cat_old/cat-4.jpg" /></div>
             <div class="cat-title-holder">
@@ -30,7 +30,7 @@
         </div></a>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-sm-6 col-md-3">
         <a class="notd" href="/category_139"><div class="cat-item" data-id="123">
             <div class="cat-image-holder"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/cat_old/cat-42.jpg" /></div>
             <div class="cat-title-holder">
@@ -39,7 +39,7 @@
         </div></a>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-sm-6 col-md-3">
         <a class="notd" href="/category_139">
             <div class="cat-item" data-id="123">
             <div class="cat-image-holder"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/cat_old/cat-41.jpg" /></div>

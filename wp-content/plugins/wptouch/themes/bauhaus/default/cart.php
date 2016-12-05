@@ -81,6 +81,11 @@
 
                         $image = (strlen($cp_value['image']) > 0) ? $cp_value['image'] : $global_images_dir . 'cat-default.jpg';
 
+                        $is_gramm = ($cp_value['qnt_type_sys'] == 'KG')? true : false;
+                        $is_gramm_html = ($is_gramm)? 'gramm-type': '';
+
+                        $it_or_kg = $cp_value['qnt_type'];
+
                         $cart_products_html .=  '<div class="cart-item cart-item-prices" data-id="'.$id.'">'.
                                                     '<div class="cart-item-image-holder">'.
                                                         '<img src="'.$image.'" alt="'.$name.'"/>'.
@@ -88,15 +93,12 @@
 
                                                     '<div class="cart-item-info-holder">'.
                                                         '<div class="cart-item-title">'.$name.'</div>'.
-                                                        '<div class="cart-item-single-price">'.$price.' <i class="fa fa-ruble"></i></div>'.
+                                                        '<div class="cart-item-single-price">Цена: <span class="product-item-price-int">'.$price.'</span> <i class="fa fa-ruble"></i></div>'.
 
                                                         '<div class="cart-item-qnt">'.
-                                                            '<div class="cart-item-qnt-dec fa fa-minus-circle"  data-id="'.$id.'"  data-price="'.$price.'"></div>'.
-                                                            '<div class="cart-item-qnt-value-holder"><span class="cart-item-qnt-value">'.$product_count.'</span></div>'.
-                                                            '<div class="cart-item-qnt-inc fa fa-plus-circle" data-id="'.$id.'" data-price="'.$price.'"></div>'.
-
-
-
+                                                            '<div class="cart-item-qnt-dec fa fa-minus-circle '.$is_gramm_html.'"  data-id="'.$id.'"  data-price="'.$price.'"></div>'.
+                                                            '<div class="cart-item-qnt-value-holder"><span class="cart-item-qnt-value">'.$product_count.'</span> '.$it_or_kg.'</div>'.
+                                                            '<div class="cart-item-qnt-inc fa fa-plus-circle '.$is_gramm_html.'" data-id="'.$id.'" data-price="'.$price.'"></div>'.
                                                         '</div>'.
                                                     '</div>'.
 
@@ -109,15 +111,7 @@
                     echo $cart_products_html;
 
                     echo '</div>';
-
-
-
-
-
-
                     ?>
-
-
 
             </div>
 

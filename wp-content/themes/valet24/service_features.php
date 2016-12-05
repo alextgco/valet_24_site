@@ -14,7 +14,7 @@
 
         <div class="row">
 
-            <div class="col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <div class="service-feature-holder">
                     <div class="sf-title">Круглосуточная доставка</div>
                     <div class="sf-subtitle">Оперативно соберем и доставим Ваш заказ в любое время дня и ночи!</div>
@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <div class="service-feature-holder">
                     <div class="sf-title">Без очередей!</div>
                     <div class="sf-subtitle">Теперь Вам не надо тоскать тяжелые пакеты, это сделаем мы!</div>
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <div class="service-feature-holder">
                     <div class="sf-title">Аккуратные курьеры</div>
                     <div class="sf-subtitle">Наши сотрудники заботятся о целости и сохранности вашего заказа.</div>

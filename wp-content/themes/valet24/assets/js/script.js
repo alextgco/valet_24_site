@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     var page_no = 1;
-    var perPage = 30;
+    var perPage = 9;
 
     var gt_info = 'Внимание! Конечный вес продукта может отличаться от заказанного.';
 
@@ -200,7 +200,7 @@ $(document).ready(function () {
                         '<div class="product-image-holder">'+
                         '<img src="{{image}}" alt="{{name}}"></div>'+
                         '<div class="product-title-holder">{{name}}</div>'+
-                        '<div class="product-price-holder">Цена:'+
+                        '<div class="product-price-holder">Цена: '+
                         '<span class="product-item-price-int">{{price_site}}</span>'+
                         '<span class="price-rub">&nbsp;руб/кг</span>'+
                         '</div>'+
@@ -226,9 +226,13 @@ $(document).ready(function () {
 
                         var cart_item_card = $('.cart-item[data-id="'+pid+'"]');
 
-                        cart_item_card.find('.cart-item-qnt-value').html(jRes[0].in_basket_count);
-                        cart_item_card.find('.cart-item-total-value').html(jRes[0].amount);
-                        cart_item_card.find('.gt-dd').remove();
+                        if(jRes[0].in_basket_count == 0){
+                            cart_item_card.remove();
+                        }else{
+                            cart_item_card.find('.cart-item-qnt-value').html(jRes[0].in_basket_count);
+                            cart_item_card.find('.cart-item-total-value').html(jRes[0].amount);
+                            cart_item_card.find('.gt-dd').remove();
+                        }
 
                     }else{
                         $('.product-item[data-id="'+pid+'"]').replaceWith(Mustache.to_html(product_tpl, jRes[0]));
@@ -656,11 +660,15 @@ $(document).ready(function () {
 
                 socketQuery_site(o, function(res){
 
-                    var tpl =   '{{#products}}<div class="col-md-4 notd">'+
+                    var tpl =   '{{#products}}<div class="col-sm-6 col-md-4 notd">'+
                         '<div class="product-item" data-id="{{id}}">'+
-                        '<a href="/product_{{id}}"><div class="product-image-holder"><img src="{{image}}" alt="{{name}}"/></div></a>'+
-                        '<a href="/product_{{id}}"><div class="product-title-holder">{{name}}</div></a>'+
-                        '<div class="product-price-holder">{{price_site}}&nbsp;<i class="fa fa-ruble"></i></div>'+
+//                        '<a href="/product_{{id}}">' +
+                        '<div class="product-image-holder"><img src="{{image}}" alt="{{name}}"/></div>' +
+//                        '</a>'+
+//                        '<a href="/product_{{id}}">' +
+                        '<div class="product-title-holder">{{name}}</div>' +
+//                        '</a>'+
+                        '<div class="product-price-holder">Цена: {{{price_html}}}</div>'+
 
 
                         '<div class="product-add-holder sc-product-add"  data-id="{{id}}">' +
@@ -679,8 +687,47 @@ $(document).ready(function () {
                     };
 
                     for(var i in jRes){
-                        jRes[i].btn_html = (jRes[i]['in_basket_count'] > 0)? '<div class="inc-btn-holder"><div class="inc-btn-dec" data-id="'+jRes[i]['id']+'">-</div><div class="inc-btn-value">'+jRes[i]['in_basket_count']+'</div><div class="inc-btn-inc" data-id="'+jRes[i]['id']+'">+</div></div>' : '<div class="first-add-cart">В корзину</div>';
+
+                        var in_basket_count = jRes[i]['in_basket_count'];
+                        var is_gramm = (jRes[i]['qnt_type_sys'] == 'KG');
+                        var is_gramm_html = (is_gramm)? 'gramm-type': '';
+
+                        if(is_gramm){
+
+                            if(in_basket_count > 0){
+                                jRes[i].btn_html = '<div class="modify-gt-value gramm-type added" data-id="'+jRes[i]['id']+'">'+
+                                '<div class="gt-ib-values-holder">'+
+                                '<div class="gt-ib-count"><span class="gt-ib-count-int">'+in_basket_count+'</span> кг</div>'+
+                                '</div>'+
+                                '<div class="gt-ib-modify">'+
+                                '<div class="gt-ib-amount">'+ parseFloat(in_basket_count * jRes[i]['price_site']).toFixed(2) +' р.</div>'+
+                                '<div class="gt-ib-modify-text">Изменить</div>'+
+                                '</div>'+
+                                '</div>';
+
+                            }else{
+                                jRes[i].btn_html = '<div class="first-add-cart gramm-type">В корзину</div>';
+                            }
+
+                        }else{
+
+                            if(in_basket_count > 0){
+                                jRes[i].btn_html = '<div class="inc-btn-holder"><div class="inc-btn-dec" data-id="'+jRes[i]['id']+'">-</div><div class="inc-btn-value">'+in_basket_count+'</div><div class="inc-btn-inc" data-id="'+jRes[i]['id']+'">+</div></div>';
+                            }else{
+                                jRes[i].btn_html = '<div class="first-add-cart">В корзину</div>';
+                            }
+
+                        }
+//                        jRes[i].btn_html = (jRes[i]['in_basket_count'] > 0)? '<div class="inc-btn-holder"><div class="inc-btn-dec" data-id="'+jRes[i]['id']+'">-</div><div class="inc-btn-value">'+jRes[i]['in_basket_count']+'</div><div class="inc-btn-inc" data-id="'+jRes[i]['id']+'">+</div></div>' : '<div class="first-add-cart">В корзину</div>';
+
+
+                        jRes[i].price_html = (is_gramm)? '<span class="product-item-price-int">'+jRes[i]['price_site']+'</span><span class="price-rub">&nbsp;руб/кг</span>' : '<span class="product-item-price-int">'+jRes[i]['price_site']+'</span><span class="price-rub">&nbsp;руб.</span>';
+
+
                         mO.products.push(jRes[i]);
+
+
+
                     }
 
                     before.before(Mustache.to_html(tpl, mO));

@@ -18,15 +18,15 @@ include 'service_features.php';
 
         <div class="row">
 
-            <div class="col-md-4 footer-border-left">
+            <div class="col-sm-4 col-md-4 footer-border-left">
                 Информация:
             </div>
 
-            <div class="col-md-4 footer-border-left">
+            <div class="col-sm-4 col-md-4 footer-border-left">
                 Районы обслуживания:
             </div>
 
-            <div class="col-md-4 footer-border-left">
+            <div class="col-sm-4 col-md-4 footer-border-left">
                 Контакты:
             </div>
 
@@ -42,7 +42,7 @@ include 'service_features.php';
 
         <div class="row footer-body">
 
-            <div class="col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <?php
                     $args = array(
                         'menu'            => 'footer_menu',     // (string) Название выводимого меню (указывается в админке при создании меню, приоритетнее
@@ -66,7 +66,7 @@ include 'service_features.php';
                     wp_nav_menu($args)
                 ?>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <ul>
                     <li>Гагаринский</li>
                     <li>Академический</li>
@@ -74,7 +74,7 @@ include 'service_features.php';
                     <li>Черемушки</li>
                 </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <ul>
                     <li class="footer-phone">+7 (499) 684-21-11</li>
                     <li>info@valet24.ru</li>

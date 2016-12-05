@@ -104,9 +104,9 @@
 //                var_dump($value);
 
 
-                $cats_html .= '<div class="col-md-2 notd">'.
+                $cats_html .= '<div class="col-sm-3 col-md-2 notd">'.
                                     '<a href="/category_'.$id.'/"><div class="cat-item '.$alt_name.'" data-id="'.$id.'">'.
-                                        '<div class="cat-image-holder"><img src="'.$image.'" alt=" '.$name.'"/></div>'.
+                                        '<div class="cat-image-holder"><img src="'.get_stylesheet_directory_uri().'/assets/img/'.$image.'" alt=" '.$name.'"/></div>'.
                                         '<div class="cat-title-holder">'.$name.'</div>'.
                                     '</div></a>'.
                                 '</div>';

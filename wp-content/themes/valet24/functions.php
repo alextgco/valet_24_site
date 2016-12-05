@@ -7,6 +7,8 @@ $global_url = '78.107.237.51:81';
 $global_site = 'valet24.ru';
 $global_images_dir = 'http://valet24.tmweb.ru/images/';
 
+$perPage = 30;
+
 function is_in_basket(){
 
 }

@@ -64,14 +64,7 @@
 
                 ?>
 
-                <div class="row">
-                    <div class=" col-md-12">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="address" placeholder="Укажите адрес:" />
-                        </div>
-                    </div>
 
-                </div>
 
                 <div class="row">
                     <div class=" col-md-12">
@@ -79,6 +72,15 @@
                             <input type="text" class="form-control"  id="name" placeholder="Представьтесь, пожалуйста"/>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
+                    <div class=" col-md-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="address" placeholder="Укажите адрес:" />
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="row">
@@ -98,7 +100,7 @@
                 <div class="row">
                     <div class=" col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="gate" placeholder="Подъезд:"/>
+                            <input type="number" class="form-control"  id="gate" placeholder="Подъезд:"/>
                         </div>
                     </div>
                     <div class=" col-md-6">
@@ -114,13 +116,13 @@
                     <div class=" col-md-6">
                         <div class="form-group">
 
-                            <input type="text" class="form-control"  id="level" placeholder="Этаж:"/>
+                            <input type="number" class="form-control"  id="level" placeholder="Этаж:"/>
                         </div>
                     </div>
                     <div class=" col-md-6">
                         <div class="form-group">
 
-                            <input type="text" class="form-control"  id="flat" placeholder="Квартира:"/>
+                            <input type="number" class="form-control"  id="flat" placeholder="Квартира:"/>
                         </div>
                     </div>
                 </div>
@@ -185,7 +187,7 @@
 
                             ?>
 
-                            Итого с доставкой (<span class="current-delivery-price"><?php echo get_delivery_price(); ?> руб</span>): <span class="cart-amount-with-delivery"> <?php echo number_format($total_price_with_delivery,2); ?><i class="fa fa-ruble"></i></span>
+                            Итого с доставкой (<span class="current-delivery-price"><?php echo get_delivery_price(); ?> руб</span>):<br/> <span class="cart-amount-with-delivery"> <?php echo number_format($total_price_with_delivery,2); ?>&nbsp;<i class="fa fa-ruble"></i></span>
 
                         </div>
                     </div>

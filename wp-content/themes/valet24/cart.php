@@ -32,7 +32,7 @@ include 'header.php';
 
         <div class="row">
 
-            <div class="col-md-8 ">
+            <div class="col-sm-8 col-md-8 ">
 
                 <?php
                 $hiddenClass = ($cart_products_count == 0)? '': 'hidden';
@@ -57,13 +57,13 @@ include 'header.php';
 
                     $image = (strlen($cp_value['image']) > 0) ? $cp_value['image'] : $global_images_dir . 'cat-default.jpg';
 
-//                    $is_gramm = true;//$cp_value['control_of_fractional_amounts'];
                     $is_gramm = ($cp_value['qnt_type_sys'] == 'KG')? true : false;
                     $is_gramm_html = ($is_gramm)? 'gramm-type': '';
-//                    $it_or_kg = ($is_gramm)? 'кг.': 'шт.';
+
                     $it_or_kg = $cp_value['qnt_type'];
 
                     $cart_products_html .=  '<div class="cart-item" data-id="'.$id.'">'.
+                                                '<div class="cart-item-sm-title">'.$name.'</div>'.
                                                 '<div class="cart-item-image-holder">'.
                                                     '<img src="'.$image.'" alt="'.$name.'"/>'.
                                                 '</div>'.
@@ -101,7 +101,7 @@ include 'header.php';
 
             </div>
 
-            <div class="col-md-4 posRel">
+            <div class="col-sm-4 col-md-4 posRel">
 
                 <div class="cart-total-holder">
                     <h3>Ваш заказ:</h3>

@@ -41,7 +41,7 @@
 
             $cats_html .=  '<div class="pr50 notd"><a class="notd" href="/category_'.$id.'">'.
                                 '<div class="cat-item" data-id="'.$id.'">'.
-                                    '<div class="cat-image-holder"><img src="'.$image.'"  alt="'.$name.'"/></div>'.
+                                    '<div class="cat-image-holder"><img src="'.get_stylesheet_directory_uri().'/assets/img/'.$image.'"  alt="'.$name.'"/></div>'.
                                 '</div>'.
                             '</a></div>';
 
