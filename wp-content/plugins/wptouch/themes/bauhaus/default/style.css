@@ -1797,7 +1797,7 @@ header img {
     padding-bottom: 3px;
 }
 span.cart-amount-holder {
-    right: 10px;
+    right: 80px;
     position: absolute;
 }
 .hidden{
@@ -1980,7 +1980,7 @@ span.cart-amount-holder {
 .as-after-header{
     min-height: 95px;
     width: 100%;
-    background-color: #dedede;
+    background-color: #fdffdc;
     border-top: 1px solid #b1b1b1;
     border-bottom: 1px solid #b1b1b1;
     margin-top: 4px;
@@ -1996,7 +1996,12 @@ span.cart-amount-holder {
     padding-right: 10px;
     padding-bottom: 20px;
     padding-top: 20px;
+    background-color: #f1f3d6;
     font-size: 20px;
+    margin-top: 18px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(0,0,0,0.05);
 }
 .cart-total-holder h3.heading-font {
     text-align: center;
@@ -2080,6 +2085,8 @@ textarea.form-control{
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #DDD;
 }
 .i-agree-holder input[type="checkbox"]{
     height: 30px;
@@ -2092,7 +2099,7 @@ textarea.form-control{
     padding-left: 10px;
 }
 .inner-page #sidebar-search{
-    display: none;
+    /*display: none;*/
 }
 
 .gt-ib-values-holder {
@@ -2448,6 +2455,10 @@ textarea.form-control{
     padding-right: 20px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 30px;
+    height: 33px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .cart-item-qnt-value{
     font-size: 24px;
@@ -2465,4 +2476,28 @@ textarea.form-control{
     font-size: 28px;
     color: #555;
 
+}
+
+.to-top{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 21px;
+    width: 70px;
+    text-align: center;
+    font-size: 13px;
+    padding-top: 3px;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,0.15);
+    color: #000;
+}
+
+.scrolled .to-top{
+    height: 43px;
+    padding-top: 14px;
+}
+.prepare-order-title {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 20px;
 }

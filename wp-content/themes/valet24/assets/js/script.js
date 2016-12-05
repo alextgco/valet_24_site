@@ -5,6 +5,8 @@ $(document).ready(function () {
 
     var gt_info = 'Внимание! Конечный вес продукта может отличаться от заказанного.';
 
+    var fast_search_keyword = '';
+
     var vs = {
 
         getNoun : function(number, one, two, five) {
@@ -648,6 +650,9 @@ $(document).ready(function () {
                     }
                 };
 
+                if(fast_search_keyword.length > 0){
+                    o.params.search_keyword = fast_search_keyword;
+                }
 
 
                 if(cat_id != 'EMPTY'){
@@ -843,6 +848,29 @@ $(document).ready(function () {
                 if(window.clicked.indexOf($(this).attr('data-id'))== -1){
                     window.clicked.push($(this).attr('data-id'));
                 }
+
+            });
+
+            $('#sidebar-search').off('input').on('input', function(){
+
+                var v = $(this).val().toLowerCase();
+                var elems = $('.p-parent');
+
+                fast_search_keyword = v;
+
+                elems.show(0);
+
+                elems.each(function(i,e){
+
+                    var title = $(e).find('.product-title-holder').html().toLowerCase();
+
+                    if(title.indexOf(v) == -1){
+
+                        $(e).hide(0);
+
+                    }
+
+                });
 
             });
 

@@ -29,6 +29,8 @@
         $data = $jData['data'];
 
 
+        include 'basket_top.php';
+
         echo '<div class="categories-holder">';
         $cats_html = '';
 
@@ -46,6 +48,8 @@
                             '</a></div>';
 
         }
+
+
 
         echo $cats_html;
         echo '</div>';

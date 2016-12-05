@@ -262,7 +262,7 @@ include 'float_cart.php';
 
 
 
-                            $products_html .= '<div class="col-sm-6 col-md-4 notd">'.
+                            $products_html .= '<div class="col-sm-6 p-parent col-md-4 notd">'.
                                 '<div class="product-item" data-id="'.$id.'">'.
                                 //<a href="/product_'.$id.'/">
                                 '<div class="product-image-holder"><img src="'.$image.'" alt=" '.$name.'"/></div>'.

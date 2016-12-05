@@ -5,6 +5,8 @@ $(document).ready(function () {
 
     var gt_info = 'Внимание! Конечный вес продукта может отличаться от заказанного.';
 
+    var fast_search_keyword = '';
+
     var vs = {
 
         getNoun : function(number, one, two, five) {
@@ -495,7 +497,7 @@ $(document).ready(function () {
                         '<div class="gt-dd-inner">' +
 
                         '<div class="gt-name">'+name+'</div>' +
-                        '<div class="gt-price">Цена: '+price_html+'</div>' +
+                        '<div class="gt-price">'+price_html+'</div>' +
 
                         '<div class="gt-gr-controls">' +
                         '<div class="gr-dec sc-gr-dec gt-control unselectable">100 гр<i class="fa fa-minus"></i></div>' +
@@ -585,7 +587,7 @@ $(document).ready(function () {
                         '<div class="gt-dd-inner">' +
 
                         '<div class="gt-name">'+name+'</div>' +
-                        '<div class="gt-price">Цена: '+price_html+'</div>' +
+                        '<div class="gt-price">'+price_html+'</div>' +
 
                         '<div class="gt-gr-controls">' +
                         '<div class="gr-dec sc-gr-dec gt-control unselectable">100 гр<i class="fa fa-minus"></i></div>' +
@@ -676,6 +678,9 @@ $(document).ready(function () {
                     }
                 };
 
+                if(fast_search_keyword.length > 0){
+                    o.params.search_keyword = fast_search_keyword;
+                }
 
 
                 if(cat_id != 'EMPTY'){
@@ -806,6 +811,40 @@ $(document).ready(function () {
 
             });
 
+            $('.to-top').off('click').on('click', function(){
+
+                $('html,body').animate({
+                    scrollTop: 0
+                }, 350, function(){
+
+                });
+
+            });
+
+            $('#sidebar-search').off('input').on('input', function(){
+
+                var v = $(this).val().toLowerCase();
+                var elems = $('.product-item');
+
+                fast_search_keyword = v;
+
+                elems.show(0);
+
+                elems.each(function(i,e){
+
+                    var title = $(e).find('.product-name-holder').html().toLowerCase();
+
+                    if(title.indexOf(v) == -1){
+
+                        $(e).hide(0);
+
+                    }
+
+                });
+
+
+
+            });
 
         },
 

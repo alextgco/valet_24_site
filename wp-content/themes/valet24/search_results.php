@@ -7,7 +7,9 @@
         session_start();
         $PHPSESSID=session_id();
 
-        $search_keyword = $_GET['search_keyword'];
+        $search_keyword =   $_GET['search_keyword'];
+        $ext_limit =        ($_GET['limit'])? $_GET['limit'] : $perPage;
+
         $page_no = ($_GET['page_no']!="")? $_GET['page_no'] : '1';
 
         $href = request_url();
@@ -90,7 +92,7 @@
 
         $url2 = $global_prot . '://' . $global_url. '/site_api';
 
-        $req2 = '{"command":"get_product","params":{"name":"'.$search_keyword.'","limit": "500","page_no":"'.$page_no.'"}}';
+        $req2 = '{"command":"get_product","params":{"name":"'.$search_keyword.'","limit": "'.$ext_limit.'","page_no":"'.$page_no.'"}}';
 
         $post_data2 = http_build_query(array(
             'sid' => $PHPSESSID,

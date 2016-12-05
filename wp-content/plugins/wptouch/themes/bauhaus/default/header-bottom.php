@@ -31,8 +31,8 @@
         <div id="search-dropper">
             <div id="wptouch-search-inner">
                 <form method="get" id="searchform" action="/search_results">
-                    <input type="text" name="s" id="search-text" placeholder="Поиск по продуктам" />
-                    <input name="submit" type="submit" id="search-submit" value="Найти" class="button-dark" />
+                    <input type="text" name="search_keyword" id="search-text" placeholder="Поиск по продуктам" />
+                    <input type="submit" id="search-submit" value="Найти" class="button-dark" />
                 </form>
             </div>
         </div>

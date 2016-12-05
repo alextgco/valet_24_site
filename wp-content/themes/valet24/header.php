@@ -2,7 +2,7 @@
 
 
 
-    $search_keyword = $_GET['search_keyword'];
+    $search_keyword = ($_GET['search_keyword'])? $_GET['search_keyword']: '';
 
 
 

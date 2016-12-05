@@ -55,11 +55,26 @@
 
 <div class="page-wrapper">
     <?php if ( bauhaus_should_show_search() ) { ?>
-        <div id="search-dropper">
+
+
+        <?php
+
+        $openedSearch = (strpos($_SERVER['REQUEST_URI'], 'search_results'))? 'toggled' : '';
+
+        ?>
+
+        <div id="search-dropper" class="<?php echo $openedSearch;?>">
             <div id="wptouch-search-inner">
                 <form method="get" id="searchform" action="/search_results">
-                    <input type="text" name="s" id="search-text" placeholder="Поиск по продуктам" />
-                    <input name="submit" type="submit" id="search-submit" value="Найти" class="button-dark" />
+
+                    <?php
+
+                    $curr_search_keyword = $_GET['search_keyword'];
+
+                    ?>
+
+                    <input type="text" name="search_keyword" id="search-text" placeholder="Поиск по продуктам" value="<?php echo $curr_search_keyword; ?>"/>
+                    <input type="submit" id="search-submit" value="Найти" class="button-dark" />
                 </form>
             </div>
         </div>
@@ -105,7 +120,7 @@
 
         </div>
 
-        <a href="<?php wptouch_bloginfo( 'url' ); ?>" id="header-logo-my" class="header-center tappable">
+        <a href="<?php wptouch_bloginfo( 'url' ); ?>" id="header-logo-my" class="header-center tappable <?php echo $openedSearch; ?>">
 
             <img id="header-logo" src="<?php foundation_the_logo_image(); ?>" alt="logo image" />
 

@@ -1732,7 +1732,7 @@ body.scrolled .to-top {
     display: block;
 }
 .sidebar-search-holder{
-    display: none;
+    /*display: none;*/
 }
 
 .gt-dd {
