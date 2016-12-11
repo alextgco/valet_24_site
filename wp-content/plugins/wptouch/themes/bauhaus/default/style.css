@@ -1799,9 +1799,14 @@ header img {
 span.cart-amount-holder {
     right: 80px;
     position: absolute;
+    top: 3px;
 }
 .hidden{
     display: none;
+}
+
+.scrolled .cart-amount-holder{
+    top: 15px;
 }
 
 /********  CART  *****************/

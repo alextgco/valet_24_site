@@ -9,7 +9,7 @@ add_filter( 'foundation_featured_show', 'bauhaus_show_featured_slider', 10, 2 );
 $global_prot = 'http';
 $global_url = '78.107.237.51:81';
 $global_site = 'valet24.ru';
-$global_images_dir = 'http://valet24.tmweb.ru/images/';
+$global_images_dir = 'http://valet24.ru/images/';
 
 
 function  getNoun($number, $one, $two, $five) {

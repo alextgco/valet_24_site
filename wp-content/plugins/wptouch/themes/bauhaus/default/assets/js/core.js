@@ -3,7 +3,7 @@
 
 //var doc_root = widgetWrapper.data('host');
 
-var host = 'http://valet24.tmweb.ru/';//'192.168.1.90'
+var host = 'http://valet24.ru/';//'192.168.1.90'
 
 
 var applyDictionary = function (res) {
@@ -71,7 +71,7 @@ var makeQuery = function (options, callback) {
 var global_prot = 'http';
 var global_url = '78.107.237.51:81';
 var global_site = 'valet24.ru';
-var global_images_dir = 'http://valet24.tmweb.ru/images/';
+var global_images_dir = 'http://valet24.ru/images/';
 
 
 
@@ -146,7 +146,7 @@ var socketQuery_site = function (obj, callback) {
     console.log('REQ: ', o.json);
 
     $.ajax({
-        url: 'http://valet24.tmweb.ru/socketQuery_php.php',
+        url: 'http://valet24.ru/socketQuery_php.php',
         method: 'POST',
         data: o ,
         dataType: "json",

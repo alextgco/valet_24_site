@@ -5,7 +5,7 @@ date_default_timezone_set('Europe/Moscow');
 $global_prot = 'http';
 $global_url = '78.107.237.51:81';
 $global_site = 'valet24.ru';
-$global_images_dir = 'http://valet24.tmweb.ru/images/';
+$global_images_dir = 'http://valet24.ru/images/';
 
 $perPage = 30;
 
