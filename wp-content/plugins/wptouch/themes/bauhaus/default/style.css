@@ -2506,3 +2506,7 @@ textarea.form-control{
     padding-top: 20px;
     font-size: 20px;
 }
+.cart-total-values span.cart-amount-holder,
+.scrolled .cart-total-values span.cart-amount-holder{
+    top: auto!important;
+}

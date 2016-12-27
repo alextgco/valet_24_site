@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     var page_no = 1;
-    var perPage = 9;
+    var perPage = 30;
 
     var gt_info = 'Внимание! Конечный вес продукта может отличаться от заказанного.';
 

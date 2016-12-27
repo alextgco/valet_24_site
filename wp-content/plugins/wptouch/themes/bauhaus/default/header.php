@@ -3,7 +3,7 @@
 <html <?php language_attributes(); ?>>
 	<head>
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
-		<title><?php wp_title( ' | ', true, 'right' ); ?></title>
+		<title>Valet24 | круглосуточная доставка продуктов!</title>
 		<?php wptouch_head(); ?>
 		<?php
 			if ( !is_single() && !is_archive() && !is_page() && !is_search() ) {

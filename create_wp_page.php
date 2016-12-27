@@ -4,7 +4,7 @@
 
 
     $type_valet =         $_GET['type']; // CATEGORY | PRODUCT
-    $alias_url =    $_GET['alias'];
+    $alias_url =          $_GET['alias'];
     $title_valet =        $_GET['name'];
     $code_valet =         $_GET['code'];
 
