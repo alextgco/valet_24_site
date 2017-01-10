@@ -2115,6 +2115,12 @@ body.scrolled .to-top {
     .search-holder {
         margin-top: 80px;
     }
+    .logo-holder{
+        margin-top: 60px;
+    }
+    .cat-image-holder{
+        height: auto;
+    }
 }
 @media (max-width: 768px) {
     .cat-image-holder{
