@@ -1659,6 +1659,13 @@ header img {
     font-size: 14px;
     padding-top: 8px;
 }
+
+.product-name-holder {
+    overflow: hidden;
+    padding-right: 5px;
+    text-overflow: ellipsis;
+}
+
 .product-price-holder {
     font-weight: bold;
     margin-top: 7px;

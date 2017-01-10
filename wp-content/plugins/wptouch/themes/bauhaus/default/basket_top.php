@@ -41,6 +41,11 @@
 
 ?>
 
+
+<link href="http://valet24.ru/wp-content/themes/valet24/assets/img/favicon.png" rel="shortcut icon" type="image/i-icon">
+<title>Valet24 | Круглосуточная курьерская служба</title>
+
+
 <a href="/cart">
     <div class="cart-holder">
         <div class="cart-title">Корзина:</div>

@@ -2,6 +2,7 @@
 
 <html <?php language_attributes(); ?>>
 	<head>
+
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<title>Valet24 | круглосуточная доставка продуктов!</title>
 		<?php wptouch_head(); ?>
@@ -14,6 +15,9 @@
 				echo '<meta name="robots" content="noindex" />';
 			}
 		?>
+
+
+
 	</head>
 
 
