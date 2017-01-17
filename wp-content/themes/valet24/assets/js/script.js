@@ -788,7 +788,7 @@ $(document).ready(function () {
                 var gatecode =          $('#gatecode').val();
                 var level =             $('#level').val();
                 var flat =              $('#flat').val();
-                var comment =           $('#comment').html();
+                var comment =           $('#comment').val();
                 var agreement =         $('#agreement')[0].checked;
                 var subscription =      $('#subscription')[0].checked;
 
@@ -813,12 +813,12 @@ $(document).ready(function () {
                         }
                     };
 
+
                     socketQuery_site(o, function(res){
 
                         if(!res.code){
 
                             console.log(res);
-
                             document.location.href = '/success/?order_id='+res.id;
 
                         }else{

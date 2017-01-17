@@ -768,7 +768,7 @@ $(document).ready(function () {
                 var gatecode =          $('#gatecode').val();
                 var level =             $('#level').val();
                 var flat =              $('#flat').val();
-                var comment =           $('#comment').html();
+                var comment =           $('#comment').val();
                 var agreement =         $('#agreement')[0].checked;
                 var subscription =      $('#subscription')[0].checked;
 
