@@ -8,12 +8,29 @@
 
 ?>
 
+<div class="site-fader-holder">
+
+    <div class="container posRel">
+        <div class="site-fader-close"></div>
+        <div class="site-fader-content">
+
+        </div>
+    </div>
+</div>
 
 <div class="preheader">
     <div class="container">
         <div class="phone-holder">+7 (499) 684-21-11</div>
         <div class="email-holder sc-feedback-init">info@valet24.ru</div>
-        <div class="hours-holder"><span class="invis-sm">Часы работы: </span><span class="big-white">КРУГЛОСУТОЧНО, БЕЗ ВЫХОДНЫХ</span></div>
+
+<!--        <div class="pa-btn"><i class="fa fa-lock"></i>&nbsp;&nbsp;Личный кабинет</div>-->
+        <div class="to-pa">Александр, здесь Ваш личный кабинет!</div>
+
+        <div class="hours-holder">
+            <span class="invis-sm">Часы работы: </span>
+            <span class="big-white-icon"></span>
+<!--            <span class="big-white">КРУГЛОСУТОЧНО, БЕЗ ВЫХОДНЫХ</span>-->
+        </div>
     </div>
 </div>
 <div class="header just_loaded">
