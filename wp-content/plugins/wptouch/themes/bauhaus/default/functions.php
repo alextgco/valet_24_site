@@ -77,7 +77,6 @@ function my_theme_load_resources() {
 add_action('wp_enqueue_scripts', 'my_theme_load_resources');
 
 
-
 function request_url()
 {
     $result = ''; // Пока результат пуст

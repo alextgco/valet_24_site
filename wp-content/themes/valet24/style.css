@@ -379,6 +379,11 @@ a .product-title-holder{
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
 }
+
+.cart-sidebar-tpl .cart-item-price{
+    border-left: 0;
+}
+
 .cart-item-price i{
     font-size: 14px;
 }
@@ -559,9 +564,8 @@ a .product-title-holder{
     text-align: left;
     margin-bottom: 12px;
     height: 128px;
-    border-bottom: 1px solid #555;
+    border: 1px solid #d8d8d8;
     box-shadow: 0 0 0 rgba(0,0,0,0);
-    border-left: 0;
 }
 .cart-sidebar-items .cart-item-price {
     float: left;
@@ -2059,7 +2063,7 @@ body.scrolled .to-top {
 
 .cart-sidebar-items .cart-item-qnt-dec,
 .cart-sidebar-items .cart-item-qnt-inc{
-    height: 32px;
+    height: 31px;
     padding-top: 6px;
 }
 .cart-sidebar-items .cart-item-qnt-value-holder {
