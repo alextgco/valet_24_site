@@ -2595,3 +2595,11 @@ body.scrolled .to-top {
     font-family: "PTSans-Bold", Open Sans, arial, sans-serif;
     font-size: 14px;
 }
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+
+    background-color: #e3e3e3!important;
+
+}
