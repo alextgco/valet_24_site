@@ -1,6 +1,9 @@
 <div class="<?php wptouch_post_classes(); ?>">
 	<div class="post-page-head-area bauhaus">
 
+
+
+
         <div id="mobile-logo-title" class="site-title">
 
             <img src="<?php $global_images_dir; ?>/images/circle_logo.png" />

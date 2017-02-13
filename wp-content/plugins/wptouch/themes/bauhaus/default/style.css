@@ -290,7 +290,7 @@ header img {
     -webkit-transition: top 400ms ease;
 }
 #header-logo-my.toggled{
-    top: 50px;
+    top: 116px;
 }
 
 #search-dropper.toggled {
@@ -1464,7 +1464,7 @@ header img {
 
 #header-logo-my{
     position: absolute;
-    top: 1px;
+    top: 43px;
     z-index: 1000;
     display: block;
     left: 20%;
@@ -2516,4 +2516,178 @@ textarea.form-control{
 .cart-total-values span.cart-amount-holder,
 .scrolled .cart-total-values span.cart-amount-holder{
     top: auto!important;
+}
+
+.pa-btn{
+    position: relative;
+    height: 40px;
+    background-color: #fff8ab;
+    text-align: center;
+    padding-top: 12px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    box-sizing: border-box;
+
+}
+.to-pa{
+    position: relative;
+    height: 40px;
+    background-color: #fff8ab;
+    text-align: center;
+    padding-top: 12px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.home .pa-btn,
+.home .to-pa{
+    background-color: rgb(50, 40, 69);
+    color: rgba(255, 255, 255, 0.80);
+}
+
+
+
+.site-fader-holder {
+    width: 100%;
+    height: 120%;
+    position: fixed;
+    background-color: #e3e3e3;
+    z-index: -1;
+    opacity: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    top: 0;
+}
+.site-fader-contaner{
+
+}
+.site-fader-close {
+    background-image: url(/images/fader_close.png);
+    height: 47px;
+    width: 47px;
+    margin-top: -13px;
+    position: absolute;
+    right: -6px;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: center;
+    border-radius: 50%;
+}
+.site-fader-close:hover {
+    background-color: #fff;
+}
+.pa-m-header {
+    font-family: Helvetica-Regular, arail, sans-serif;
+    font-size: 18px;
+    margin-top: 20px;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 20px;
+    font-weight: normal;
+}
+.pa-m-form {
+    /*width: 600px;*/
+    margin-top: 20px;
+}
+.pa-m-label{
+    font-family: Helvetica-light, arail, sans-serif;
+    width: 100%;
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+.pa-m-input{
+    width: 100%;
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid #444;
+    height: 44px;
+    margin-bottom: 30px;
+    background-color: #fff!important;
+    font-family: PTSans-Regular,arial, sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    margin-top: 8px;
+    padding-left: 10px;
+    border-radius: 0;
+}
+.pa-m-input:focus{
+    background-color: #f2f2f2;
+    padding-left: 13px;
+}
+.pa-m-forgot {
+    float: left;
+    height: 24px;
+    cursor: pointer;
+}
+.pa-m-registration {
+    float: left;
+    margin-left: 20px;
+    color: #007cff;
+    font-size: 18px;
+    height: 24px;
+    margin-top: -2px;
+    cursor: pointer;
+}
+.pa-m-registration:hover {
+    color: #335aff;
+}
+
+.pa-m-back-to-login{
+    float: left;
+    margin-left: 20px;
+    color: #007cff;
+    font-size: 18px;
+    height: 24px;
+    margin-top: -2px;
+    cursor: pointer;
+}
+.pa-m-back-to-login:hover{
+    color: #335aff;
+}
+
+.pa-m-login {
+    float: left;
+    margin-top: 50px;
+    background-color: #007cfb;
+    color: #fff;
+    padding: 15px 40px 15px 28px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.pa-m-login-holder{
+    width: 100%;
+    float: left;
+}
+.pa-m-login:hover {
+    background-color: #335aff;
+}
+
+.pa-s-button{
+    float: left;
+    background-color: #007cfb;
+    color: #fff;
+    padding: 9px 15px 7px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-right: 10px;
+}
+.pa-s-button:hover{
+    background-color: #335aff;
+}
+
+.pa-button{
+    float: left;
+    margin-top: 50px;
+    background-color: #007cfb;
+    color: #fff;
+    padding: 15px 40px 15px 28px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.pa-button:hover{
+    background-color: #335aff;
 }

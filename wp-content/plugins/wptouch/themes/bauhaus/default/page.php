@@ -5,6 +5,11 @@
 
 <?php } else { ?>
 
+
+
+<!--    <div class="pa-btn"><i class="fa fa-lock"></i>&nbsp;&nbsp;Личный кабинет</div>-->
+            <div class="to-pa">Александр, здесь Ваш личный кабинет!</div>
+
 	<?php get_header(); ?>
 
 	<div id="content">

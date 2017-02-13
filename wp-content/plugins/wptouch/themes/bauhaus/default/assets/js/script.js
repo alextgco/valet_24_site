@@ -846,6 +846,65 @@ $(document).ready(function () {
 
             });
 
+            $('.to-pa').off('click').on('click', function(){
+
+                document.location.href = '/account/';
+
+            });
+
+
+
+            $('.pa-btn').off('click').on('click', function(){
+
+                var html = '<div class="pa-m-header">Вход в личный кабинет</div>' +
+                    '<div class="pa-m-body">' +
+                    '<div class="pa-m-form">' +
+                    '<label class="pa-m-label">Логин (Ваш адрес эл. почты):</label>' +
+                    '<input class="pa-m-input" type="email" id="pa-login" placeholder="E-mail"/>' +
+                    '<label class="pa-m-label">Пароль:</label>' +
+                    '<input class="pa-m-input" type="password" id="pa-password" placeholder="Пароль"/>' +
+                    '</div>' +
+                    '<div class="pa-m-forgot">Забыли пароль?</div>' +
+                    '<div class="pa-m-registration">Регистрация</div>' +
+                    '<div class="pa-m-login-holder"><div class="pa-m-login pa-button"><i class="fa fa-unlock"></i>&nbsp;&nbsp;Войти</div></div>' +
+                    '</div>';
+
+                var r_html = '<div class="pa-m-header">Регистрация</div>' +
+                    '<div class="pa-m-body">' +
+                    '<div class="pa-m-form">' +
+                    '<label class="pa-m-label">Укажите Ваш адрес эл. почты:</label>' +
+                    '<input class="pa-m-input" type="email" id="pa-login" placeholder="E-mail"/>' +
+                    '<label class="pa-m-label">Придумайте пароль (запишите чтобы не забыть):</label>' +
+                    '<input class="pa-m-input" type="password" id="pa-password" placeholder="Пароль"/>' +
+                    '</div>' +
+                    '<div class="pa-m-back-to-login"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;Вход в личный кабинет</div>' +
+                    '<div class="pa-m-login-holder"><div class="pa-m-register pa-button"><i class="fa fa-user"></i>&nbsp;&nbsp;Зарегистрироваться</div></div>' +
+                    '</div>';
+
+                var inner_handlers = function(){
+
+                    $('.pa-m-registration').off('click').on('click', function(){
+
+                        vs.faderModal(true, r_html, inner_handlers);
+
+                    });
+
+                    $('.pa-m-back-to-login').off('click').on('click', function(){
+
+                        vs.faderModal(true, html, inner_handlers);
+
+                    });
+                };
+
+                vs.faderModal(true, html, inner_handlers);
+
+            });
+
+            $('.site-fader-close').off('click').on('click', function(){
+                vs.faderModal(false);
+            });
+
+
         },
 
         updateBasket: function(cart){
@@ -917,6 +976,51 @@ $(document).ready(function () {
             }else{
                 elem.find('.mbw-loader-holder').remove();
             }
+        },
+
+        faderModal: function(state, html, cb){
+
+            var f_h = $('.site-fader-holder');
+            var f_c = $('.site-fader-content');
+
+
+            f_c.html('');
+
+            html = html || '';
+
+            if(state){
+
+                f_c.html(html);
+
+                f_h.css({zIndex: 10020});
+
+                f_h.animate({
+                    opacity: 1
+                }, 320, function(){
+
+                    if(typeof cb == 'function'){
+                        cb();
+                    }
+
+
+                });
+
+            }else{
+
+                f_h.animate({
+                    opacity: 0
+                }, 320, function(){
+                    f_h.css({zIndex: -1});
+
+                    if(typeof cb == 'function'){
+                        cb();
+                    }
+
+                });
+
+            }
+
+
         }
 
     };

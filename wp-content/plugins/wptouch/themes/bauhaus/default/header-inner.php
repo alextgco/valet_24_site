@@ -63,6 +63,9 @@
 
         ?>
 
+<!--        <div class="pa-btn"><i class="fa fa-lock"></i>&nbsp;&nbsp;Личный кабинет</div>-->
+                <div class="to-pa">Александр, здесь Ваш личный кабинет!</div>
+
         <div id="search-dropper" class="<?php echo $openedSearch;?>">
             <div id="wptouch-search-inner">
                 <form method="get" id="searchform" action="/search_results">
@@ -113,6 +116,8 @@
 
 <div class="<?php wptouch_post_classes(); ?>">
     <div class="post-page-head-area bauhaus">
+
+
 
         <div id="mobile-logo-title" class="site-title">
 

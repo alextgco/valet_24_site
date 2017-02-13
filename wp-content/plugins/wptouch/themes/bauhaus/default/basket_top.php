@@ -1,3 +1,13 @@
+<div class="site-fader-holder">
+
+    <div class="container posRel">
+        <div class="site-fader-close"></div>
+        <div class="site-fader-content">
+
+        </div>
+    </div>
+</div>
+
 <?php
 /**
  * Created by PhpStorm.
