@@ -217,6 +217,8 @@ include 'float_cart.php';
 
                         foreach($data2 as $key2=>$val2){
 
+//                            var_export($val2);
+
                             $products_html .= render_product($val2, 'card', $columns2);
 
 

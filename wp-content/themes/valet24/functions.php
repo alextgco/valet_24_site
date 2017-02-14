@@ -108,7 +108,7 @@ function render_product($p, $mode, $columns){
 
     if($mode == 'card'){
 
-        $id =               $p[array_search('product_id', $columns)];
+        $id =               $p[array_search('id', $columns)];
         $name =             $p[array_search('name', $columns)];
         $price =            $p[array_search('price_site', $columns)];
         $product_count =    $p[array_search('product_count', $columns)];
@@ -156,8 +156,9 @@ function render_product($p, $mode, $columns){
             '<div class="product-image-holder"><img src="'.$image.'" alt=" '.$name.'"/></div>'.
             //</a>
             //'<a href="/product_'.$id.'/">
-            '<div class="product-title-holder">'.$name.'</div>'.
+            '<div class="cart-item-to-favorite" data-id="'.$id.'"><i class="fa fa-heart-o"></i><div class="cart-item-to-favorite-dd">Добавить в избранное</div></div>'.
             //</a>
+            '<div class="product-title-holder">'.$name.'</div>'.
             '<div class="product-price-holder">Цена: '.$price.'</div>'.
 
             '<div class="product-add-holder sc-product-add '.$addedClass.'"  data-id="'.$id.'">'.$btn_html.'</div></div>'.
@@ -186,6 +187,7 @@ function render_product($p, $mode, $columns){
                     '<img src="'.$image.'" alt="'.$name.'"/>'.
                     '</div>'.
                     '<div class="cart-item-title">'.$name.'</div>'.
+                    '<div class="cart-item-to-favorite" data-id="'.$id.'"><i class="fa fa-heart-o"></i><div class="cart-item-to-favorite-dd">Добавить в избранное</div></div>'.
                     '<div class="cart-item-prices">'.
                     '<div class="cart-item-price">'.
                     '<div class="cart-item-single-price">Цена: <span class="product-item-price-int">'.$price.'</span> <i class="fa fa-ruble"></i></div>'.
@@ -209,6 +211,7 @@ function render_product($p, $mode, $columns){
                     '<div class="cart-item-image-holder">'.
                     '<img src="'.$image.'" alt="'.$name.'"/>'.
                     '</div>'.
+                    '<div class="cart-item-to-favorite" data-id="'.$id.'"><i class="fa fa-heart-o"></i><div class="cart-item-to-favorite-dd">Добавить в избранное</div></div>'.
                     '<div class="cart-item-title">'.$name.'</div>'.
                     '<div class="cart-item-prices">'.
                     '<div class="cart-item-price">'.

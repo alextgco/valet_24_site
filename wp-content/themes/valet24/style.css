@@ -2603,3 +2603,48 @@ select:-webkit-autofill {
     background-color: #e3e3e3!important;
 
 }
+
+.cart-item-to-favorite{
+    position: absolute;
+    margin-top: -30px;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding-top: 7px;
+    border: 1px solid rgba(0,0,0,0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    padding-right: 1px;
+    right: 9px;
+    cursor: pointer;
+    font-size: 19px;
+    top: 40px;
+}
+
+.cart-item-to-favorite-dd{
+    display: none!important;
+    position: absolute;
+    background-color: #fff;
+    width: 150px;
+    font-size: 12px;
+    right: 40px;
+    margin-top: -34px;
+    height: 38px;
+    line-height: 14px;
+    padding-top: 12px;
+    border-radius: 5px;
+    color: #000;
+}
+.cart-item-to-favorite:hover .cart-item-to-favorite-dd{
+    display: block!important;
+
+}
+.cart-item-to-favorite:hover{
+    color: red;
+    background-color: #fff;
+}
+.cart-list-holder .cart-item-to-favorite{
+    right: 311px;
+    padding-right: 0;
+}
+

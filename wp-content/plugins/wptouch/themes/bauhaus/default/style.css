@@ -2665,19 +2665,21 @@ textarea.form-control{
     background-color: #335aff;
 }
 
-.pa-s-button{
+.pa-s-button {
     float: left;
-    background-color: #007cfb;
-    color: #fff;
-    padding: 9px 15px 7px 12px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 30px;
-    margin-right: 10px;
+    width: 50%;
+    background-color: #fff;
+    color: #000;
+    font-size: 13px;
+    text-align: center;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
 }
-.pa-s-button:hover{
-    background-color: #335aff;
-}
+
 
 .pa-button{
     float: left;
@@ -2687,7 +2689,170 @@ textarea.form-control{
     padding: 15px 40px 15px 28px;
     font-size: 20px;
     cursor: pointer;
+
 }
 .pa-button:hover{
     background-color: #335aff;
+}
+
+.cart-item-to-favorite{
+    position: absolute;
+    margin-top: -30px;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding-top: 11px;
+    border: 1px solid rgba(0,0,0,0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    padding-right: 0;
+    right: 9px;
+    cursor: pointer;
+    font-size: 19px;
+    top: 40px;
+    box-sizing: border-box;
+}
+
+.cart-item-to-favorite-dd{
+    display: none!important;
+    position: absolute;
+    background-color: #fff;
+    width: 150px;
+    font-size: 12px;
+    right: 40px;
+    margin-top: -34px;
+    height: 38px;
+    line-height: 14px;
+    padding-top: 12px;
+    border-radius: 5px;
+    color: #000;
+}
+.cart-item-to-favorite:hover .cart-item-to-favorite-dd{
+
+
+}
+.cart-item-to-favorite:hover{
+    color: red;
+    background-color: #fff;
+}
+.cart-list-holder .cart-item-to-favorite{
+    margin-top: -42px;
+    padding-right: 0;
+}
+.tabToggle {
+
+    height: 50px;
+    background-color: #f9f9f8;
+    text-align: center;
+    padding-top: 16px;
+    box-sizing: border-box;
+    border-right: 1px solid #ddd;
+    float: left;
+    color: #555;
+
+    border-top: 1px solid #f9f9f8;
+    border-bottom: 1px solid #ddd;
+}
+.tabToggle.opened {
+    background-color: #fff;
+    color: #000;
+    border-top: 1px solid #ddd;
+    border-bottom: 0;
+}
+.tabToggle:last-child {
+    border-right: 0;
+}
+
+
+.sc_tabulatorDDItem{
+    display: none;
+    width: 100%;
+    background-color: #fff;
+    float: left;
+}
+
+.sc_tabulatorDDItem.opened{
+    display: block;
+}
+.inline-help {
+    font-size: 13px;
+    padding: 15px 15px 25px 15px;
+    line-height: 18px;
+}
+
+
+.c-item-img {
+    width: 70px;
+    height: 70px;
+    float: left;
+    border-right: 1px solid #ddd;
+    overflow: hidden;
+    border-radius: 0;
+    background-color: #fff;
+    text-align: center;
+}
+.c-item-img img{
+    height: 100%;
+
+}
+.c-item-dd{
+    display: none;
+    width: 100%;
+    float: left;
+}
+.c-item-wrapper {
+    width: 100%;
+    float: left;
+    border-bottom: 10px solid #f9f9f8;
+    border-top: 1px solid #ddd;
+}
+.c-item-circle{
+    height: 15px;
+    width: 15px;
+    background-color: green;
+    border-radius: 50%;
+    margin-right: 10px;
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 8px;
+}
+.c-item-date-holder{
+    width: 100%;
+}
+.c-item-date {
+    padding-right: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    padding-bottom: 20px;
+    border-bottom: 1px solid;
+    padding-top: 25px;
+    display: inline-block;
+    float: left;
+    padding-left: 30px;
+}
+.c-item-prefix{
+    position: absolute;
+    font-size: 11px;
+    font-style: italic;
+    color: #777;
+    margin-left: 30px;
+    margin-top: 9px;
+}
+.c-item-images-list {
+    width: 100%;
+    float: left;
+    background-color: #fff;
+}
+.c-item-wrapper{
+    float: left;
+    width: 100%;
+}
+
+
+
+.c-item-wrapper.opened .c-item-dd{
+    display: block;
+}
+.page-template-account .site-content{
+    margin-top: -56px;
 }

@@ -30,6 +30,143 @@ function  getNoun($number, $one, $two, $five) {
     return $five;
 }
 
+function ahah(){
+    return 'asdas';
+}
+
+
+function render_product_m($p, $mode, $columns){
+
+    $global_images_dir = 'http://valet24.ru/images/';
+    $tpl = '';
+
+
+
+    if($mode == 'card'){
+
+        $id =               $p[array_search('id', $columns)];
+        $name =             $p[array_search('name', $columns)];
+        $price =            $p[array_search('price_site', $columns)];
+        $product_count =    $p[array_search('product_count', $columns)];
+
+        $image =            (strlen($p[array_search('image', $columns)]) > 0) ? $p[array_search('image', $columns)] : $global_images_dir . 'cat-default.jpg';
+        $is_gramm =         ($p[array_search('qnt_type_sys', $columns)] == 'KG')? true : false;
+        $in_basket_count =  $p[array_search('in_basket_count', $columns)];
+
+
+        if($is_gramm){
+
+            if($in_basket_count > 0){
+                $btn_html = '<div class="modify-gt-value gramm-type added" data-id="'.$id.'">'.
+                    '<div class="gt-ib-values-holder">'.
+                    '<div class="gt-ib-count"><span class="gt-ib-count-int">'.$in_basket_count.'</span> кг</div>'.
+                    '</div>'.
+                    '<div class="gt-ib-modify">'.
+                    '<div class="gt-ib-amount">'. round($in_basket_count * $p[array_search('price_site',$columns)], 2) .' р.</div>'.
+                    '<div class="gt-ib-modify-text">Изменить</div>'.
+                    '</div>'.
+                    '</div>';
+
+            }else{
+                $btn_html = '<div class="first-add-cart gramm-type">В корзину</div>';
+            }
+
+        }else{
+
+            if($in_basket_count > 0){
+                $btn_html = '<div class="inc-btn-holder"><div class="inc-btn-dec" data-id="'.$id.'">-</div><div class="inc-btn-value">'.$in_basket_count.'</div><div class="inc-btn-inc" data-id="'.$id.'">+</div></div>';
+            }else{
+                $btn_html = '<div class="first-add-cart">В корзину</div>';
+            }
+
+        }
+
+        $price = ($is_gramm)? '<span class="product-item-price-int">'.$p[array_search('price_site',$columns)].'</span>' . '<span class="price-rub">&nbsp;руб/кг</span>' : '<span class="product-item-price-int">'.$p[array_search('price_site',$columns)].'</span>' .'<span class="price-rub">&nbsp;руб.</span>';
+
+        $addedClass = ($in_basket_count > 0)?'added': '';
+
+        $tpl .= '<div class="product-item" data-id="'.$id.'">'.
+            '<div class="product-image-holder"><img src="'.$image.'" alt=" '.$name.'"/></div>'.
+            '<div class="product-info-holder"><div class="product-name-holder">'.$name.'</div>'.
+            '<div class="product-price-holder">'.$price.'</div></div>'.
+            '<div class="cart-item-to-favorite" data-id="'.$id.'"><i class="fa fa-heart-o"></i><div class="cart-item-to-favorite-dd">Добавить в избранное</div></div>'.
+            '<div class="product-add-holder sc-product-add '.$addedClass.'"  data-id="'.$id.'">'.$btn_html.'</div></div>';
+
+    }else{
+
+        $id = $p['product_id'];
+        $name = $p['name'];
+        $price = $p['price_site'];
+        $product_count = $p['product_count'];
+        $total = number_format($price * $product_count,2);
+        $image = (strlen($p['image']) > 0) ? $p['image'] : $global_images_dir . 'cat-default.jpg';
+        $is_gramm = ($p['qnt_type_sys'] == 'KG')? true : false;
+        $is_gramm_html = ($is_gramm)? 'gramm-type': '';
+        $it_or_kg = $p['qnt_type'];
+        $in_basket_count = $p['in_basket_count'];
+
+        switch($mode){
+
+            case 'sidebar':
+
+                $tpl .=
+                    '<div class="cart-item cart-sidebar-tpl" data-id="'.$id.'">'.
+                    '<div class="cart-item-image-holder">'.
+                    '<img src="'.$image.'" alt="'.$name.'"/>'.
+                    '</div>'.
+                    '<div class="cart-item-title">'.$name.'</div>'.
+                    '<div class="cart-item-to-favorite" data-id="'.$id.'"><i class="fa fa-heart-o"></i></div>'.
+                    '<div class="cart-item-prices">'.
+                    '<div class="cart-item-price">'.
+                    '<div class="cart-item-single-price">Цена: <span class="product-item-price-int">'.$price.'</span> <i class="fa fa-ruble"></i></div>'.
+                    '<div class="cart-item-qnt">'.
+                    '<div class="cart-item-qnt-dec '.$is_gramm_html.' fa fa-minus-circle" data-id="'.$id.'" data-price="'.$price.'"></div>'.
+                    '<div class="cart-item-qnt-value-holder"><span class="cart-item-qnt-value">'.$product_count.'</span> '.$it_or_kg.'</div>'.
+                    '<div class="cart-item-qnt-inc '.$is_gramm_html.' fa fa-plus-circle" data-id="'.$id.'" data-price="'.$price.'"></div>'.
+                    '</div>'.
+                    '</div>'.
+                    '<div class="cart-item-total"><span class="cart-item-total-value">'.$total.'</span> <i class="fa fa-ruble"></i></div>'.
+                    '</div>'.
+                    '</div>';
+
+                break;
+
+            case 'cart':
+
+                $tpl .=
+                    '<div class="cart-item cart-item-prices" data-id="'.$id.'">'.
+                    '<div class="cart-item-image-holder">'.
+                    '<img src="'.$image.'" alt="'.$name.'"/>'.
+                    '</div>'.
+
+                    '<div class="cart-item-info-holder">'.
+                    '<div class="cart-item-title">'.$name.'</div>'.
+                    '<div class="cart-item-single-price">Цена: <span class="product-item-price-int">'.$price.'</span> <i class="fa fa-ruble"></i></div>'.
+
+                    '<div class="cart-item-to-favorite" data-id="'.$id.'"><i class="fa fa-heart-o"></i></div>'.
+
+                    '<div class="cart-item-qnt">'.
+                    '<div class="cart-item-qnt-dec fa fa-minus-circle '.$is_gramm_html.'"  data-id="'.$id.'"  data-price="'.$price.'"></div>'.
+                    '<div class="cart-item-qnt-value-holder"><span class="cart-item-qnt-value">'.$product_count.'</span> '.$it_or_kg.'</div>'.
+                    '<div class="cart-item-qnt-inc fa fa-plus-circle '.$is_gramm_html.'" data-id="'.$id.'" data-price="'.$price.'"></div>'.
+                    '</div>'.
+                    '</div>'.
+
+                    '<div class="cart-item-total"><span class="cart-item-total-value">'.$total.'</span> <i class="fa fa-ruble"></i></div>'.
+                    '</div>';
+
+                break;
+
+        }
+
+    }
+
+
+
+    return $tpl;
+
+}
+
 function bauhaus_enqueue_scripts() {
 	wp_enqueue_script(
 		'bauhaus-js',
@@ -70,6 +207,7 @@ function my_theme_load_resources() {
     wp_enqueue_script('mustache',       get_stylesheet_directory_uri() . '/assets/plugins/mustache/mustache.js');
     wp_enqueue_script('toastr',         get_stylesheet_directory_uri() . '/assets/plugins/toastr/toastr.min.js');
     wp_enqueue_script('core',           get_stylesheet_directory_uri() . '/assets/js/core.js');
+    wp_enqueue_script('uitabs',         get_stylesheet_directory_uri() . '/assets/js/uiTabs.js');
     wp_enqueue_script('script',         get_stylesheet_directory_uri() . '/assets/js/script.js');
 
 }
@@ -201,3 +339,6 @@ function bauhaus_show_featured_slider( $show_featured_slider, $featured_slider_e
 
 	return $show_featured_slider;
 }
+
+
+?>

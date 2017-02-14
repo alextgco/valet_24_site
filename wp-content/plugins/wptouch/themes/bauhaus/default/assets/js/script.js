@@ -904,6 +904,13 @@ $(document).ready(function () {
                 vs.faderModal(false);
             });
 
+            $('.c-item-open').off('click').on('click', function(){
+
+                var p = $(this).parents('.c-item-wrapper');
+
+                p.toggleClass('opened');
+
+            });
 
         },
 
@@ -1045,5 +1052,7 @@ $(document).ready(function () {
         $('.just_loaded').removeClass('just_loaded');
     }, 3000);
 
+
+    uiTabs();
 
 });

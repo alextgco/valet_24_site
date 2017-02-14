@@ -64,6 +64,25 @@
 
                 ?>
 
+                <div class="cart-total-holder">
+
+                    <?php if($cart_products_count > 0): ?>
+
+                        <h3>Ваш заказ:</h3>
+                        <div class="cart-total-values">
+                            <?php
+                            $itemsWord = getNoun($cart_products_count, 'Товар', 'Товара', 'Товаров');
+                            ?>
+                            <span class="cart-products-count"><?php echo $cart_products_count.' '.$itemsWord; ?></span>
+                            <span class="cart-amount-holder"><?php echo number_format($cart_amount,2); ?> <i class="fa fa-ruble"></i></span>
+                        </div>
+
+                    <?php endif; ?>
+
+
+
+                </div>
+
                 <div class="cart-list-holder">
                     <?php
 
@@ -73,37 +92,42 @@
 
                     foreach($cart_jData['products'] as $cp_key=>$cp_value){
 
-                        $id = $cp_value['product_id'];
-                        $name = $cp_value['name'];
-                        $price = $cp_value['price_site'];
-                        $product_count = $cp_value['product_count'];
-                        $total = number_format($price * $product_count,2);
 
-                        $image = (strlen($cp_value['image']) > 0) ? $cp_value['image'] : $global_images_dir . 'cat-default.jpg';
 
-                        $is_gramm = ($cp_value['qnt_type_sys'] == 'KG')? true : false;
-                        $is_gramm_html = ($is_gramm)? 'gramm-type': '';
+                        $cart_products_html .= render_product_m($cp_value, 'cart');
 
-                        $it_or_kg = $cp_value['qnt_type'];
 
-                        $cart_products_html .=  '<div class="cart-item cart-item-prices" data-id="'.$id.'">'.
-                                                    '<div class="cart-item-image-holder">'.
-                                                        '<img src="'.$image.'" alt="'.$name.'"/>'.
-                                                    '</div>'.
-
-                                                    '<div class="cart-item-info-holder">'.
-                                                        '<div class="cart-item-title">'.$name.'</div>'.
-                                                        '<div class="cart-item-single-price">Цена: <span class="product-item-price-int">'.$price.'</span> <i class="fa fa-ruble"></i></div>'.
-
-                                                        '<div class="cart-item-qnt">'.
-                                                            '<div class="cart-item-qnt-dec fa fa-minus-circle '.$is_gramm_html.'"  data-id="'.$id.'"  data-price="'.$price.'"></div>'.
-                                                            '<div class="cart-item-qnt-value-holder"><span class="cart-item-qnt-value">'.$product_count.'</span> '.$it_or_kg.'</div>'.
-                                                            '<div class="cart-item-qnt-inc fa fa-plus-circle '.$is_gramm_html.'" data-id="'.$id.'" data-price="'.$price.'"></div>'.
-                                                        '</div>'.
-                                                    '</div>'.
-
-                                                    '<div class="cart-item-total"><span class="cart-item-total-value">'.$total.'</span> <i class="fa fa-ruble"></i></div>'.
-                                                '</div>';
+//                        $id = $cp_value['product_id'];
+//                        $name = $cp_value['name'];
+//                        $price = $cp_value['price_site'];
+//                        $product_count = $cp_value['product_count'];
+//                        $total = number_format($price * $product_count,2);
+//
+//                        $image = (strlen($cp_value['image']) > 0) ? $cp_value['image'] : $global_images_dir . 'cat-default.jpg';
+//
+//                        $is_gramm = ($cp_value['qnt_type_sys'] == 'KG')? true : false;
+//                        $is_gramm_html = ($is_gramm)? 'gramm-type': '';
+//
+//                        $it_or_kg = $cp_value['qnt_type'];
+//
+//                        $cart_products_html .=  '<div class="cart-item cart-item-prices" data-id="'.$id.'">'.
+//                                                    '<div class="cart-item-image-holder">'.
+//                                                        '<img src="'.$image.'" alt="'.$name.'"/>'.
+//                                                    '</div>'.
+//
+//                                                    '<div class="cart-item-info-holder">'.
+//                                                        '<div class="cart-item-title">'.$name.'</div>'.
+//                                                        '<div class="cart-item-single-price">Цена: <span class="product-item-price-int">'.$price.'</span> <i class="fa fa-ruble"></i></div>'.
+//
+//                                                        '<div class="cart-item-qnt">'.
+//                                                            '<div class="cart-item-qnt-dec fa fa-minus-circle '.$is_gramm_html.'"  data-id="'.$id.'"  data-price="'.$price.'"></div>'.
+//                                                            '<div class="cart-item-qnt-value-holder"><span class="cart-item-qnt-value">'.$product_count.'</span> '.$it_or_kg.'</div>'.
+//                                                            '<div class="cart-item-qnt-inc fa fa-plus-circle '.$is_gramm_html.'" data-id="'.$id.'" data-price="'.$price.'"></div>'.
+//                                                        '</div>'.
+//                                                    '</div>'.
+//
+//                                                    '<div class="cart-item-total"><span class="cart-item-total-value">'.$total.'</span> <i class="fa fa-ruble"></i></div>'.
+//                                                '</div>';
 
 
                     }

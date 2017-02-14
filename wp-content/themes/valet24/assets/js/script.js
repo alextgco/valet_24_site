@@ -201,6 +201,7 @@ $(document).ready(function () {
                     var product_tpl =   '<div class="product-item" data-id="{{id}}">'+
                         '<div class="product-image-holder">'+
                         '<img src="{{image}}" alt="{{name}}"></div>'+
+                        '<div class="cart-item-to-favorite" data-id="{{id}}"><i class="fa fa-heart-o"></i><div class="cart-item-to-favorite-dd">Добавить в избранное</div></div>'+
                         '<div class="product-title-holder">{{name}}</div>'+
                         '<div class="product-price-holder">Цена: '+
                         '<span class="product-item-price-int">{{price_site}}</span>'+
@@ -671,6 +672,9 @@ $(document).ready(function () {
                         '<div class="product-image-holder"><img src="{{image}}" alt="{{name}}"/></div>' +
 //                        '</a>'+
 //                        '<a href="/product_{{id}}">' +
+
+                        '<div class="cart-item-to-favorite" data-id="{{id}}"><i class="fa fa-heart-o"></i><div class="cart-item-to-favorite-dd">Добавить в избранное</div></div>'+
+
                         '<div class="product-title-holder">{{name}}</div>' +
 //                        '</a>'+
                         '<div class="product-price-holder">Цена: {{{price_html}}}</div>'+
