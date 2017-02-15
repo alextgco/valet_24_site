@@ -23,8 +23,8 @@
         <div class="phone-holder">+7 (499) 684-21-11</div>
         <div class="email-holder sc-feedback-init">info@valet24.ru</div>
 
-<!--        <div class="pa-btn"><i class="fa fa-lock"></i>&nbsp;&nbsp;Личный кабинет</div>-->
-        <div class="to-pa">Александр, здесь Ваш личный кабинет!</div>
+        <div class="pa-btn"><i class="fa fa-lock"></i>&nbsp;&nbsp;Личный кабинет</div>
+<!--        <div class="to-pa">Александр, здесь Ваш личный кабинет!</div>-->
 
         <div class="hours-holder">
             <span class="invis-sm">Часы работы: </span>
