@@ -524,7 +524,7 @@ $(document).ready(function () {
                             vs.updateBasket(res.cart);
                             vs.setHandlers();
                         }else{
-                            toastr['error']('Ошибка: '+res.code + ' Сообщите нам пожалуйста, +7 906 063 88 66');
+                            toastr[res.toastr.type](res.toastr.message);
                         }
 
                     });
@@ -620,7 +620,7 @@ $(document).ready(function () {
                             vs.updateBasket(res.cart);
                             vs.setHandlers();
                         }else{
-                            toastr['error']('Ошибка: '+res.code + ' Сообщите нам пожалуйста, +7 906 063 88 66');
+                            toastr[res.toastr.type](res.toastr.message);
                         }
 
                     });
@@ -774,7 +774,7 @@ $(document).ready(function () {
                         document.location.reload();
 
                     }else{
-                        toastr['error']('Ошибка: '+res.code + ' Сообщите нам пожалуйста, +7 906 063 88 66');
+                        toastr[res.toastr.type](res.toastr.message);
                     }
 
                 });
@@ -826,7 +826,7 @@ $(document).ready(function () {
                             document.location.href = '/success/?order_id='+res.id;
 
                         }else{
-                            toastr['error']('Ошибка: '+res.code + ' Сообщите нам пожалуйста, +7 906 063 88 66');
+                            toastr[res.toastr.type](res.toastr.message);
                         }
 
                     });
@@ -936,6 +936,95 @@ $(document).ready(function () {
                         vs.faderModal(true, html, inner_handlers);
 
                     });
+
+
+                    $('.pa-m-register').off('click').on('click', function(){
+
+
+
+                        var email = $('#pa-login').val();
+                        var pass = $('#pa-password').val();
+                        var pass2 = $('#pa-password-rpt').val();
+
+                        if(email.length == 0){
+                            toastr['warning']('Заполните поле Email');
+                        }
+                        if(pass.length == 0){
+                            toastr['warning']('Заполните поле Пароль');
+                        }
+                        if(pass2.length == 0){
+                            toastr['warning']('Заполните поле Повторите пароль');
+                        }
+
+                        if(pass.length == 0 || email.length == 0 || pass2.length == 0){
+                            return;
+                        }else if(pass !== pass2){
+                            toastr['warning']('Пароли должны совпадать.');
+                        }else{
+
+                            var o = {
+                                command: 'registration',
+                                params: {
+                                    email: email,
+                                    password: pass,
+                                    password_2: pass2
+                                }
+                            };
+
+                            socketQuery_site(o, function(res){
+
+                                if(!res.code){
+
+                                    document.location.href = '/confirm_email/';
+
+                                }else{
+
+                                    toastr['error'](res.toastr.message);
+
+                                }
+
+                            });
+                        }
+                    });
+
+                    $('.pa-m-login').off('click').on('click', function(){
+
+                        var email = $('#pa-login').val();
+                        var pass = $('#pa-password').val();
+
+                        if(email.length == 0){
+                            toastr['warning']('Заполните поле Email');
+                        }
+                        if(pass.length == 0){
+                            toastr['warning']('Заполните поле Пароль');
+                        }
+                        if(pass.length == 0 || email.length == 0){
+                            return;
+                        }else{
+
+                            var o = {
+                                command: 'login',
+                                params: {
+                                    email: email,
+                                    password: pass
+                                }
+                            };
+
+                            socketQuery_site(o, function(res){
+
+                                if(!res.code){
+
+                                    document.location.reload();
+
+                                }else{
+
+                                    toastr['error'](res.toastr.message);
+
+                                }
+
+                            });
+                        }
+                    });
                 };
 
                 vs.faderModal(true, html, inner_handlers);
@@ -946,89 +1035,6 @@ $(document).ready(function () {
                 vs.faderModal(false);
             });
 
-            $('.pa-m-register').off('click').on('click', function(){
-
-                var email = $('#pa-login').val();
-                var pass = $('#pa-password').val();
-                var pass2 = $('#pa-password-rpt').val();
-
-                if(email.length == 0){
-                    toastr['warning']('Заполните поле Email');
-                }
-                if(pass.length == 0){
-                    toastr['warning']('Заполните поле Пароль');
-                }
-                if(pass2.length == 0){
-                    toastr['warning']('Заполните поле Повторите пароль');
-                }
-
-                if(pass.length == 0 || email.length == 0 || pass2.length == 0){
-                    return;
-                }else{
-
-                    var o = {
-                        command: 'registration',
-                        params: {
-                            email: email,
-                            password: pass,
-                            password_2: pass2
-                        }
-                    };
-
-                    socketQuery_site(o, function(res){
-
-                        if(!res.code){
-
-                            document.location.href = '/confirm_email/';
-
-                        }else{
-
-                            toastr['error'](res.toastr.message);
-
-                        }
-
-                    });
-                }
-            });
-
-            $('.pa-m-login').off('click').on('click', function(){
-
-                var email = $('#pa-login').val();
-                var pass = $('#pa-password').val();
-
-                if(email.length == 0){
-                    toastr['warning']('Заполните поле Email');
-                }
-                if(pass.length == 0){
-                    toastr['warning']('Заполните поле Пароль');
-                }
-                if(pass.length == 0 || email.length == 0){
-                    return;
-                }else{
-
-                    var o = {
-                        command: 'login',
-                        params: {
-                            email: email,
-                            password: pass
-                        }
-                    };
-
-                    socketQuery_site(o, function(res){
-
-                        if(!res.code){
-
-                            document.location.reload();
-
-                        }else{
-
-                            toastr['error'](res.toastr.message);
-
-                        }
-
-                    });
-                }
-            });
 
         },
 

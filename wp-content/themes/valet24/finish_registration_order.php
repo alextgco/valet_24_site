@@ -5,6 +5,45 @@
 */
 
 
+    session_start();
+    $PHPSESSID=session_id();
+
+
+    // Get user
+
+    $key = $_GET['confirm_key'];
+    $key2 = $_GET['key2'];
+
+    $c_url = $global_prot . '://' . $global_url. '/site_api';
+
+    $c_req = '{"command":"confirm_registration","params":{"confirm_key": "'.$key.'", "confirm_key2": "'.$key2.'"}}';
+
+    $c_post_data = http_build_query(array(
+        'sid' => $PHPSESSID,
+        'site' => $global_site,
+        'json' => $c_req
+    ));
+
+    $c_ch = curl_init();
+
+    curl_setopt($c_ch, CURLOPT_URL, $c_url );
+    curl_setopt($c_ch, CURLOPT_POST, 1 );
+    curl_setopt($c_ch, CURLOPT_POSTFIELDS, $c_post_data);
+    curl_setopt($c_ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($c_ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($c_ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($c_ch,CURLOPT_TIMEOUT,10);
+    curl_setopt($c_ch,CURLOPT_TIMEOUT,10);
+
+    $с_resp = curl_exec($c_ch);
+
+    if (curl_errno($c_ch)) {
+        print curl_error($c_ch);
+    }
+    curl_close($c_ch);
+
+    $с_jData = json_decode($с_resp, true);
+
 
 ?>
 
@@ -30,7 +69,21 @@ include 'header.php';
 
         <div class="row">
 
-            <div class="category-title-nomargin">Завершение регистарции, осталось только придумать пароль!</div>
+            <?php
+
+            if($с_jData['code'] == 0){
+
+                echo '<div class="category-title-nomargin">Завершение регистарции, осталось только придумать пароль!</div>';
+
+            }else{
+
+                echo $cart_jData['toastr']['message'];
+
+            }
+
+            ?>
+
+
         </div>
 
         <div class="row">
@@ -39,12 +92,25 @@ include 'header.php';
 
                 <div class="prepare-order-holder">
 
-                    <label class="pa-m-label">Придумайте пароль (запишите чтобы не забыть):</label>
-                    <input class="pa-m-input" type="password" id="pa-password" placeholder="Пароль"/>
-                    <label class="pa-m-label">Повторите пароль:</label>
-                    <input class="pa-m-input" type="password" id="pa-password-rpt" placeholder="Пароль ещё раз"/>
+                    <?php
 
-                    <div class="pa-m-register-order pa-button"><i class="fa fa-lock"></i>&nbsp;&nbsp;Сохранить пароль</div>
+                    if($с_jData['code'] == 0){
+
+                        echo '<label class="pa-m-label">Придумайте пароль (запишите чтобы не забыть):</label>'.
+                                '<input class="pa-m-input" type="password" id="pa-password" placeholder="Пароль"/>'.
+                                '<label class="pa-m-label">Повторите пароль:</label>'.
+                                '<input class="pa-m-input" type="password" id="pa-password-rpt" placeholder="Пароль ещё раз"/>'.
+                                '<div class="pa-m-register-order pa-button"><i class="fa fa-lock"></i>&nbsp;&nbsp;Сохранить пароль</div>';
+
+                    }else{
+
+                        echo $cart_jData['toastr']['message'];
+
+                    }
+
+                    ?>
+
+
 
                 </div>
 

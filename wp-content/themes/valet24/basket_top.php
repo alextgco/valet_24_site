@@ -29,7 +29,7 @@
     curl_setopt($cart_ch, CURLOPT_SSL_VERIFYHOST, 0);
     curl_setopt($cart_ch, CURLOPT_SSL_VERIFYPEER, 0);
     curl_setopt($cart_ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($cart_ch,CURLOPT_TIMEOUT,10000);
+    curl_setopt($cart_ch,CURLOPT_TIMEOUT,10);
 
     $cart_resp = curl_exec($cart_ch);
 

@@ -4,6 +4,47 @@
     Template Name: finish_registration
 */
 
+    session_start();
+    $PHPSESSID=session_id();
+
+
+    // Get user
+
+    $key = $_GET['confirm_key'];
+    $key2 = $_GET['key2'];
+
+    $c_url = $global_prot . '://' . $global_url. '/site_api';
+
+    $c_req = '{"command":"confirm_registration","params":{"confirm_key": "'.$key.'", "confirm_key2": "'.$key2.'"}}';
+
+    $c_post_data = http_build_query(array(
+        'sid' => $PHPSESSID,
+        'site' => $global_site,
+        'json' => $c_req
+    ));
+
+    $c_ch = curl_init();
+
+    curl_setopt($c_ch, CURLOPT_URL, $c_url );
+    curl_setopt($c_ch, CURLOPT_POST, 1 );
+    curl_setopt($c_ch, CURLOPT_POSTFIELDS, $c_post_data);
+    curl_setopt($c_ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($c_ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($c_ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($c_ch,CURLOPT_TIMEOUT,10);
+    curl_setopt($c_ch,CURLOPT_TIMEOUT,10);
+
+    $с_resp = curl_exec($c_ch);
+
+    if (curl_errno($c_ch)) {
+        print curl_error($c_ch);
+    }
+    curl_close($c_ch);
+
+    $с_jData = json_decode($с_resp, true);
+
+
+
 
 
 ?>
@@ -30,7 +71,21 @@ include 'header.php';
 
         <div class="row">
 
-            <div class="category-title-nomargin">Ура, всё готово!</div>
+            <?php
+
+            if($с_jData['code'] == 0){
+
+                echo 'OK';
+
+            }else{
+
+                echo $cart_jData['toastr']['message'];
+
+            }
+
+            ?>
+
+<!--            <div class="category-title-nomargin">Ура, всё готово!</div>-->
         </div>
 
         <div class="row">
@@ -39,9 +94,9 @@ include 'header.php';
 
                 <div class="prepare-order-holder">
 
-                    <h4 style="line-height: 27px;">
-                        Теперь Вы можете
-                    </h4>
+<!--                    <h4 style="line-height: 27px;">-->
+<!--                        Теперь Вы можете-->
+<!--                    </h4>-->
 
 
                 </div>

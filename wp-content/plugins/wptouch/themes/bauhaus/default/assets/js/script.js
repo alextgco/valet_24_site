@@ -547,7 +547,7 @@ $(document).ready(function () {
                             vs.updateBasket(res.cart);
                             vs.setHandlers();
                         }else{
-                            toastr['error']('Ошибка: '+res.code + ' Сообщите нам пожалуйста, +7 906 063 88 66');
+                            toastr[res.toastr.type](res.toastr.message);
                         }
 
 
@@ -647,7 +647,7 @@ $(document).ready(function () {
                             vs.updateBasket(res.cart);
                             vs.setHandlers();
                         }else{
-                            toastr['error']('Ошибка: '+res.code + ' Сообщите нам пожалуйста, +7 906 063 88 66');
+                            toastr[res.toastr.type](res.toastr.message);
                         }
 
                     });
@@ -750,7 +750,7 @@ $(document).ready(function () {
                         document.location.reload();
 
                     }else{
-                        toastr['error']('Ошибка: '+res.code + ' Сообщите нам пожалуйста, +7 906 063 88 66');
+                        toastr[res.toastr.type](res.toastr.message);
                     }
 
                 });
@@ -802,7 +802,7 @@ $(document).ready(function () {
                             document.location.href = '/success/?order_id='+res.id;
 
                         }else{
-                            toastr['error']('Ошибка: '+res.code + ' Сообщите нам пожалуйста, +7 906 063 88 66');
+                            toastr[res.toastr.type](res.toastr.message);
                         }
 
                     });

@@ -20,7 +20,7 @@ curl_setopt($user_ch, CURLOPT_POSTFIELDS, $user_post_data);
 curl_setopt($user_ch, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($user_ch, CURLOPT_SSL_VERIFYPEER, 0);
 curl_setopt($user_ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($user_ch,CURLOPT_TIMEOUT,10000);
+curl_setopt($user_ch,CURLOPT_TIMEOUT,10);
 $user_resp = curl_exec($user_ch);
 
 if (curl_errno($user_ch)) {
