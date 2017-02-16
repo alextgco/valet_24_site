@@ -35,6 +35,8 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch,CURLOPT_TIMEOUT,10000);
+
 $resp = curl_exec($ch);
 
 if (curl_errno($ch)) {
@@ -102,6 +104,8 @@ if(count($children_arr) == 0){
     curl_setopt($ch2, CURLOPT_SSL_VERIFYHOST, 0);
     curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, 0);
     curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch2,CURLOPT_TIMEOUT,10000);
+
     $resp2 = curl_exec($ch2);
 
     if (curl_errno($ch2)) {
