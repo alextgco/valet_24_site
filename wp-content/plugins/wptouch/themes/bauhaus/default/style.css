@@ -2594,22 +2594,22 @@ textarea.form-control{
 .pa-m-label{
     font-family: Helvetica-light, arail, sans-serif;
     width: 100%;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: normal;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 .pa-m-input{
     width: 100%;
     outline: 0;
     border: 0;
     border-bottom: 1px solid #444;
-    height: 44px;
-    margin-bottom: 30px;
+    height: 38px;
+    margin-bottom: 16px;
     background-color: #fff!important;
     font-family: PTSans-Regular,arial, sans-serif;
     font-weight: normal;
     font-size: 18px;
-    margin-top: 8px;
+    margin-top: 6px;
     padding-left: 10px;
     border-radius: 0;
 }
@@ -2683,10 +2683,10 @@ textarea.form-control{
 
 .pa-button{
     float: left;
-    margin-top: 50px;
+    margin-top: 18px;
     background-color: #007cfb;
     color: #fff;
-    padding: 15px 40px 15px 28px;
+    padding: 12px 40px 12px 28px;
     font-size: 20px;
     cursor: pointer;
 
@@ -2855,4 +2855,19 @@ textarea.form-control{
 }
 .page-template-account .site-content{
     margin-top: -56px;
+}
+.pa-m-small-label{
+    font-size: 14px;
+}
+#pa-subscr{
+    height: 18px;
+    width: 18px;
+    margin-right: 10px;
+    margin-top: -1px;
+    margin-bottom: 0;
+}
+.pa-agree {
+    font-size: 15px;
+    margin-bottom: 30px;
+    margin-top: 14px;
 }

@@ -1,8 +1,42 @@
 <?php
 
 
+    session_start();
+    $PHPSESSID=session_id();
+
 
     $search_keyword = ($_GET['search_keyword'])? $_GET['search_keyword']: '';
+
+    // Get user
+
+    $user_url = $global_prot . '://' . $global_url. '/site_api';
+
+    $user_req = '{"command":"get_user","params":{}}';
+
+    $user_post_data = http_build_query(array(
+        'sid' => $PHPSESSID,
+        'site' => $global_site,
+        'json' => $user_req
+    ));
+
+    $user_ch = curl_init();
+
+    curl_setopt($user_ch, CURLOPT_URL, $user_url );
+    curl_setopt($user_ch, CURLOPT_POST, 1 );
+    curl_setopt($user_ch, CURLOPT_POSTFIELDS, $user_post_data);
+    curl_setopt($user_ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($user_ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($user_ch, CURLOPT_RETURNTRANSFER, 1);
+
+    $user_resp = curl_exec($user_ch);
+
+    if (curl_errno($user_ch)) {
+        print curl_error($user_ch);
+    }
+    curl_close($user_ch);
+
+    $user_jData = json_decode($user_resp, true);
+    $user_exists = ($user_jData['code'] == 0);
 
 
 
@@ -23,8 +57,28 @@
         <div class="phone-holder">+7 (499) 684-21-11</div>
         <div class="email-holder sc-feedback-init">info@valet24.ru</div>
 
-        <div class="pa-btn"><i class="fa fa-lock"></i>&nbsp;&nbsp;Личный кабинет</div>
-<!--        <div class="to-pa">Александр, здесь Ваш личный кабинет!</div>-->
+        <?php
+
+        if($user_exists){
+            echo '<div class="to-pa">'. $user_jData['user']['name'] .', здесь Ваш личный кабинет!</div>';
+        }else{
+            echo '<div class="pa-btn"><i class="fa fa-lock"></i>&nbsp;&nbsp;Личный кабинет</div>';
+        }
+
+        ?>
+
+
+        <div id="ooo-ooo">
+
+
+            <?php
+
+            var_export($user_jData);
+
+            ?>
+
+        </div>
+
 
         <div class="hours-holder">
             <span class="invis-sm">Часы работы: </span>

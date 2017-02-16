@@ -46,7 +46,7 @@ include 'header.php';
                             <div class=" col-md-12">
                                 <div class="form-group">
                                     <label>Укажите адрес:</label>
-                                    <input type="text" class="form-control" id="address" />
+                                    <input type="text" class="form-control" id="address" value="<?php echo $user_jData['user']['address']; ?>"/>
                                 </div>
                             </div>
 
@@ -56,7 +56,7 @@ include 'header.php';
                             <div class=" col-md-12">
                                 <div class="form-group">
                                     <label>Имя:</label>
-                                    <input type="text" class="form-control"  id="name"/>
+                                    <input type="text" class="form-control"  id="name" value="<?php echo $user_jData['user']['name']; ?>"/>
                                 </div>
                             </div>
                         </div>
@@ -65,14 +65,14 @@ include 'header.php';
                             <div class=" col-md-6">
                                 <div class="form-group">
                                     <label><span class="redStar">*</span>Телефон:</label>
-                                    <input type="text" class="form-control"  id="phone"/>
+                                    <input type="text" class="form-control"  id="phone" value="<?php echo $user_jData['user']['phone']; ?>"/>
                                 </div>
                             </div>
 
                             <div class=" col-md-6">
                                 <div class="form-group">
                                     <label>Почта:</label>
-                                    <input type="text" class="form-control"  id="email"/>
+                                    <input type="text" class="form-control"  id="email" value="<?php echo $user_jData['user']['email']; ?>"/>
                                 </div>
                             </div>
                         </div>
@@ -81,13 +81,13 @@ include 'header.php';
                             <div class=" col-md-6">
                                 <div class="form-group">
                                     <label>Подъезд:</label>
-                                    <input type="text" class="form-control"  id="gate"/>
+                                    <input type="text" class="form-control"  id="gate" value="<?php echo $user_jData['user']['gate']; ?>" />
                                 </div>
                             </div>
                             <div class=" col-md-6">
                                 <div class="form-group">
                                     <label>Код домофона:</label>
-                                    <input type="text" class="form-control"  id="gatecode"/>
+                                    <input type="text" class="form-control"  id="gatecode" value="<?php echo $user_jData['user']['gatecode']; ?>"/>
                                 </div>
                             </div>
                         </div>
@@ -97,13 +97,13 @@ include 'header.php';
                             <div class=" col-md-6">
                                 <div class="form-group">
                                     <label>Этаж:</label>
-                                    <input type="text" class="form-control"  id="level"/>
+                                    <input type="text" class="form-control"  id="level" value="<?php echo $user_jData['user']['level']; ?>"/>
                                 </div>
                             </div>
                             <div class=" col-md-6">
                                 <div class="form-group">
                                     <label>Квартира:</label>
-                                    <input type="text" class="form-control"  id="flat"/>
+                                    <input type="text" class="form-control"  id="flat" value="<?php echo $user_jData['user']['level']; ?>"/>
                                 </div>
                             </div>
                         </div>
@@ -196,39 +196,6 @@ include 'header.php';
 
                             $cart_products_html .= render_product($cp_value, 'sidebar');
 
-//                            $id = $cp_value['product_id'];
-//                            $name = $cp_value['name'];
-//                            $price = $cp_value['price_site'];
-//                            $product_count = $cp_value['product_count'];
-//                            $total = number_format($price * $product_count,2);
-//
-//                            $image = (strlen($cp_value['image']) > 0) ? $cp_value['image'] : $global_images_dir . 'cat-default.jpg';
-//
-////                            $is_gramm = true;//$cp_value['control_of_fractional_amounts'];
-////                            $is_gramm_html = ($is_gramm)? 'gramm-type': '';
-////                            $it_or_kg = ($is_gramm)? 'кг': 'шт';
-//
-//                            $is_gramm = ($cp_value['qnt_type_sys'] == 'KG')? true : false;
-//                            $is_gramm_html = ($is_gramm)? 'gramm-type': '';
-//                            $it_or_kg = $cp_value['qnt_type'];
-//
-//                            $cart_products_html .=  '<div class="cart-item" data-id="'.$id.'">'.
-//                                '<div class="cart-item-image-holder">'.
-//                                '<img src="'.$image.'" alt="'.$name.'"/>'.
-//                                '</div>'.
-//                                '<div class="cart-item-title">'.$name.'</div>'.
-//                                '<div class="cart-item-prices">'.
-//                                '<div class="cart-item-price">'.
-//                                '<div class="cart-item-single-price">Цена: <span class="product-item-price-int">'.$price.'</span> <i class="fa fa-ruble"></i></div>'.
-//                                '<div class="cart-item-qnt">'.
-//                                '<div class="cart-item-qnt-dec '.$is_gramm_html.' fa fa-minus-circle" data-id="'.$id.'" data-price="'.$price.'"></div>'.
-//                                '<div class="cart-item-qnt-value-holder"><span class="cart-item-qnt-value">'.$product_count.'</span> '.$it_or_kg.'</div>'.
-//                                '<div class="cart-item-qnt-inc '.$is_gramm_html.' fa fa-plus-circle" data-id="'.$id.'" data-price="'.$price.'"></div>'.
-//                                '</div>'.
-//                                '</div>'.
-//                                '<div class="cart-item-total"><span class="cart-item-total-value">'.$total.'</span> <i class="fa fa-ruble"></i></div>'.
-//                                '</div>'.
-//                                '</div>';
 
                         }
 

@@ -874,8 +874,12 @@ $(document).ready(function () {
                     '<div class="pa-m-form">' +
                     '<label class="pa-m-label">Укажите Ваш адрес эл. почты:</label>' +
                     '<input class="pa-m-input" type="email" id="pa-login" placeholder="E-mail"/>' +
-                    '<label class="pa-m-label">Придумайте пароль (запишите чтобы не забыть):</label>' +
+                    '<label class="pa-m-label">Придумайте пароль:</label>' +
                     '<input class="pa-m-input" type="password" id="pa-password" placeholder="Пароль"/>' +
+                    '<label class="pa-m-label">Повторите пароль:</label>' +
+                    '<input class="pa-m-input" type="password" id="pa-password-rpt" placeholder="Пароль ещё раз"/>' +
+                    '<label class="pa-m-label pa-m-small-label" ><input class="pa-m-input" type="checkbox" checked id="pa-subscr"/>Я согласен(а) получать информационные рассылки по проводимым акциям и скидкам.</label>' +
+                    '<div class="pa-m-label pa-agree">Нажимая зарегистрироваться Вы принимаете <a target="_blank" href="http://valet24.ru/docs/main_agreement.pdf">условия пользовательского соглашения</a>.</div>' +
                     '</div>' +
                     '<div class="pa-m-back-to-login"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;Вход в личный кабинет</div>' +
                     '<div class="pa-m-login-holder"><div class="pa-m-register pa-button"><i class="fa fa-user"></i>&nbsp;&nbsp;Зарегистрироваться</div></div>' +

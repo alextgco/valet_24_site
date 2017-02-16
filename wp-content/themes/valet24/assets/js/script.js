@@ -878,7 +878,6 @@ $(document).ready(function () {
 
             });
 
-
             $('.c-item-open').off('click').on('click', function(){
 
                 var p = $(this).parents('.c-item-wrapper');
@@ -892,8 +891,6 @@ $(document).ready(function () {
                 document.location.href = '/account/';
 
             });
-
-
 
             $('.pa-btn').off('click').on('click', function(){
 
@@ -913,10 +910,14 @@ $(document).ready(function () {
                 var r_html = '<div class="pa-m-header">Регистрация</div>' +
                     '<div class="pa-m-body">' +
                     '<div class="pa-m-form">' +
-                    '<label class="pa-m-label">Укажите Ваш адрес эл. почты:</label>' +
-                    '<input class="pa-m-input" type="email" id="pa-login" placeholder="E-mail"/>' +
-                    '<label class="pa-m-label">Придумайте пароль (запишите чтобы не забыть):</label>' +
-                    '<input class="pa-m-input" type="password" id="pa-password" placeholder="Пароль"/>' +
+                        '<label class="pa-m-label">Укажите Ваш адрес эл. почты:</label>' +
+                        '<input class="pa-m-input" type="email" id="pa-login" placeholder="E-mail"/>' +
+                        '<label class="pa-m-label">Придумайте пароль (запишите чтобы не забыть):</label>' +
+                        '<input class="pa-m-input" type="password" id="pa-password" placeholder="Пароль"/>' +
+                        '<label class="pa-m-label">Повторите пароль:</label>' +
+                        '<input class="pa-m-input" type="password" id="pa-password-rpt" placeholder="Пароль ещё раз"/>' +
+                        '<label class="pa-m-label pa-m-small-label" ><input class="pa-m-input" type="checkbox" checked id="pa-subscr"/>Я согласен(а) получать информационные рассылки по проводимым акциям и скидкам.</label>' +
+                        '<div class="pa-m-label pa-agree">Нажимая зарегистрироваться Вы принимаете <a target="_blank" href="http://valet24.ru/docs/main_agreement.pdf">условия пользовательского соглашения</a>.</div>' +
                     '</div>' +
                     '<div class="pa-m-back-to-login"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;Вход в личный кабинет</div>' +
                     '<div class="pa-m-login-holder"><div class="pa-m-register pa-button"><i class="fa fa-user"></i>&nbsp;&nbsp;Зарегистрироваться</div></div>' +
@@ -943,6 +944,90 @@ $(document).ready(function () {
 
             $('.site-fader-close').off('click').on('click', function(){
                 vs.faderModal(false);
+            });
+
+            $('.pa-m-register').off('click').on('click', function(){
+
+                var email = $('#pa-login').val();
+                var pass = $('#pa-password').val();
+                var pass2 = $('#pa-password-rpt').val();
+
+                if(email.length == 0){
+                    toastr['warning']('Заполните поле Email');
+                }
+                if(pass.length == 0){
+                    toastr['warning']('Заполните поле Пароль');
+                }
+                if(pass2.length == 0){
+                    toastr['warning']('Заполните поле Повторите пароль');
+                }
+
+                if(pass.length == 0 || email.length == 0 || pass2.length == 0){
+                    return;
+                }else{
+
+                    var o = {
+                        command: 'registration',
+                        params: {
+                            email: email,
+                            password: pass,
+                            password_2: pass2
+                        }
+                    };
+
+                    socketQuery_site(o, function(res){
+
+                        if(!res.code){
+
+                            document.location.href = '/confirm_email/';
+
+                        }else{
+
+                            toastr['error'](res.toastr.message);
+
+                        }
+
+                    });
+                }
+            });
+
+            $('.pa-m-login').off('click').on('click', function(){
+
+                var email = $('#pa-login').val();
+                var pass = $('#pa-password').val();
+
+                if(email.length == 0){
+                    toastr['warning']('Заполните поле Email');
+                }
+                if(pass.length == 0){
+                    toastr['warning']('Заполните поле Пароль');
+                }
+                if(pass.length == 0 || email.length == 0){
+                    return;
+                }else{
+
+                    var o = {
+                        command: 'login',
+                        params: {
+                            email: email,
+                            password: pass
+                        }
+                    };
+
+                    socketQuery_site(o, function(res){
+
+                        if(!res.code){
+
+                            document.location.reload();
+
+                        }else{
+
+                            toastr['error'](res.toastr.message);
+
+                        }
+
+                    });
+                }
             });
 
         },

@@ -41,6 +41,10 @@
     $cart_products_count = $cart_jData['product_count'];
     $cart_amount = $cart_jData['amount'];
 
+
+
+
+
 ?>
 
 <a href="/cart">
