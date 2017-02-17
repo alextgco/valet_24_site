@@ -1,7 +1,7 @@
 <?php
 
 /*
-    Template Name: finish_registration_order
+    Template Name: restore_password
 */
 
     $key = $_GET['key'];
@@ -33,7 +33,7 @@ include 'header.php';
 
         <div class="row">
 
-            <h4 class="conf-order-account-header">Почти готово, осталось придумать пароль для Вашего личного кабинета.</h4>
+            <h4 class="conf-order-account-header">Восстановление пароля, укажите новый пароль в форме ниже.</h4>
 
         </div>
 
@@ -47,7 +47,7 @@ include 'header.php';
                     <input class="pa-m-input" type="password" id="pa-o-password" placeholder="Пароль "/>
                     <label class="pa-m-label">Повторите пароль:</label>
                     <input class="pa-m-input" type="password" id="pa-o-password-rpt" placeholder="Пароль ещё раз"/>
-                    <div class="pa-m-register-order pa-button" data-key="<?php echo $key;?>" data-key2="<?php echo $key2;?>"><i class="fa fa-lock"></i>&nbsp;&nbsp;Сохранить пароль</div>
+                    <div class="pa-m-restore-password pa-button" data-key="<?php echo $key;?>" data-key2="<?php echo $key2;?>"><i class="fa fa-lock"></i>&nbsp;&nbsp;Сохранить пароль</div>
 
                 </div>
 
@@ -56,7 +56,7 @@ include 'header.php';
             <div class="col-md-4 posRel">
 
 
-                Восстановление пароля, укажите новый пароль в форме ниже.
+
             </div>
 
 

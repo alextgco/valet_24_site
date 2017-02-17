@@ -2686,3 +2686,67 @@ select:-webkit-autofill {
 .finish_registration_order .category-title-nomargin{
     font-size: 24px;
 }
+
+
+.account-exit {
+    height: 34px;
+    width: 95px;
+    background-color: #7b7b7b;
+    text-align: center;
+    padding-top: 7px;
+    border-radius: 23px;
+    cursor: pointer;
+    position: absolute;
+    top: 38px;
+    right: 10px;
+    color: #fff;
+}
+.account-exit:hover {
+    background-color: #5b5b5b;
+}
+.conf-order-account-header{
+    margin-left: 15px;
+    margin-bottom: 30px;
+    font-size: 22px;
+    margin-top: 30px;
+}
+.account-edit{
+    height: 34px;
+    width: 195px;
+    background-color: #fff;
+    text-align: center;
+    padding-top: 7px;
+    border-radius: 23px;
+    cursor: pointer;
+    position: absolute;
+    top: 38px;
+    right: 120px;
+    border: 1px solid #ddd;
+    color: #000;
+
+}
+.account-edit:hover {
+    color: green;
+}
+
+.account-edit-back{
+    height: 34px;
+    width: 195px;
+    background-color: #fff;
+    text-align: center;
+    padding-top: 7px;
+    border-radius: 23px;
+    cursor: pointer;
+    position: absolute;
+    top: 38px;
+    right: 120px;
+    border: 1px solid #ddd;
+    color: #000;
+
+}
+.account-edit-back:hover {
+    color: green;
+}
+.save-account{
+    margin-bottom: 100px;
+}

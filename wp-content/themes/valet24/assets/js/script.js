@@ -818,6 +818,8 @@ $(document).ready(function () {
                     };
 
 
+                    $('.cart-confirm-order').html('<i class="fa fa-spin fa-spinner"></i>');
+
                     socketQuery_site(o, function(res){
 
                         if(!res.code){
@@ -1025,6 +1027,44 @@ $(document).ready(function () {
                             });
                         }
                     });
+
+                    $('.pa-m-forgot').off('click').on('click', function(){
+
+                        var email = $('#pa-login').val();
+
+                        if(email.length == 0){
+                            toastr['warning']('Укажите Ваш Email');
+                        }else{
+                            var o = {
+                                command: 'restore_account',
+                                params: {
+                                    email: $('#pa-login').val()
+                                }
+                            };
+
+                            socketQuery_site(o, function(res){
+
+                                if(!res.code){
+
+                                    toastr['info']('На Вашу почту была отправлена ссылка на восстановление пароля');
+
+                                }else{
+
+                                    toastr['error'](res.toastr.message);
+
+                                }
+
+                            });
+
+
+                        }
+
+
+
+
+
+                    });
+
                 };
 
                 vs.faderModal(true, html, inner_handlers);
@@ -1035,6 +1075,209 @@ $(document).ready(function () {
                 vs.faderModal(false);
             });
 
+            $('.account-exit').off('click').on('click', function(){
+
+
+                var o = {
+                    command: 'logout',
+                    params: {
+                        id: $(this).attr('data-id')
+                    }
+                };
+
+                socketQuery_site(o, function(res){
+
+                    if(!res.code){
+
+                        document.location.href = '/';
+
+                    }else{
+
+                        toastr['error'](res.toastr.message);
+
+                    }
+
+                });
+
+
+            });
+
+            $('.pa-m-register-order').off('click').on('click', function(){
+
+                var pass = $('#pa-o-password').val();
+                var pass2 = $('#pa-o-password-rpt').val();
+                var key = $('.pa-m-register-order').attr('data-key');
+                var key2 = $('.pa-m-register-order').attr('data-key2');
+
+                if(pass.length == 0){
+                    toastr['warning']('Заполните поле Пароль');
+                }
+                if(pass2.length == 0){
+                    toastr['warning']('Заполните поле Повторите пароль');
+                }
+
+                if(pass.length == 0 || pass2.length == 0){
+                    return;
+                }else if(pass !== pass2){
+                    toastr['warning']('Пароли должны совпадать.');
+                }else{
+
+                    var o = {
+                        command: 'confirm_registration',
+                        params: {
+                            password: pass,
+                            password_2: pass2,
+                            confirm_key: key,
+                            confirm_key2: key2
+                        }
+                    };
+
+                    socketQuery_site(o, function(res){
+
+                        if(!res.code){
+
+                            document.location.href = '/account/';
+
+                        }else{
+
+                            toastr['error'](res.toastr.message);
+
+                        }
+
+                    });
+                }
+
+
+            });
+
+            $('.pa-m-restore-password').off('click').on('click', function(){
+
+                var pass = $('#pa-o-password').val();
+                var pass2 = $('#pa-o-password-rpt').val();
+                var key = $('.pa-m-restore-password').attr('data-key');
+
+                if(pass.length == 0){
+                    toastr['warning']('Заполните поле Пароль');
+                }
+                if(pass2.length == 0){
+                    toastr['warning']('Заполните поле Повторите пароль');
+                }
+
+                if(pass.length == 0 || pass2.length == 0){
+                    return;
+                }else if(pass !== pass2){
+                    toastr['warning']('Пароли должны совпадать.');
+                }else{
+
+                    var o = {
+                        command: 'confirm_restore_account',
+                        params: {
+                            password: pass,
+                            password_2: pass2,
+                            restore_key: key
+                        }
+                    };
+
+                    socketQuery_site(o, function(res){
+
+                        if(!res.code){
+
+                            toastr['info']('Пароль успешно сохранен, через 5 секунд Вы будете перенаправлены на главную страницу и сможете авторизоваться.');
+
+                            window.setTimeout(function(){
+                                document.location.href = '/';
+                            },5000);
+
+
+
+                        }else{
+
+                            toastr['error'](res.toastr.message);
+
+                        }
+
+                    });
+                }
+
+
+            });
+
+            $(document).on('keydown', function(e){
+
+                if(e.keyCode == 13){
+
+                    if($('.pa-m-login').length > 0){
+                        $('.pa-m-login').click();
+                    }
+
+                    if($('.pa-m-register').length > 0){
+                        $('.pa-m-register').click();
+                    }
+
+                }
+
+                console.log(e.keyCode);
+
+            });
+
+            $('.account-edit-back').off('click').on('click', function(){
+
+                document.location.href = '/account/';
+
+            });
+
+            $('.account-edit').off('click').on('click', function(){
+
+                document.location.href = '/account_edit/';
+
+            });
+
+            $('.save-account').off('click').on('click', function(){
+
+                var address =           $('#address').val();
+                var name =              $('#name').val();
+                var phone =             $('#phone').val();
+                var email =             $('#email').val();
+                var gate =              $('#gate').val();
+                var gatecode =          $('#gatecode').val();
+                var level =             $('#level').val();
+                var flat =              $('#flat').val();
+
+                var o = {
+                    command: 'modify_account',
+                    params: {
+                        address         :address,
+                        name            :name,
+                        phone           :phone,
+                        email           :email,
+                        gate            :gate,
+                        gatecode        :gatecode,
+                        level           :level,
+                        flat            :flat,
+                        id              : $('.save-account').attr('data-id')
+                    }
+                };
+
+
+                $('.save-account').html('<i class="fa fa-spin fa-spinner"></i>');
+
+                socketQuery_site(o, function(res){
+
+                    if(!res.code){
+
+                        document.location.reload();
+
+                    }else{
+                        toastr[res.toastr.type](res.toastr.message);
+                    }
+
+                });
+
+            });
+
+            $('.cart-item-to-favorite').off('click').on('click', function(){
+
+            });
 
         },
 

@@ -4,6 +4,9 @@
     Template Name: account
 */
 
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -16,18 +19,27 @@
     <?php include 'head_css.php'; ?>
 
 </head>
-<body>
+<body data-user="<?php echo $user_exists?>">
 <?php
 include 'header.php';
 ?>
+
+
+<script type="text/javascript">
+    if(!<?php var_export($user_exists);?>){
+        document.location.href = '/';
+    }
+</script>
 
 <div class="site-content">
 
     <div class="container">
 
-        <div class="row">
+        <div class="row posRel">
 
             <div class="category-title-nomargin">Личный кабинет</div>
+            <div class="account-edit" data-id="<?php echo $user_jData['user']['id'];?>">Редактировать аккаунт</div>
+            <div class="account-exit" data-id="<?php echo $user_jData['user']['id'];?>">Выйти</div>
         </div>
 
         <div class="row">

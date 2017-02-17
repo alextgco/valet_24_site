@@ -10,7 +10,7 @@
 
     // Get user
 
-    $key = $_GET['confirm_key'];
+    $key = $_GET['key'];
     $key2 = $_GET['key2'];
 
     $c_url = $global_prot . '://' . $global_url. '/site_api';
@@ -49,6 +49,8 @@
 
 ?>
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,19 +73,7 @@ include 'header.php';
 
         <div class="row">
 
-            <?php
 
-            if($с_jData['code'] == 0){
-
-                echo 'OK';
-
-            }else{
-
-                echo $cart_jData['toastr']['message'];
-
-            }
-
-            ?>
 
 <!--            <div class="category-title-nomargin">Ура, всё готово!</div>-->
         </div>
@@ -93,6 +83,26 @@ include 'header.php';
             <div class="col-md-8">
 
                 <div class="prepare-order-holder">
+
+                    <?php
+
+                    if($с_jData['code'] == 0){
+
+                        echo 'OK';
+
+                    }else{
+
+                        if($с_jData['code'] == -999){
+                            echo $с_jData['err']['message'] . ' Вы можете войти в личный кабинет используя свой адрес электронной почты и Ваш пароль.';
+                        }else{
+                            echo $с_jData['err']['message'];
+                        }
+
+
+
+                    }
+
+                    ?>
 
 <!--                    <h4 style="line-height: 27px;">-->
 <!--                        Теперь Вы можете-->
