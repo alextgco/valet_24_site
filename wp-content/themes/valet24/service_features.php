@@ -32,8 +32,8 @@
 
             <div class="col-sm-4 col-md-4">
                 <div class="service-feature-holder">
-                    <div class="sf-title">Аккуратные курьеры</div>
-                    <div class="sf-subtitle">Наши сотрудники заботятся о целости и сохранности вашего заказа.</div>
+                    <div class="sf-title">Доступные цены</div>
+                    <div class="sf-subtitle">Наша ценовая политика на уровне любого супермаркета Вашего района.</div>
                     <div class="sf-image"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/hcare.png" /></div>
                 </div>
             </div>

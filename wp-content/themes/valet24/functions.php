@@ -116,6 +116,7 @@ function render_product($p, $mode, $columns){
         $image =            (strlen($p[array_search('image', $columns)]) > 0) ? $p[array_search('image', $columns)] : $global_images_dir . 'cat-default.jpg';
         $is_gramm =         ($p[array_search('qnt_type_sys', $columns)] == 'KG')? true : false;
         $in_basket_count =  $p[array_search('in_basket_count', $columns)];
+        $is_in_favorites =  ($p[array_search('in_favorite', $columns)] == true)? 'in_favorite' : '';
 
 
         if($is_gramm){
@@ -156,12 +157,54 @@ function render_product($p, $mode, $columns){
             '<div class="product-image-holder"><img src="'.$image.'" alt=" '.$name.'"/></div>'.
             //</a>
             //'<a href="/product_'.$id.'/">
-            '<div class="cart-item-to-favorite" data-id="'.$id.'"><i class="fa fa-heart-o"></i><div class="cart-item-to-favorite-dd">Добавить в избранное</div></div>'.
+            '<div class="cart-item-to-favorite '.$is_in_favorites.'" data-id="'.$id.'"><i class="fa fa-heart-o"></i><div class="cart-item-to-favorite-dd">Добавить в избранное</div></div>'.
             //</a>
             '<div class="product-title-holder">'.$name.'</div>'.
             '<div class="product-price-holder">Цена: '.$price.'</div>'.
 
             '<div class="product-add-holder sc-product-add '.$addedClass.'"  data-id="'.$id.'">'.$btn_html.'</div></div>'.
+            '</div>';
+
+    }else if($mode == 'favorite'){
+
+        $id = $p[array_search('product_id', $columns)];
+        $name = $p[array_search('product_name', $columns)];
+        $price = $p[array_search('product_price_site',$columns)];
+
+        $product_count = $p[array_search('product_count',$columns)];
+
+        $in_basket_count = (strlen($p[array_search('in_basket_count',$columns)]) > 0)? $p[array_search('in_basket_count',$columns)] : 0;
+
+        $total = number_format($price * $in_basket_count,2);
+
+        $image = (strlen($p[array_search('product_image',$columns)]) > 0) ? $p[array_search('product_image',$columns)] : $global_images_dir . 'cat-default.jpg';
+
+        $is_gramm = ($p[array_search('product_qnt_type_sys',$columns)] == 'KG')? true : false;
+        $is_gramm_html = ($is_gramm)? 'gramm-type': '';
+        $it_or_kg = $p[array_search('product_qnt_type', $columns)];
+
+        $is_in_favorites =  ($p[array_search('in_favorite',$columns)] == true)? 'in_favorite' : '';
+
+
+
+        $tpl .=
+            '<div class="cart-item cart-sidebar-tpl" data-id="'.$id.'">'.
+            '<div class="cart-item-image-holder">'.
+            '<img src="'.$image.'" alt="'.$name.'"/>'.
+            '</div>'.
+            '<div class="cart-item-title">'.$name.'</div>'.
+            '<div class="cart-item-to-favorite '.$is_in_favorites.'" data-id="'.$id.'"><i class="fa fa-trash-o"></i><div class="cart-item-to-favorite-dd">Удалить из избранного</div></div>'.
+            '<div class="cart-item-prices">'.
+            '<div class="cart-item-price">'.
+            '<div class="cart-item-single-price">Цена: <span class="product-item-price-int">'.$price.'</span> <i class="fa fa-ruble"></i></div>'.
+            '<div class="cart-item-qnt">'.
+            '<div class="cart-item-qnt-dec '.$is_gramm_html.' fa fa-minus-circle" data-id="'.$id.'" data-price="'.$price.'"></div>'.
+            '<div class="cart-item-qnt-value-holder"><span class="cart-item-qnt-value">'.$in_basket_count.'</span> '.$it_or_kg.'</div>'.
+            '<div class="cart-item-qnt-inc '.$is_gramm_html.' fa fa-plus-circle" data-id="'.$id.'" data-price="'.$price.'"></div>'.
+            '</div>'.
+            '</div>'.
+            '<div class="cart-item-total"><span class="cart-item-total-value">'.$total.'</span> <i class="fa fa-ruble"></i></div>'.
+            '</div>'.
             '</div>';
 
     }else{
@@ -176,6 +219,7 @@ function render_product($p, $mode, $columns){
         $is_gramm_html = ($is_gramm)? 'gramm-type': '';
         $it_or_kg = $p['qnt_type'];
         $in_basket_count = $p['in_basket_count'];
+        $is_in_favorites =  ($p['in_favorite'] == true)? 'in_favorite' : '';
 
         switch($mode){
 
@@ -187,7 +231,7 @@ function render_product($p, $mode, $columns){
                     '<img src="'.$image.'" alt="'.$name.'"/>'.
                     '</div>'.
                     '<div class="cart-item-title">'.$name.'</div>'.
-                    '<div class="cart-item-to-favorite" data-id="'.$id.'"><i class="fa fa-heart-o"></i><div class="cart-item-to-favorite-dd">Добавить в избранное</div></div>'.
+                    '<div class="cart-item-to-favorite '.$is_in_favorites.'" data-id="'.$id.'"><i class="fa fa-heart-o"></i><div class="cart-item-to-favorite-dd">Добавить в избранное</div></div>'.
                     '<div class="cart-item-prices">'.
                     '<div class="cart-item-price">'.
                     '<div class="cart-item-single-price">Цена: <span class="product-item-price-int">'.$price.'</span> <i class="fa fa-ruble"></i></div>'.
@@ -211,7 +255,7 @@ function render_product($p, $mode, $columns){
                     '<div class="cart-item-image-holder">'.
                     '<img src="'.$image.'" alt="'.$name.'"/>'.
                     '</div>'.
-                    '<div class="cart-item-to-favorite" data-id="'.$id.'"><i class="fa fa-heart-o"></i><div class="cart-item-to-favorite-dd">Добавить в избранное</div></div>'.
+                    '<div class="cart-item-to-favorite '.$is_in_favorites.'" data-id="'.$id.'"><i class="fa fa-heart-o"></i><div class="cart-item-to-favorite-dd">Добавить в избранное</div></div>'.
                     '<div class="cart-item-title">'.$name.'</div>'.
                     '<div class="cart-item-prices">'.
                     '<div class="cart-item-price">'.

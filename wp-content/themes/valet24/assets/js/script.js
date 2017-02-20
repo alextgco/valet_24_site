@@ -7,6 +7,8 @@ $(document).ready(function () {
 
     var fast_search_keyword = '';
 
+    var global_images_dir = 'http://valet24.ru/images/';
+
     var vs = {
 
         getNoun : function(number, one, two, five) {
@@ -225,7 +227,7 @@ $(document).ready(function () {
                     jRes[0].amount = parseFloat(parseFloat(jRes[0].price_site).toFixed(2) * parseFloat(jRes[0].in_basket_count).toFixed(2)).toFixed(2);
 
 
-                    if(document.location.href.indexOf('cart') > -1 || document.location.href.indexOf('prepare_order') > -1){
+                    if(document.location.href.indexOf('cart') > -1 || document.location.href.indexOf('prepare_order') > -1 || document.location.href.indexOf('account') > -1){
 
                         var cart_item_card = $('.cart-item[data-id="'+pid+'"]');
 
@@ -605,7 +607,12 @@ $(document).ready(function () {
 
                             if(p_count == 0){
 
-                                parent_row.remove();
+                                if(document.location.href.indexOf('account') == -1){
+                                    parent_row.remove();
+                                }else{
+                                    parent_row.find('.cart-item-qnt-value').html(0);
+                                    parent_row.find('.cart-item-total-value').html(0.00);
+                                }
 
                                 if(res.cart.products.length == 0){
                                     $('.empty-basket-holder').removeClass('hidden');
@@ -882,9 +889,99 @@ $(document).ready(function () {
 
             $('.c-item-open').off('click').on('click', function(){
 
-                var p = $(this).parents('.c-item-wrapper');
+                var self = this;
+                var o_id = $(self).attr('data-id');
+                var p = $(self).parents('.c-item-wrapper');
 
-                p.toggleClass('opened');
+                if(p.hasClass('opened')){
+                    p.toggleClass('opened');
+                }else{
+
+                    var o = {
+                        command: 'get_order_products',
+                        params: {
+                            order_id: o_id
+                        }
+                    };
+
+                    socketQuery_site(o, function(res){
+
+                        var jRes = jsonToObj(res);
+
+                        if(!res.code){
+
+                            console.log(jRes);
+
+                            var tpl = '{{#products}}' +
+                                '<div class="cart-item" data-id="{{product_id}}">'+
+                                '<div class="cart-item-sm-title">{{name}}</div>'+
+                                '<div class="cart-item-image-holder">'+
+                                '<img src="{{image}}" alt="{{name}}"/>'+
+                                '</div>'+
+                                '<div class="cart-item-title">{{name}}<span class="obp-count">х{{product_count}}</span></div>'+
+                                '<div class="cart-item-prices">'+
+                                '<div class="cart-item-price">'+
+                                '<div class="cart-item-single-price">Цена: <span class="product-item-price-int">{{price}}</span> <i class="fa fa-ruble"></i></div>'+
+                                '<div class="cart-item-qnt">'+
+                                '<div class="cart-item-qnt-dec {{is_gramm_html}} fa fa-minus-circle"  data-id="{{product_id}}"  data-price="{{price}}"></div>'+
+                                '<div class="cart-item-qnt-value-holder"><span class="cart-item-qnt-value">{{in_basket_count}}</span> {{it_or_kg}}</div>'+
+                                '<div class="cart-item-qnt-inc {{is_gramm_html}} fa fa-plus-circle" data-id="{{product_id}}" data-price="{{price}}"></div>'+
+                                '</div>'+
+                                '</div>'+
+//                                '<div class="cart-item-total"><span class="cart-item-total-value">{{total}}</span> <i class="fa fa-ruble"></i></div>'+
+                                '</div>'+
+                                '</div>'+
+                                '{{/products}}';
+
+                            var mO = {
+                                products: []
+                            };
+
+
+
+                            for(var i in jRes){
+
+                                jRes[i].image = (jRes[i].image.length > 0) ? jRes[i]['image'] : global_images_dir + 'cat-default.jpg';
+
+                                jRes[i].is_gramm = (jRes[i]['qnt_type_sys'] == 'KG');
+
+                                jRes[i].is_gramm_html = (jRes[i].is_gramm)? 'gramm-type': '';
+
+                                jRes[i].it_or_kg = jRes[i]['qnt_type'];
+
+                                jRes[i]['product_count'] = parseFloat(jRes[i]['product_count']);
+
+                                jRes[i].in_basket_count = jRes[i]['in_basket_count'] || 0;
+
+                                jRes[i].total = parseFloat(jRes[i]['price'] * jRes[i].in_basket_count).toFixed(2);
+
+
+
+                                mO.products.push(jRes[i]);
+                            }
+
+                            $('.cart-list-holder[data-id="'+o_id+'"]').html(Mustache.to_html(tpl, mO));
+
+
+                            vs.setHandlers();
+
+                            var p = $(self).parents('.c-item-wrapper');
+                            p.toggleClass('opened');
+
+                        }else{
+                            toastr[res.toastr.type](res.toastr.message);
+                        }
+
+                    });
+
+
+                }
+
+
+
+
+
+
 
             });
 
@@ -1277,7 +1374,92 @@ $(document).ready(function () {
 
             $('.cart-item-to-favorite').off('click').on('click', function(){
 
+                var o = {};
+                var self = this;
+
+                if($(self).hasClass('in_favorite')){
+
+                    o.command = 'remove_product_from_favorite';
+
+                }else{
+
+                    o.command = 'add_product_to_favorite';
+                }
+
+                o.params = {
+                    product_id: $(self).attr('data-id')
+                };
+
+                socketQuery_site(o, function(res){
+
+                    if(!res.code){
+
+
+                        if($(self).hasClass('in_favorite')){
+
+                            if($(self).parents('.favorites-list').length > 0){
+
+                                toastr['info']('Продукт удален из избранного.');
+
+                                $(self).parents('.cart-item').eq(0).remove();
+
+                            }else{
+                                toastr['info']('Продукт удален из избранного.');
+
+                                $(self).removeClass('in_favorite');
+                            }
+
+
+
+                        }else{
+
+                            toastr['info']('Продукт добавлен в избранное!');
+
+                            $(self).addClass('in_favorite');
+
+                        }
+
+
+
+                    }else{
+                        toastr[res.toastr.type](res.toastr.message);
+                    }
+
+                });
+
             });
+
+            $('.c-item-to-basket').off('click').on('click', function(){
+
+                var self = this;
+
+                var o = {
+                    command: 'repeat_order',
+                    params: {
+                        order_id: $(self).attr('data-id')
+                    }
+                };
+
+                socketQuery_site(o, function(res){
+
+                    if(!res.code){
+
+                        toastr[res.toastr.type](res.toastr.message);
+
+                        debugger;
+
+                        vs.updateBasket(res.cart);
+                        vs.setHandlers();
+                    }else{
+                        toastr[res.toastr.type](res.toastr.message);
+                    }
+
+                });
+
+
+            });
+
+
 
         },
 

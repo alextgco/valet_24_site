@@ -88,7 +88,7 @@ include 'header.php';
 
                     if($с_jData['code'] == 0){
 
-                        echo 'OK';
+                        echo '<script type="text/javascript">document.location.href = "/"; </script> ';
 
                     }else{
 

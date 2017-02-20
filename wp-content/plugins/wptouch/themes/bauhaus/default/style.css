@@ -1640,7 +1640,7 @@ header img {
     color: #000!important;
     min-height: 120px;
     position: relative;
-
+    padding-bottom: 41px;
 }
 .product-image-holder {
     height: 80px;
@@ -1662,7 +1662,7 @@ header img {
 
 .product-name-holder {
     overflow: hidden;
-    padding-right: 5px;
+    padding-right: 55px;
     text-overflow: ellipsis;
 }
 
@@ -1829,7 +1829,8 @@ span.cart-amount-holder {
     border-bottom: 1px solid #ddd;
     padding-left: 10px;
     padding-right: 10px;
-
+    padding-bottom: 41px;
+    background-color: #fff;
 }
 .cart-item-image-holder {
     height: 80px;
@@ -1839,6 +1840,7 @@ span.cart-amount-holder {
     background-color: #fff;
     border-radius: 4px 0 0 0;
     overflow: hidden;
+    margin-top: 15px;
 }
 .cart-item-image-holder img {
     height: 100%;
@@ -2111,7 +2113,7 @@ textarea.form-control{
     padding-left: 10px;
 }
 .inner-page #sidebar-search{
-    /*display: none;*/
+    display: none;
 }
 
 .gt-ib-values-holder {
@@ -2821,14 +2823,16 @@ textarea.form-control{
 }
 .c-item-date {
     padding-right: 5px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
     padding-bottom: 20px;
     border-bottom: 1px solid;
     padding-top: 25px;
     display: inline-block;
+    width: 100%;
     float: left;
     padding-left: 30px;
+    box-sizing: border-box;
 }
 .c-item-prefix{
     position: absolute;
@@ -2870,4 +2874,95 @@ textarea.form-control{
     font-size: 15px;
     margin-bottom: 30px;
     margin-top: 14px;
+}
+
+.account-edit, .account-exit {
+    float: left;
+    text-align: center;
+    height: 30px;
+    padding-top: 7px;
+    font-size: 13px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.1);
+}
+.account-edit:active, .account-exit:active {
+    background-color: #fff;
+}
+
+.account-edit{
+    width: 60%;
+    border-right: 1px solid rgba(0,0,0,0.1);
+}
+.account-exit {
+    width: 40%;
+}
+.page-template-account #header-logo-my{
+    top: 29px;
+}
+
+.cart-item-to-favorite.in_favorite {
+    color: red;
+}
+.cart-list-holder .cart-item-to-favorite{
+    display: none;
+}
+.cart-sidebar-items .cart-item-to-favorite{
+    display: none;
+}
+.favorites-list.cart-sidebar-items .cart-item-to-favorite{
+    display: block;
+    padding-right: 0;
+}
+
+.page-template-account .cart-item-title {
+    padding-right: 45px;
+}
+
+.back-to-top{
+    /*display: none;*/
+}
+
+span.obp-count {
+    color: #444;
+    margin-left: 10px;
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    font-size: 20px;
+}
+.page-template-account_edit .site-content{
+    padding-bottom: 70px;
+}
+.prepare-order-page {
+    padding: 30px 10px;
+    background-color: #fff;
+    border-top: 5px solid green;
+    margin-top: -16px;
+    padding-bottom: 130px;
+}
+.prepare-order-holder {
+    font-size: 14px;
+    font-family: arial, sans-serif!important;
+    font-weight: normal;
+}
+.heading-font{
+    font-family: arial, sans-serif!important;
+    font-weight: normal;
+    line-height: 20px;
+}
+span.boldtext {
+    font-weight: bold;
+}
+.category-title-nomargin {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+.no-favorites {
+    padding: 50px 14px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+.back-to-top{
+    color: #f9f9f8!important;
 }

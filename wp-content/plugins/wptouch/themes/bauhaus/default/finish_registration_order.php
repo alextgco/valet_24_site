@@ -4,6 +4,9 @@
     Template Name: confirm_registration_order
 */
 
+$key = $_GET['key'];
+$key2 = $_GET['key2'];
+
 ?>
 
 <?php if ( foundation_is_theme_using_module( 'custom-latest-posts' ) && wptouch_fdn_is_custom_latest_posts_page() ) { ?>
@@ -43,11 +46,11 @@
                 <div class="prepare-order-holder">
 
                     <label class="pa-m-label">Придумайте пароль (запишите чтобы не забыть):</label>
-                    <input class="pa-m-input" type="password" id="pa-password" placeholder="Пароль"/>
+                    <input class="pa-m-input" type="password" id="pa-o-password" placeholder="Пароль"/>
                     <label class="pa-m-label">Повторите пароль:</label>
-                    <input class="pa-m-input" type="password" id="pa-password-rpt" placeholder="Пароль ещё раз"/>
+                    <input class="pa-m-input" type="password" id="pa-o-password-rpt" placeholder="Пароль ещё раз"/>
 
-                    <div class="pa-m-register-order pa-button"><i class="fa fa-lock"></i>&nbsp;&nbsp;Сохранить пароль</div>
+                    <div class="pa-m-register-order pa-button" data-key="<?php echo $key;?>" data-key2="<?php echo $key2;?>"><i class="fa fa-lock"></i>&nbsp;&nbsp;Сохранить пароль</div>
 
 
                 </div>

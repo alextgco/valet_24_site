@@ -632,7 +632,14 @@ $(document).ready(function () {
 
                             if(p_count == 0){
 
-                                parent_row.remove();
+                                if(document.location.href.indexOf('account') == -1){
+                                    parent_row.remove();
+                                }else{
+                                    parent_row.find('.cart-item-qnt-value').html(0);
+                                    parent_row.find('.cart-item-total-value').html(0.00);
+                                }
+
+
 
                                 if(res.cart.products.length == 0){
                                     $('.empty-basket-holder').removeClass('hidden');
@@ -898,6 +905,133 @@ $(document).ready(function () {
                         vs.faderModal(true, html, inner_handlers);
 
                     });
+
+
+                    $('.pa-m-register').off('click').on('click', function(){
+
+
+
+                        var email = $('#pa-login').val();
+                        var pass = $('#pa-password').val();
+                        var pass2 = $('#pa-password-rpt').val();
+
+                        if(email.length == 0){
+                            toastr['warning']('Заполните поле Email');
+                        }
+                        if(pass.length == 0){
+                            toastr['warning']('Заполните поле Пароль');
+                        }
+                        if(pass2.length == 0){
+                            toastr['warning']('Заполните поле Повторите пароль');
+                        }
+
+                        if(pass.length == 0 || email.length == 0 || pass2.length == 0){
+                            return;
+                        }else if(pass !== pass2){
+                            toastr['warning']('Пароли должны совпадать.');
+                        }else{
+
+                            var o = {
+                                command: 'registration',
+                                params: {
+                                    email: email,
+                                    password: pass,
+                                    password_2: pass2
+                                }
+                            };
+
+                            socketQuery_site(o, function(res){
+
+                                if(!res.code){
+
+                                    document.location.href = '/confirm_email/';
+
+                                }else{
+
+                                    toastr['error'](res.toastr.message);
+
+                                }
+
+                            });
+                        }
+                    });
+
+                    $('.pa-m-login').off('click').on('click', function(){
+
+                        var email = $('#pa-login').val();
+                        var pass = $('#pa-password').val();
+
+                        if(email.length == 0){
+                            toastr['warning']('Заполните поле Email');
+                        }
+                        if(pass.length == 0){
+                            toastr['warning']('Заполните поле Пароль');
+                        }
+                        if(pass.length == 0 || email.length == 0){
+                            return;
+                        }else{
+
+                            var o = {
+                                command: 'login',
+                                params: {
+                                    email: email,
+                                    password: pass
+                                }
+                            };
+
+                            socketQuery_site(o, function(res){
+
+                                if(!res.code){
+
+                                    document.location.reload();
+
+                                }else{
+
+                                    toastr['error'](res.toastr.message);
+
+                                }
+
+                            });
+                        }
+                    });
+
+                    $('.pa-m-forgot').off('click').on('click', function(){
+
+                        var email = $('#pa-login').val();
+
+                        if(email.length == 0){
+                            toastr['warning']('Укажите Ваш Email');
+                        }else{
+                            var o = {
+                                command: 'restore_account',
+                                params: {
+                                    email: $('#pa-login').val()
+                                }
+                            };
+
+                            socketQuery_site(o, function(res){
+
+                                if(!res.code){
+
+                                    toastr['info']('На Вашу почту была отправлена ссылка на восстановление пароля');
+
+                                }else{
+
+                                    toastr['error'](res.toastr.message);
+
+                                }
+
+                            });
+
+
+                        }
+
+
+
+
+
+                    });
+
                 };
 
                 vs.faderModal(true, html, inner_handlers);
@@ -908,11 +1042,317 @@ $(document).ready(function () {
                 vs.faderModal(false);
             });
 
+
+
+
+
+            $('.cart-item-to-favorite').off('click').on('click', function(){
+
+                var o = {};
+                var self = this;
+
+                if($(self).hasClass('in_favorite')){
+
+                    o.command = 'remove_product_from_favorite';
+
+                }else{
+
+                    o.command = 'add_product_to_favorite';
+                }
+
+                o.params = {
+                    product_id: $(self).attr('data-id')
+                };
+
+                socketQuery_site(o, function(res){
+
+                    if(!res.code){
+
+
+                        if($(self).hasClass('in_favorite')){
+
+                            if($(self).parents('.favorites-list').length > 0){
+
+                                toastr['info']('Продукт удален из избранного.');
+
+                                $(self).parents('.cart-item').eq(0).remove();
+
+                            }else{
+                                toastr['info']('Продукт удален из избранного.');
+
+                                $(self).removeClass('in_favorite');
+                            }
+
+
+
+                        }else{
+
+                            toastr['info']('Продукт добавлен в избранное!');
+
+                            $(self).addClass('in_favorite');
+
+                        }
+
+
+
+                    }else{
+                        toastr[res.toastr.type](res.toastr.message);
+                    }
+
+                });
+
+            });
+
+            $('.account-exit').off('click').on('click', function(){
+
+
+                var o = {
+                    command: 'logout',
+                    params: {
+                        id: $(this).attr('data-id')
+                    }
+                };
+
+                socketQuery_site(o, function(res){
+
+                    if(!res.code){
+
+                        document.location.href = '/';
+
+                    }else{
+
+                        toastr['error'](res.toastr.message);
+
+                    }
+
+                });
+
+
+            });
+
             $('.c-item-open').off('click').on('click', function(){
 
-                var p = $(this).parents('.c-item-wrapper');
+                var self = this;
+                var o_id = $(self).attr('data-id');
+                var p = $(self).parents('.c-item-wrapper');
 
-                p.toggleClass('opened');
+                if(p.hasClass('opened')){
+                    p.toggleClass('opened');
+                }else{
+
+                    var o = {
+                        command: 'get_order_products',
+                        params: {
+                            order_id: o_id
+                        }
+                    };
+
+                    socketQuery_site(o, function(res){
+
+                        var jRes = jsonToObj(res);
+
+                        if(!res.code){
+
+                            console.log(jRes);
+
+                            var tpl = '{{#products}}<div class="cart-item cart-sidebar-tpl" data-id="{{product_id}}">'+
+                                            '<div class="cart-item-image-holder">'+
+                                                '<img src="{{image}}" alt="{{name}}"/>'+
+                                            '</div>'+
+                                            '<div class="cart-item-info-holder">'+
+                                                '<div class="cart-item-title">{{name}}<span class="obp-count">х{{product_count}}</span></div>'+
+                                                '<div class="cart-item-prices">'+
+                                                    '<div class="cart-item-price">'+
+                                                        '<div class="cart-item-single-price">Цена: <span class="product-item-price-int">{{price}}</span> <i class="fa fa-ruble"></i></div>'+
+                                                        '<div class="cart-item-qnt">'+
+                                                            '<div class="cart-item-qnt-dec {{is_gramm_html}} fa fa-minus-circle" data-id="{{product_id}}" data-price="{{price}}"></div>'+
+                                                            '<div class="cart-item-qnt-value-holder"><span class="cart-item-qnt-value">{{in_basket_count}}</span> {{it_or_kg}}</div>'+
+                                                            '<div class="cart-item-qnt-inc {{is_gramm_html}} fa fa-plus-circle" data-id="{{product_id}}" data-price="{{price}}"></div>'+
+                                                        '</div>'+
+                                                    '</div>'+
+                                                '</div>'+
+                                            '</div>'+
+//                                            '<div class="cart-item-total"><span class="cart-item-total-value">{{total}}</span> <i class="fa fa-ruble"></i></div>'+
+                                            '</div>'+
+                                        '</div>{{/products}}';
+
+
+                            var mO = {
+                                products: []
+                            };
+
+
+
+                            for(var i in jRes){
+
+                                jRes[i].image = (jRes[i].image.length > 0) ? jRes[i]['image'] : global_images_dir + 'cat-default.jpg';
+
+                                jRes[i].is_gramm = (jRes[i]['qnt_type_sys'] == 'KG');
+
+                                jRes[i].is_gramm_html = (jRes[i].is_gramm)? 'gramm-type': '';
+
+                                jRes[i].it_or_kg = jRes[i]['qnt_type'];
+
+                                jRes[i]['product_count'] = parseFloat(jRes[i]['product_count']);
+
+                                jRes[i].in_basket_count = jRes[i]['in_basket_count'] || 0;
+
+                                jRes[i].total = parseFloat(jRes[i]['price'] * jRes[i].in_basket_count).toFixed(2);
+
+
+
+                                mO.products.push(jRes[i]);
+                            }
+
+                            $('.cart-list-holder[data-id="'+o_id+'"]').html(Mustache.to_html(tpl, mO));
+
+
+                            vs.setHandlers();
+
+                            var p = $(self).parents('.c-item-wrapper');
+                            p.toggleClass('opened');
+
+                        }else{
+                            toastr[res.toastr.type](res.toastr.message);
+                        }
+
+                    });
+
+
+                }
+
+            });
+
+            $('.account-edit-back').off('click').on('click', function(){
+
+                document.location.href = '/account/';
+
+            });
+
+            $('.account-edit').off('click').on('click', function(){
+
+                document.location.href = '/account_edit/';
+
+            });
+
+            $('.save-account').off('click').on('click', function(){
+
+                var address =           $('#address').val();
+                var name =              $('#name').val();
+                var phone =             $('#phone').val();
+                var email =             $('#email').val();
+                var gate =              $('#gate').val();
+                var gatecode =          $('#gatecode').val();
+                var level =             $('#level').val();
+                var flat =              $('#flat').val();
+
+                var o = {
+                    command: 'modify_account',
+                    params: {
+                        address         :address,
+                        name            :name,
+                        phone           :phone,
+                        email           :email,
+                        gate            :gate,
+                        gatecode        :gatecode,
+                        level           :level,
+                        flat            :flat,
+                        id              : $('.save-account').attr('data-id')
+                    }
+                };
+
+
+                $('.save-account').html('<i class="fa fa-spin fa-spinner"></i>');
+
+                socketQuery_site(o, function(res){
+
+                    if(!res.code){
+
+                        document.location.reload();
+
+                    }else{
+                        toastr[res.toastr.type](res.toastr.message);
+                    }
+
+                });
+
+            });
+
+            $('.pa-m-register-order').off('click').on('click', function(){
+
+                var pass = $('#pa-o-password').val();
+                var pass2 = $('#pa-o-password-rpt').val();
+                var key = $('.pa-m-register-order').attr('data-key');
+                var key2 = $('.pa-m-register-order').attr('data-key2');
+
+                if(pass.length == 0){
+                    toastr['warning']('Заполните поле Пароль');
+                }
+                if(pass2.length == 0){
+                    toastr['warning']('Заполните поле Повторите пароль');
+                }
+
+                if(pass.length == 0 || pass2.length == 0){
+                    return;
+                }else if(pass !== pass2){
+                    toastr['warning']('Пароли должны совпадать.');
+                }else{
+
+                    var o = {
+                        command: 'confirm_registration',
+                        params: {
+                            password: pass,
+                            password_2: pass2,
+                            confirm_key: key,
+                            confirm_key2: key2
+                        }
+                    };
+
+                    socketQuery_site(o, function(res){
+
+                        if(!res.code){
+
+                            document.location.href = '/account/';
+
+                        }else{
+
+                            toastr['error'](res.toastr.message);
+
+                        }
+
+                    });
+                }
+
+
+            });
+
+            $('.c-item-to-basket').off('click').on('click', function(){
+
+                var self = this;
+
+                var o = {
+                    command: 'repeat_order',
+                    params: {
+                        order_id: $(self).attr('data-id')
+                    }
+                };
+
+                socketQuery_site(o, function(res){
+
+                    if(!res.code){
+
+                        toastr[res.toastr.type](res.toastr.message);
+
+                        vs.updateBasket(res.cart);
+                        vs.setHandlers();
+
+
+                    }else{
+                        toastr[res.toastr.type](res.toastr.message);
+                    }
+
+                });
+
 
             });
 

@@ -69,7 +69,7 @@
                 <div class="row">
                     <div class=" col-md-12">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="name" placeholder="Представьтесь, пожалуйста"/>
+                            <input type="text" class="form-control"  id="name" placeholder="Представьтесь, пожалуйста"  value="<?php echo $user_jData['user']['name']; ?>"/>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                 <div class="row">
                     <div class=" col-md-12">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="address" placeholder="Укажите адрес:" />
+                            <input type="text" class="form-control" id="address" placeholder="Укажите адрес:" value="<?php echo $user_jData['user']['address']; ?>" />
                         </div>
                     </div>
 
@@ -86,13 +86,13 @@
                 <div class="row">
                     <div class=" col-md-6">
                         <div class="form-group">
-                            <input type="tel" class="form-control"  id="phone" placeholder="Телефон:*"/>
+                            <input type="tel" class="form-control"  id="phone" placeholder="Телефон:*" value="<?php echo $user_jData['user']['phone']; ?>"/>
                         </div>
                     </div>
 
                     <div class=" col-md-6">
                         <div class="form-group">
-                            <input type="email" class="form-control"  id="email" placeholder="Почта:"/>
+                            <input type="email" class="form-control"  id="email" placeholder="Почта:" value="<?php echo $user_jData['user']['email']; ?>"/>
                         </div>
                     </div>
                 </div>
@@ -100,13 +100,13 @@
                 <div class="row">
                     <div class=" col-md-6">
                         <div class="form-group">
-                            <input type="number" class="form-control"  id="gate" placeholder="Подъезд:"/>
+                            <input type="number" class="form-control"  id="gate" placeholder="Подъезд:" value="<?php echo $user_jData['user']['gate']; ?>"/>
                         </div>
                     </div>
                     <div class=" col-md-6">
                         <div class="form-group">
 
-                            <input type="text" class="form-control"  id="gatecode" placeholder="Код домофона:"/>
+                            <input type="text" class="form-control"  id="gatecode" placeholder="Код домофона:" value="<?php echo $user_jData['user']['gatecode']; ?>"/>
                         </div>
                     </div>
                 </div>
@@ -116,13 +116,13 @@
                     <div class=" col-md-6">
                         <div class="form-group">
 
-                            <input type="number" class="form-control"  id="level" placeholder="Этаж:"/>
+                            <input type="number" class="form-control"  id="level" placeholder="Этаж:" value="<?php echo $user_jData['user']['level']; ?>"/>
                         </div>
                     </div>
                     <div class=" col-md-6">
                         <div class="form-group">
 
-                            <input type="number" class="form-control"  id="flat" placeholder="Квартира:"/>
+                            <input type="number" class="form-control"  id="flat" placeholder="Квартира:" value="<?php echo $user_jData['user']['flat']; ?>"/>
                         </div>
                     </div>
                 </div>

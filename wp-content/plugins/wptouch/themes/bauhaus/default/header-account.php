@@ -99,17 +99,19 @@
 
         $openedSearch = (strpos($_SERVER['REQUEST_URI'], 'search_results'))? 'toggled' : '';
 
-        ?>
-
-        <?php
-
         if($user_exists){
-            echo '<div class="to-pa"><i class="fa fa-user"></i>&nbsp;&nbsp;Личный кабинет</div>';
+            echo    '<div class=""><div class="account-edit" data-id="'. $user_jData['user']['id'].'">Редактировать</div>'.
+                    '<div class="account-exit" data-id="'. $user_jData['user']['id'] .'">Выйти</div></div>';
         }else{
-            echo '<div class="pa-btn"><i class="fa fa-lock"></i>&nbsp;&nbsp;Войти</div>';
+            echo '<script type="text/javascript">document.location.href = "/"; </script>';
         }
 
         ?>
+
+
+
+
+
 
         <div id="search-dropper" class="<?php echo $openedSearch;?>">
             <div id="wptouch-search-inner">
