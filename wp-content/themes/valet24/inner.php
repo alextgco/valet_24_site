@@ -135,12 +135,12 @@ include 'header.php';
 <?php
 
 include 'footer.php';
-
+include 'foot_js.php';
 ?>
 
 <!--SCRIPTS-->
 
-<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri() ?>/assets/plugins/jquery/jquery-1.12.0.min.js"></script>
+<!--<script type="text/javascript" src="--><?php //echo get_stylesheet_directory_uri() ?><!--/assets/plugins/jquery/jquery-1.12.0.min.js"></script>-->
 <!---->
 <!---->
 <!--<script type="text/javascript" src="assets/plugins/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>-->
@@ -154,7 +154,7 @@ include 'footer.php';
 <!---->
 <!--<script type="text/javascript" src="assets/js/core.js"></script>-->
 <!---->
-<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri() ?>/assets/js/script.js"></script>
+<!--<script type="text/javascript" src="--><?php //echo get_stylesheet_directory_uri() ?><!--/assets/js/script.js"></script>-->
 
 </body>
 </html>

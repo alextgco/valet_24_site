@@ -91,7 +91,7 @@ include 'service_features.php';
 
     <div class="container posRel">
 
-        <div class="copyright">Valet24 © 2016  Все права защищены.</div>
+        <div class="copyright">Valet24 © 2017  Все права защищены.</div>
 
         <a target="_blank" href="http://ccs.msk.ru/?utm_source=valet24_site" class="developer">
             <div class="developed-by">Powered by</div>

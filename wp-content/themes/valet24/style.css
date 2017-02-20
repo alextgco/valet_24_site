@@ -2380,6 +2380,8 @@ body.scrolled .to-top {
     background-color: #e3e3e3;
     z-index: -1;
     opacity: 0;
+    overflow: auto;
+    padding-bottom: 100px;
 }
 .site-fader-contaner{
 
