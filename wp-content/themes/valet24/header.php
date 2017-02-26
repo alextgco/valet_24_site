@@ -62,7 +62,10 @@
         <?php
 
         if($user_exists){
-            echo '<div class="to-pa">'. $user_jData['user']['name'] .', здесь Ваш личный кабинет!</div>';
+
+            $welcomtext = (strlen($user_jData['user']['name']) > 0)? $user_jData['user']['name'] .', здесь Ваш личный кабинет!' : 'Здесь Ваш личный кабинет!';
+
+            echo '<div class="to-pa">'. $welcomtext .'</div>';
         }else{
             echo '<div class="pa-btn"><i class="fa fa-lock"></i>&nbsp;&nbsp;Личный кабинет</div>';
         }

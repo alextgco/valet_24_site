@@ -276,6 +276,8 @@ $(document).ready(function () {
 
                 var li = $(this).parents('li').eq(0);
 
+                $('#sidebar-categories-menu li').removeClass('open');
+
                 if (li.hasClass('open')) {
                     li.removeClass('open');
                 } else {
@@ -1550,6 +1552,8 @@ $(document).ready(function () {
 
                 f_h.css({zIndex: 1010});
 
+                $('body').css({overflow: 'hidden'});
+
                 f_h.animate({
                     opacity: 1
                 }, 320, function(){
@@ -1562,6 +1566,8 @@ $(document).ready(function () {
                 });
 
             }else{
+
+                $('body').css({overflow: 'auto'});
 
                 f_h.animate({
                     opacity: 0
