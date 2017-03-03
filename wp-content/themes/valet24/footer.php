@@ -76,7 +76,7 @@ include 'service_features.php';
             </div>
             <div class="col-sm-4 col-md-4">
                 <ul>
-                    <li class="footer-phone">+7 (499) 684-21-11</li>
+                    <li class="footer-phone">+7 (495) 134-39-12</li>
                     <li>info@valet24.ru</li>
                     <li>Москва, Кедрова 17</li>
                     <li class="feedback-init sc-feedback-init">Написать нам</li>

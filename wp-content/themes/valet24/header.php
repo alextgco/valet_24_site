@@ -56,7 +56,7 @@
 
 <div class="preheader">
     <div class="container">
-        <div class="phone-holder">+7 (499) 684-21-11</div>
+        <div class="phone-holder">+7 (495) 134-39-12</div>
         <div class="email-holder sc-feedback-init">info@valet24.ru</div>
 
         <?php
