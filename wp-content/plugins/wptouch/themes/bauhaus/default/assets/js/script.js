@@ -686,7 +686,7 @@ $(document).ready(function () {
                 };
 
                 if(fast_search_keyword.length > 0){
-                    o.params.search_keyword = fast_search_keyword;
+                    o.params.name = fast_search_keyword;
                 }
 
 
@@ -695,7 +695,7 @@ $(document).ready(function () {
                 }
 
                 if(search_keyword != 'EMPTY'){
-                    o.params.search_keyword = search_keyword;
+                    o.params.name = search_keyword;
                 }
 
                 socketQuery_site(o, function(res){
