@@ -172,7 +172,9 @@ $(document).ready(function () {
                         vs.loader(false);
                         return false;
                     }
+
                     console.log(res);
+
 
                     vs.updateBasket(res.cart);
                     vs.reloadGtCard(pid);
@@ -240,17 +242,30 @@ $(document).ready(function () {
                     jRes[0].amount = parseFloat(parseFloat(jRes[0].price_site).toFixed(2) * parseFloat(jRes[0].in_basket_count).toFixed(2)).toFixed(2);
 
 
-                    if(document.location.href.indexOf('cart') > -1 || document.location.href.indexOf('prepare_order') > -1){
+                    if(document.location.href.indexOf('cart') > -1 || document.location.href.indexOf('prepare_order') > -1 || document.location.href.indexOf('account') > -1){
 
                         var cart_item_card = $('.cart-item[data-id="'+pid+'"]');
 
-                        if(jRes[0].in_basket_count == 0){
-                            cart_item_card.remove();
+                        if(document.location.href.indexOf('account') > -1){
+
+                            if(jRes[0].in_basket_count == 0){
+
+                            }else{
+                                cart_item_card.find('.cart-item-qnt-value').html(jRes[0].in_basket_count);
+                                cart_item_card.find('.gt-dd').remove();
+                            }
+
                         }else{
-                            cart_item_card.find('.cart-item-qnt-value').html(jRes[0].in_basket_count);
-                            cart_item_card.find('.cart-item-total-value').html(jRes[0].amount);
-                            cart_item_card.find('.gt-dd').remove();
+                            if(jRes[0].in_basket_count == 0){
+                                cart_item_card.remove();
+                            }else{
+                                cart_item_card.find('.cart-item-qnt-value').html(jRes[0].in_basket_count);
+                                cart_item_card.find('.cart-item-total-value').html(jRes[0].amount);
+                                cart_item_card.find('.gt-dd').remove();
+                            }
                         }
+
+
 
 
 

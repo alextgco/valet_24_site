@@ -207,8 +207,6 @@ $cc_name = 'Личный кабинет';
 
                     foreach($f_jData['data'] as $cp_key=>$cp_value){
 
-                        var_export($cp_value);
-
                         $cart_products_html .= render_product_m($cp_value, 'favorite', $f_columns);
 
                         $f_count++;
