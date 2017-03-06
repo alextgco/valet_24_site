@@ -71,7 +71,7 @@ include 'header.php';
 
                             <div class=" col-md-6">
                                 <div class="form-group">
-                                    <label>Почта:</label>
+                                    <label><span class="redStar">*</span>Почта:</label>
                                     <input type="text" class="form-control"  id="email" value="<?php echo $user_jData['user']['email']; ?>"/>
                                 </div>
                             </div>

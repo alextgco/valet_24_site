@@ -794,7 +794,7 @@ $(document).ready(function () {
                 var agreement =         $('#agreement')[0].checked;
                 var subscription =      $('#subscription')[0].checked;
 
-                if(phone.length == 0 || !agreement){
+                if(email.length == 0 || phone.length == 0 || !agreement){
                     toastr['error']('Заполните обязательные поля, помеченные звездочкой.');
                 }else{
 

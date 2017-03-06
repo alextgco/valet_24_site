@@ -92,7 +92,7 @@
 
                     <div class=" col-md-6">
                         <div class="form-group">
-                            <input type="email" class="form-control"  id="email" placeholder="Почта:" value="<?php echo $user_jData['user']['email']; ?>"/>
+                            <input type="email" class="form-control"  id="email" placeholder="Почта:*" value="<?php echo $user_jData['user']['email']; ?>"/>
                         </div>
                     </div>
                 </div>
