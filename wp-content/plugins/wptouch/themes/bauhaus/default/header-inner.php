@@ -42,6 +42,9 @@
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <title><?php wp_title( ' | ', true, 'right' ); ?></title>
+
+    <link href="http://valet24.ru/wp-content/themes/valet24/assets/img/favicon.png" rel="shortcut icon" type="image/i-icon">
+
     <?php wptouch_head(); ?>
     <?php
     if ( !is_single() && !is_archive() && !is_page() && !is_search() ) {
@@ -52,6 +55,9 @@
         echo '<meta name="robots" content="noindex" />';
     }
     ?>
+
+
+
 </head>
 
 

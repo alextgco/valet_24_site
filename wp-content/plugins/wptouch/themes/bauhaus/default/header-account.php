@@ -52,6 +52,7 @@
         echo '<meta name="robots" content="noindex" />';
     }
     ?>
+    <link href="http://valet24.ru/wp-content/themes/valet24/assets/img/favicon.png" rel="shortcut icon" type="image/i-icon">
 </head>
 
 

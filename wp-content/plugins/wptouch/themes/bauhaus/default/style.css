@@ -1384,6 +1384,7 @@ header img {
 .pr50:nth-child(2n) .cat-item{
     padding-left: 8px;
     padding-right: 13px;
+
 }
 
 .cat-image-holder img{
@@ -2965,4 +2966,9 @@ span.boldtext {
 }
 .back-to-top{
     color: #f9f9f8!important;
+}
+.categories-holder {
+    margin-bottom: 100px;
+    width: 100%;
+    float: left;
 }

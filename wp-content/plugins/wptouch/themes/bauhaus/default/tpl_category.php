@@ -138,8 +138,8 @@
 
 ?>
 
-!!!!!!!!
 
+<link href="http://valet24.ru/wp-content/themes/valet24/assets/img/favicon.png" rel="shortcut icon" type="image/i-icon">
 <?php if ( foundation_is_theme_using_module( 'custom-latest-posts' ) && wptouch_fdn_is_custom_latest_posts_page() ) { ?>
 
     <?php wptouch_fdn_custom_latest_posts_query(); ?>
@@ -197,7 +197,7 @@
     <title>Valet24 | круглосуточная доставка продуктов!</title>
     <link href="http://valet24.ru/wp-content/themes/valet24/assets/img/logo_new.png" rel="shortcut icon" type="image/i-icon">
     <?php include 'head_css.php'; ?>
-
+    <link href="http://valet24.ru/wp-content/themes/valet24/assets/img/favicon.png" rel="shortcut icon" type="image/i-icon">
 </head>
 <body>
 <?php

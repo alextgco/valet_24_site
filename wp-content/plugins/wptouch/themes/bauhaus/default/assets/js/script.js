@@ -224,9 +224,9 @@ $(document).ready(function () {
                         '<div class="product-image-holder">'+
                             '<img src="{{image}}" alt="{{name}}"></div>'+
                             '<div class="product-info-holder">'+
-                                '<div class="product-name-holder">Перец оранжевый 1кг</div>'+
+                                '<div class="product-name-holder">{{name}}</div>'+
                                 '<div class="product-price-holder">'+
-                                    '<span class="product-item-price-int">329.70</span>'+
+                                    '<span class="product-item-price-int">{{price_site}}</span>'+
                                     '<span class="price-rub">&nbsp;руб/кг</span>'+
                                 '</div>'+
                             '</div>'+

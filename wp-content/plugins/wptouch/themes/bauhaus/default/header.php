@@ -5,6 +5,7 @@
 
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<title>Valet24 | круглосуточная доставка продуктов!</title>
+        <link href="http://valet24.ru/wp-content/themes/valet24/assets/img/favicon.png" rel="shortcut icon" type="image/i-icon">
 		<?php wptouch_head(); ?>
 		<?php
 			if ( !is_single() && !is_archive() && !is_page() && !is_search() ) {
