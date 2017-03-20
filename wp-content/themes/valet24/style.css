@@ -2190,7 +2190,8 @@ body.scrolled .to-top {
         margin-left: 10px!important;
     }
     .cart-holder {
-        margin-top: 63px;
+        /*margin-top: 63px;*/
+        margin-top: 43px;
     }
     .invis-sm{
         /*display: none;*/
@@ -2313,6 +2314,7 @@ body.scrolled .to-top {
     .cart-sidebar-items .cart-item-title{
         max-width: 100%!important;
         width: 100%;
+        padding: 0!important;
     }
     .cart-sidebar-items .cart-item:nth-child(odd){
         background-color: #f7f7f7;
@@ -2334,7 +2336,8 @@ body.scrolled .to-top {
         margin-left: 10px!important;
     }
     .cart-holder {
-        margin-top: 63px;
+        /*margin-top: 63px;*/
+        margin-top: 15px;
     }
     .invis-sm{
         display: none;
@@ -2944,6 +2947,7 @@ select:-webkit-autofill {
     }
     .cart-item {
         margin-bottom: 70px;
+        min-height: 190px;
     }
     .cart-total-holder .cart-products-count{
         width: 100%;
@@ -2951,6 +2955,10 @@ select:-webkit-autofill {
         margin: 0;
         margin-top: -31px;
         margin-bottom: 15px;
+    }
+
+    .favorites-list.cart-sidebar-items .cart-item-single-price{
+        text-align: left;
     }
 
     .cart-total-holder .cart-amount-holder{
@@ -3017,6 +3025,13 @@ select:-webkit-autofill {
     }
     .favorites-list .cart-item-title{
         display: block!important;
+        padding: 0!important;
+    }
+    .favorites-list .cart-item-image-holder{
+        margin-top: 60px;
+    }
+    .favorites-list .cart-item-to-favorite{
+        margin-top: 30px;
     }
     .logo-overlay{
         background-size: 78%!important;

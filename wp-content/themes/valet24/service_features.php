@@ -25,7 +25,7 @@
             <div class="col-sm-4 col-md-4">
                 <div class="service-feature-holder">
                     <div class="sf-title">Без очередей!</div>
-                    <div class="sf-subtitle">Теперь Вам не надо тоскать тяжелые пакеты, это сделаем мы!</div>
+                    <div class="sf-subtitle">Теперь Вам не надо таскать тяжелые пакеты, это сделаем мы!</div>
                     <div class="sf-image"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/hfast.png" /></div>
                 </div>
             </div>

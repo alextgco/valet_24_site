@@ -78,7 +78,7 @@ include 'service_features.php';
                 <ul>
                     <li class="footer-phone">+7 (495) 134-39-12</li>
                     <li>info@valet24.ru</li>
-                    <li>Москва, Кедрова 17</li>
+                    <li>Москва, Профсоюзная ул. 22</li>
                     <li class="feedback-init sc-feedback-init">Написать нам</li>
                 </ul>
             </div>
@@ -91,7 +91,7 @@ include 'service_features.php';
 
     <div class="container posRel">
 
-        <div class="copyright">Valet24 © 2017  Все права защищены.</div>
+        <div class="copyright">Valet24.ru © 2017  Все права защищены.</div>
 
         <a target="_blank" href="http://ccs.msk.ru/?utm_source=valet24_site" class="developer">
             <div class="developed-by">Powered by</div>

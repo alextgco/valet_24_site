@@ -188,7 +188,7 @@
             if(strlen($cc_name) > 0){
                 echo '<span class="header-text"><span class="ptbold">'.$cc_name.'</span></span>';
             }else{
-                echo '<span class="header-text">Доставка продуктов за <span class="ptbold">47</span> минут!</span>';
+                echo '<span class="header-text">Доставка продуктов за <span class="ptbold">1</span> час!</span>';
             }
 
             ?>
