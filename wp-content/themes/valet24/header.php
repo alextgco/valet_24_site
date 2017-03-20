@@ -63,7 +63,9 @@
 
         if($user_exists){
 
-            $welcomtext = (strlen($user_jData['user']['name']) > 0)? $user_jData['user']['name'] .', здесь Ваш личный кабинет!' : 'Здесь Ваш личный кабинет!';
+            $welcomtext = 'Ваш личный кабинет';//(strlen($user_jData['user']['name']) > 0)? $user_jData['user']['name'] .', здесь Ваш личный кабинет!' : 'Здесь Ваш личный кабинет!';
+
+
 
             echo '<div class="to-pa">'. $welcomtext .'</div>';
         }else{
@@ -76,11 +78,7 @@
         <div id="ooo-ooo">
 
 
-            <?php
 
-            var_export($user_jData);
-
-            ?>
 
         </div>
 
@@ -98,19 +96,26 @@
 
     <div class="container">
 
-        <div class="logo-holder">
-            <a href="/">
-                <div class="logo">
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/logo_new.png" />
-                </div>
-                <div class="logo-text main-site-title">
-                    КРУГЛОСУТОЧНАЯ<br/>
-                    КУРЬЕРСКАЯ<br/>
-                    СЛУЖБА
-                </div>
-            </a>
+        <div alt="VALET24.RU - КРУГЛОСУТОЧНАЯ ДОСТАВКА ПРОДУКТОВ ЗА 1 ЧАС" class="logo-overlay"></div>
+        <a class="logo-a" href="/">
+        </a>
 
-        </div>
+<!--        <div class="logo-holder">-->
+<!--            <a href="/">-->
+<!--                <div class="logo">-->
+<!--                    <img src="--><?php //echo get_stylesheet_directory_uri() ?><!--/assets/img/logo_new.png" />-->
+<!--                </div>-->
+<!--                <div class="logo-text main-site-title">-->
+<!--                    КРУГЛОСУТОЧНАЯ<br/>-->
+<!--                    ДОСТАВКА ПРОДУКТОВ<br/>-->
+<!--                    ЗА 1 ЧАС-->
+<!--<!--                    КРУГЛОСУТОЧНАЯ<br/>-->-->
+<!--<!--                    КУРЬЕРСКАЯ<br/>-->-->
+<!--<!--                    СЛУЖБА-->-->
+<!--                </div>-->
+<!--            </a>-->
+<!---->
+<!--        </div>-->
 
 
         <div class="search-holder">

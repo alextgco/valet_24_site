@@ -1183,7 +1183,8 @@ form#commentform button#submit {
 }
 
 .dark-header header a, .dark-header header div {
-	color: rgba(255,255,255,.9);
+	/*color: rgba(255,255,255,.9);*/
+    color: rgb(50, 40, 69);
 	text-shadow: rgba(0,0,0,.2) 0px -1px 0px;
 }
 

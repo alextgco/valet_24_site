@@ -1,3 +1,15 @@
+
+$(function() {
+    $.post('/some_script.php', { width: screen.width, height:screen.height }, function(json) {
+        if(json.outcome == 'success') {
+            // запрос прошёл успешно
+        } else {
+            console.log('Unable to let PHP know what the screen resolution is!');
+        }
+    },'json');
+});
+
+
 $(document).ready(function () {
 
     var page_no = 1;
