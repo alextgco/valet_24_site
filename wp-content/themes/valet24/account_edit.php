@@ -13,7 +13,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>Доставка продуктов без комиссии!</title>
+    <title>Доставка продуктов за 1 час!</title>
     <link href="<?php echo get_stylesheet_directory_uri() ?>/assets/img/favicon.png" rel="shortcut icon"
           type="image/i-icon">
     <?php include 'head_css.php'; ?>
