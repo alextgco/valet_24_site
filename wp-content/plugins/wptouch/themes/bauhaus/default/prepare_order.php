@@ -142,7 +142,7 @@
                         <div class="i-agree-holder">
                             <div class="form-group">
                                 <input type="checkbox" class="form-control"  id="agreement"/>
-                                <label><span class="redStar">*</span>Я согласен(а) с <a href="" target="_blank">правилами</a> покупки.</label>
+                                <label><span class="redStar">*</span>Я согласен(а) с <a href="http://valet24.tmweb.ru/docs/main_agreement.pdf" target="_blank">правилами</a> покупки.</label>
                             </div>
                         </div>
                     </div>
