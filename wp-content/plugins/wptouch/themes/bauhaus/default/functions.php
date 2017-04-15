@@ -7,7 +7,8 @@ add_filter( 'amp_should_show_featured_image_in_header', 'bauhaus_should_show_thu
 add_filter( 'foundation_featured_show', 'bauhaus_show_featured_slider', 10, 2 );
 
 $global_prot = 'http';
-$global_url = '78.107.237.51:81';
+//$global_url = '78.107.237.51:81';
+$global_url = '137.74.236.117:8080';
 $global_site = 'valet24.ru';
 $global_images_dir = 'http://valet24.ru/images/';
 
