@@ -6,7 +6,8 @@
 
 
     $global_prot = 'http';
-    $global_url = '78.107.237.51:81';
+//    $global_url = '78.107.237.51:81';
+    $global_url = '137.74.236.117:8080';
     $global_site = 'valet24.ru';
     $global_images_dir = 'http://valet24.tmweb.ru/images/';
 
