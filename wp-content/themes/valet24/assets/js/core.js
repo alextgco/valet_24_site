@@ -69,7 +69,8 @@ var makeQuery = function (options, callback) {
 
 
 var global_prot = 'http';
-var global_url = '78.107.237.51:81';
+//var global_url = '78.107.237.51:81';
+var global_url = '137.74.236.117:8080';
 var global_site = 'valet24.ru';
 var global_images_dir = 'http://valet24.ru/images/';
 
