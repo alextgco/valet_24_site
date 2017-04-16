@@ -117,6 +117,15 @@ include 'header.php';
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class=" col-md-12">
+                                <div class="form-group payment_type_fg">
+                                    <label>Способ оплаты:</label><br/>
+                                    <input type="radio" name="payment_type" value="CASH" checked="checked" /> Наличными курьеру<br/>
+                                    <input type="radio" name="payment_type" value="CARD" /> Оплата картой курьеру<br/>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class=" col-md-12">

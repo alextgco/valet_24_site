@@ -3068,3 +3068,12 @@ select:-webkit-autofill {
     position: relative;
     z-index: 1000;
 }
+input[type="radio"][name="payment_type"] {
+    height: 30px;
+}
+.payment_type_fg{
+    background-color: #ffffe8;
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+}

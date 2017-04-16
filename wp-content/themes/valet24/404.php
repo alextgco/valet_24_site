@@ -3,6 +3,15 @@
     Template Name: 404
 */
 
+    $href = request_url();
+    $arr = parse_url($href);
+
+
+    $action_alias = preg_replace('/^\//','',$arr['path']);
+    $action_alias = preg_replace('/(^\w+)\/.*/','$1',$action_alias);
+    $category_full = preg_replace('/(^\w+)\/.*/','$1',$action_alias);
+    $category_id = preg_replace('/category_/','$1', $category_full);
+
 ?>
 
 <!DOCTYPE html>
@@ -36,18 +45,43 @@
 
     <div class="container">
 
-        <div class="main-page-headline"><b>404</b>, страница не найдена, попробуйте начать с <a href="/">главной стрницы</a>=)</div>
 
-        <div class="row">
+        <?php if($category_id == 4037): ?>
+
+            <div id="content">
 
 
-        </div>
+                    <h2 style="padding-right: 10px; padding-left: 10px;">
+                        Привезем Вашу любимую еду из ресторанов быстрого обслуживания, звоните:<br/><br/>
 
-        <div class="row">
+                        <b>+7 (495) 134-39-12</b><br/><br/>
 
-            <?php include 'sets.php'; ?>
+                        или оставляйте заявки на почте:<br/><br/>
 
-        </div>
+                        <b>info@valet24.ru</b>
+
+                    </h2>
+
+            </div>
+
+        <?php endif; ?>
+
+        <?php if($category_id != 4037): ?>
+
+            <div class="main-page-headline"><b>404</b>, страница не найдена, попробуйте начать с <a href="/">главной стрницы</a>=)</div>
+
+            <div class="row">
+
+            </div>
+
+            <div class="row">
+
+                <?php include 'sets.php'; ?>
+
+            </div>
+        <?php endif; ?>
+
+
 
 
     </div>
