@@ -2975,6 +2975,8 @@ span.boldtext {
 }
 input[type="radio"][name="payment_type"] {
     height: 30px;
+    width: 30px;
+    vertical-align: middle;
 }
 .payment_type_fg{
     background-color: #ffffe8;
