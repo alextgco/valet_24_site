@@ -1630,6 +1630,10 @@ header img {
     color: #000!important;
 }
 
+.m-bar:last-child{
+    margin-bottom: 20px;
+}
+
 .product-item{
     display: block;
     margin-left: 10px;

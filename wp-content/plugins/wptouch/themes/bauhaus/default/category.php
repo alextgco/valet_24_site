@@ -304,6 +304,18 @@
 
 
 </div>
+
+<div class="after-header">
+    <div class="container">
+        <a class="notd" href="<?php echo $cc_back; ?>"><div class="back-page"><i class="fa fa-arrow-circle-o-left "></i><br/>Назад</div></a>
+
+        <div class="sidebar-search-holder">
+<!--            <input type="text" placeholder="Быстрый поиск" id="sidebar-search">-->
+        </div>
+
+    </div>
+</div>
+
 <?php
 
 include 'footer.php';
