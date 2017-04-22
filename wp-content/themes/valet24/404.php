@@ -34,8 +34,8 @@
     <div class="container">
         <div class="main-greetings">
 <!--            Добро пожаловать в наш онлайн супермаркет!<br/>-->
-            <div class="feature-1"><i class="feature-icon fa fa-clock-o"></i>&nbsp;&nbsp;Доставим Ваш заказ за 50 минут!</div>
-            <div class="feature-2"><i class="feature-icon fa fa-money"></i>&nbsp;&nbsp;Бесплатная доставка от 1000 <i class="fa fa-ruble"></i></div>
+            <div class="feature-1"><i class="feature-icon fa fa-clock-o"></i>&nbsp;&nbsp;Доставим Ваш заказ за <span class="feature-number">59</span> минут!</div>
+            <div class="feature-2"><i class="feature-icon fa fa-money"></i>&nbsp;&nbsp;Доставка <span class="feature-number">150</span> рублей!</div>
             <div class="feature-3"><i class="feature-icon fa fa-thumbs-o-up"></i>&nbsp;&nbsp;Гарантия качества и свежести!</div>
         </div>
     </div>
@@ -46,13 +46,19 @@
     <div class="container">
 
 
-        <?php if($category_id == 4037): ?>
+        <?php if($category_id == 4037 || $category_id == 4038): ?>
 
             <div id="content">
 
 
+                <?php
+
+                $customText = ($category_id == 4038)? 'Привезем Вам цветы':'Привезем Вашу любимую еду из ресторанов быстрого обслуживания';
+
+                ?>
+
                     <h2 style="padding-right: 10px; padding-left: 10px;">
-                        Привезем Вашу любимую еду из ресторанов быстрого обслуживания, звоните:<br/><br/>
+                        <?php echo $customText; ?>, звоните:<br/><br/>
 
                         <b>+7 (495) 134-39-12</b><br/><br/>
 
@@ -66,7 +72,7 @@
 
         <?php endif; ?>
 
-        <?php if($category_id != 4037): ?>
+        <?php if($category_id != 4037 && $category_id != 4038): ?>
 
             <div class="main-page-headline"><b>404</b>, страница не найдена, попробуйте начать с <a href="/">главной стрницы</a>=)</div>
 

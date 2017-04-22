@@ -17,13 +17,20 @@
 
 
 
-    <?php if($category_id == 4037): ?>
+    <?php if($category_id == 4037 || $category_id == 4038): ?>
+
+
+        <?php
+
+        $customText = ($category_id == 4038)? 'Привезем Вам цветы':'Привезем Вашу любимую еду из ресторанов быстрого обслуживания';
+
+        ?>
 
         <div id="content">
             <div class="<?php wptouch_post_classes(); ?>">
 
                 <h2 style="padding-right: 10px; padding-left: 10px;">
-                    Привезем Вашу любимую еду из ресторанов быстрого обслуживания, звоните:<br/><br/>
+                    <?php echo $customText; ?>, звоните:<br/><br/>
 
                     <b>+7 (495) 134-39-12</b><br/><br/>
 
@@ -39,7 +46,7 @@
 
     <?php endif; ?>
 
-    <?php if($category_id != 4037): ?>
+    <?php if($category_id != 4037 && $category_id != 4038): ?>
 
 
         <div id="content">
