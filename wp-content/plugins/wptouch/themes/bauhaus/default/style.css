@@ -2988,3 +2988,10 @@ input[type="radio"][name="payment_type"] {
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 5px;
 }
+.districts {
+    padding-left: 90px;
+    font-size: 12px;
+    padding-top: 10px;
+    padding-right: 10px;
+    color: rgba(255,255,255,0.6);
+}

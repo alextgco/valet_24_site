@@ -3077,3 +3077,10 @@ input[type="radio"][name="payment_type"] {
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 5px;
 }
+.prepreheader {
+    background-color: #000000;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+}

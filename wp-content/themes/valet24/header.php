@@ -54,6 +54,12 @@
     </div>
 </div>
 
+<div class="prepreheader">
+    <div class="container">
+        Районы круглосуточного обслуживания: Гагаринский, Академический, Ломоносовский, Черемушки
+    </div>
+</div>
+
 <div class="preheader">
     <div class="container">
         <div class="phone-holder">+7 (495) 134-39-12</div>

@@ -161,6 +161,9 @@
         <div class="sidebar-search-holder">
 <!--            <i class="sidebar-search-icon fa fa-search"></i>-->
             <input type="text" placeholder="Быстрый поиск" id="sidebar-search">
+            <div class="districts">
+                <i class="fa fa-info-circle"></i>&nbsp;Районы круглосуточного обслуживания: Гагаринский, Академический, Ломоносовский, Черемушки
+            </div>
         </div>
 
 <!--        <div class="category-title">--><?php //echo $cc_name; ?><!--</div>-->
