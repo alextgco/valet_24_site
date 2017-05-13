@@ -4,103 +4,32 @@
     Template Name: about
 */
 
-        $href = request_url();
-        $arr = parse_url($href);
-        $action_alias = preg_replace('/^\//','',$arr['path']);
-        $action_alias = preg_replace('/(^\w+)\/.*/','$1',$action_alias);
-
-        $category_full = preg_replace('/(^\w+)\/.*/','$1',$action_alias);
-        $category_id = preg_replace('/category_/','$1', $category_full);
-
-
-
-        $url = $global_prot . '://' . $global_url. '/site_api';
-
-        $req = '{"command":"get_category","params":{}}';
-
-        $post_data = http_build_query(array(
-            'site' => $global_site,
-            'json' => $req
-        ));
-
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, $url );
-        curl_setopt($ch, CURLOPT_POST, 1 );
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch,CURLOPT_TIMEOUT,10);
-        $resp = curl_exec($ch);
-
-        if (curl_errno($ch)) {
-            print curl_error($ch);
-        }
-        curl_close($ch);
-
-
-        $jData = json_decode($resp, true);
-
-        $columns = $jData['data_columns'];
-        $data = $jData['data'];
-
-        //        "id",
-        //        "name",
-        //        "is_root",
-        //        "parent_category_id",
-        //        "parent_category",
-        //        "image",
-        //        "products_count",
-
-        $children_arr = array();
-        $products_arr = array();
-
-        foreach($data as $key=>$category){
-
-            $id = $category[array_search('id',$columns)];
-            $name = $category[array_search('name',$columns)];
-            $is_root = $category[array_search('is_root',$columns)];
-            $parent_category_id = $category[array_search('parent_category_id',$columns)];
-            $parent_category = $category[array_search('parent_category',$columns)];
-            $image = $category[array_search('image',$columns)];
-            $products_count = $category[array_search('products_count',$columns)];
-
-
-            if($id == $category_id){
-                $current_category = $category;
-            }
-
-            if($parent_category_id == $category_id){
-
-                array_push($children_arr, $category);
-
-            }
-
-        }
-
-    $page_id = get_the_ID();
-
+$page_id = get_the_ID();
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <title>Доставка продуктов за 1 час!</title>
-    <link href="<?php echo get_stylesheet_directory_uri() ?>/assets/img/favicon.png" rel="shortcut icon" type="image/i-icon">
-    <?php include 'head_css.php'; ?>
+<?php if ( foundation_is_theme_using_module( 'custom-latest-posts' ) && wptouch_fdn_is_custom_latest_posts_page() ) { ?>
 
-    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() ?>/assets/css/about.css" />
+    <?php wptouch_fdn_custom_latest_posts_query(); ?>
+    <?php get_template_part( 'index' ); ?>
 
-</head>
-<body>
-<?php
-include 'header.php';
-?>
+<?php } else { ?>
 
 
-<div class="site-content" style="background-color: #fff;background-image: none;">
+    <?php
+
+    include 'basket_top.php';
+    include 'header-inner.php';
+
+    ?>
+
+
+<?php } ?>
+
+
+<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() ?>/assets/css/about.css" />
+
+<div class="site-content prepare-order-page">
+
 
     <div class="row">
 
@@ -158,7 +87,7 @@ include 'header.php';
                 УДОБНЫЙ
             </div>
 
-            <img style="    margin: 0 auto;display: block;margin-top: 30px;width: 360px;" alt="valet24.ru удобный интерфейс для заказа доставки продуктов по районам Гагаринский, Академический, Ломоносовский, Черемушки" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/about-lk.png" />
+            <img style="    margin: 0 auto;display: block;margin-top: 30px;width: 100%;" alt="valet24.ru удобный интерфейс для заказа доставки продуктов по районам Гагаринский, Академический, Ломоносовский, Черемушки" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/about-lk.png" />
 
             <div class="f-nexa">
                 <span style="color: red;">Ваши</span> заказы сохраняются в истории, а<br/>
@@ -173,8 +102,6 @@ include 'header.php';
                 У МЕНЯ <span style="color: red;">НЕТ ОГРАНИЧЕНИЙ</span> НА СУММУ ПОКУПКИ,<br/>
                 ВЫ МОЖЕТЕ ЗАКАЗАТЬ<br/>
                 КАК ПАКЕТ МОЛОКА, ТАК И МЕСЯЧНЫЙ ЗАПАС ПРОДУКТОВ
-
-
             </div>
 
             <a href="/" class="about-cta">Перейти в магазин</a>
@@ -299,6 +226,7 @@ include 'header.php';
 
     </div>
 
+
 </div>
 
 <?php
@@ -307,23 +235,6 @@ include 'footer.php';
 include 'foot_js.php';
 ?>
 
-<!--SCRIPTS-->
-
-<!--<script type="text/javascript" src="--><?php //echo get_stylesheet_directory_uri() ?><!--/assets/plugins/jquery/jquery-1.12.0.min.js"></script>-->
-<!---->
-<!---->
-<!--<script type="text/javascript" src="assets/plugins/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>-->
-<!--<script type="text/javascript" src="assets/plugins/blur/blur.js"></script>-->
-<!--<script type="text/javascript" src="assets/plugins/mb-chekbox/mb-checkbox.js"></script>-->
-<!--<script type="text/javascript" src="assets/plugins/mustache/mustache.js"></script>-->
-<!--<script type="text/javascript" src="assets/plugins/ion.rangeSlider-2.1.2/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>-->
-<!---->
-<!--<script type="text/javascript" src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>-->
-<!--<script type="text/javascript" src="assets/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ru.min.js"></script>-->
-<!---->
-<!--<script type="text/javascript" src="assets/js/core.js"></script>-->
-<!---->
-<!--<script type="text/javascript" src="--><?php //echo get_stylesheet_directory_uri() ?><!--/assets/js/script.js"></script>-->
 
 </body>
 </html>
