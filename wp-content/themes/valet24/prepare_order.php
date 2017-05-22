@@ -119,6 +119,15 @@ include 'header.php';
 
                         <div class="row">
                             <div class=" col-md-12">
+                                <div class="form-group">
+                                    <label>Промокод:</label>
+                                    <input type="text" class="form-control"  id="promocode" value=""/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class=" col-md-12">
                                 <div class="form-group payment_type_fg">
                                     <label>Способ оплаты:</label><br/>
                                     <input type="radio" name="payment_type" value="CASH" checked="checked" /> Наличными курьеру<br/>

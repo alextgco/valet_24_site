@@ -791,6 +791,7 @@ $(document).ready(function () {
                 var level =             $('#level').val();
                 var flat =              $('#flat').val();
                 var comment =           $('#comment').val();
+                var promocode =           $('#promocode').val();
                 var p_type =            $('input[name="payment_type"]:checked').val();
                 var agreement =         $('#agreement')[0].checked;
                 var subscription =      $('#subscription')[0].checked;
@@ -811,6 +812,7 @@ $(document).ready(function () {
                             level           :level,
                             flat            :flat,
                             comment         :comment,
+                            promocode         :promocode,
                             order_payment_type_sysname    :p_type,
                             agreement       :agreement,
                             subscription    :subscription
