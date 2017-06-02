@@ -1479,7 +1479,31 @@ $(document).ready(function () {
 
             });
 
+            $('.add-set-to-basket-button').off('click').on('click', function () {
 
+                var o = {
+                    command: 'setToOrder',
+                    params: {
+                        id: $(this).attr('data-id')
+                    }
+                };
+
+                socketQuery_site(o, function(res){
+
+                    if(!res.code){
+
+                        toastr['success'](res.toastr.message);
+
+                    }else{
+
+                        toastr['error'](res.toastr.message);
+
+                    }
+
+                });
+
+
+            });
 
         },
 

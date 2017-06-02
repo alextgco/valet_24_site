@@ -178,7 +178,7 @@ include 'float_cart.php';
 
                 <div class="add-set-to-basket-box">
                     <div class="add-set-to-basket-title">Стоимость пакета: <?php echo $set_price;?> руб.</div>
-                    <div class="add-set-to-basket-button">Добавить пакет в корзину</div>
+                    <div class="add-set-to-basket-button" data-id="<?php echo $current_set['id'];?>">Добавить пакет в корзину</div>
                 </div>
 
                 <div class="set-products-box">
@@ -211,7 +211,7 @@ include 'float_cart.php';
 
                 <div class="add-set-to-basket-box-bottom">
                     <div class="add-set-to-basket-title">Стоимость пакета: <?php echo $set_price;?> руб.</div>
-                    <div class="add-set-to-basket-button">Добавить пакет в корзину</div>
+                    <div class="add-set-to-basket-button" data-id="<?php echo $current_set['id'];?>">Добавить пакет в корзину</div>
                 </div>
 
 
