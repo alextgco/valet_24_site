@@ -38,6 +38,38 @@
     $columns = $jData['data_columns'];
     $data = $jData['data'];
 
+
+//---SETS----------------------------
+
+    $post_data2 = http_build_query(array(
+        'sid' => $PHPSESSID,
+        'site' => $global_site,
+        'json' => '{"command":"get_sets","params":{}}'
+    ));
+
+    $ch2 = curl_init();
+
+    curl_setopt($ch2, CURLOPT_URL, $url );
+    curl_setopt($ch2, CURLOPT_POST, 1 );
+    curl_setopt($ch2, CURLOPT_POSTFIELDS, $post_data2);
+    curl_setopt($ch2, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch2,CURLOPT_TIMEOUT,10);
+    $resp2 = curl_exec($ch2);
+
+    if (curl_errno($ch2)) {
+        print curl_error($ch2);
+    }
+    curl_close($ch2);
+
+
+    $jData2 = json_decode($resp2, true);
+
+    $columns2 = $jData2['data_columns'];
+    $data2 = $jData2['data'];
+
+
 //echo '<pre>';
 //var_dump($jData['data_columns']);
 //var_dump($jData['data']);

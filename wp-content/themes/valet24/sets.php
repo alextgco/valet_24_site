@@ -50,4 +50,59 @@
         </a>
     </div>
 
+
+<!--    --><?php
+//
+//
+//        $sets_html = '';
+//
+//        foreach($jData2['product_sets'] as $key => $value){
+//
+//            $id = $value['id'];
+//            $name = $value['name'];
+//            $image = get_stylesheet_directory_uri() .'/assets/img/cat_old/cat-1.jpg';
+//            //$value['image'];
+//
+//            $sets_html .= '<div class="col-sm-6 col-md-3">'
+//                            .'<a class="notd" href="/set_'.$id.'">'
+//                                .'<div class="cat-item" data-id="'.$id.'">'
+//                                .'<div class="cat-image-holder"><img src="'.$image.'" /></div>'
+//                                .'<div class="cat-title-holder">'.$name
+//
+//                                .'</div>'
+//                            .'</div>'
+//                            .'</a>'
+//                        .'</div>';
+//
+//
+//        }
+//
+//        echo $sets_html;
+//
+//
+//    ?>
+
+    <?php
+
+
+    $sets_html = '';
+
+    foreach($jData2['product_sets'] as $key => $value){
+
+        $id = $value['id'];
+        $name = $value['name'];
+        $image = get_stylesheet_directory_uri() .'/assets/img/cat_old/cat-1.jpg';
+        //$value['image'];
+
+        $sets_html .= '<a class="notd" style="font-size: 10px;" href="/set_'.$id.'">'.$name.'</a>';
+
+
+    }
+
+    echo $sets_html;
+
+
+    ?>
+
+
 </div>

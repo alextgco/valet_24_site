@@ -3,7 +3,7 @@
 
 
 
-    $type_valet =         $_GET['type']; // CATEGORY | PRODUCT
+    $type_valet =         $_GET['type']; // CATEGORY | PRODUCT | SET
     $alias_url =          $_GET['alias'];
     $title_valet =        $_GET['name'];
     $code_valet =         $_GET['code'];
@@ -32,6 +32,9 @@
                         break;
                     case 'PRODUCT':
                         $tpl = 'product.php';
+                        break;
+                    case 'SET':
+                        $tpl = 'set.php';
                         break;
                 }
 
