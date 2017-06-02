@@ -1484,7 +1484,7 @@ $(document).ready(function () {
                 var o = {
                     command: 'setToOrder',
                     params: {
-                        id: $(this).attr('data-id')
+                        set_id: $(this).attr('data-id')
                     }
                 };
 
