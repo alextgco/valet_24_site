@@ -249,6 +249,8 @@ include 'header.php';
 
 <!--                            <a class="--><?php //echo ($cart_products_count == 0)? 'disabled': ''; ?><!--" href="/success">-->
 
+                                <div class="g-recaptcha" data-sitekey="6LcfPyQUAAAAADsuhlTL_oiOg5O6Yt6rVTJiju4E"></div>
+
                                 <div class="cart-prepare-order cart-confirm-order"><i class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Оформить заказ</div>
 
 <!--                            </a>-->
