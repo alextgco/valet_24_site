@@ -3188,3 +3188,8 @@ a.sidebar-set-item-link:hover {
 .add-set-to-basket-box-bottom .add-set-to-basket-title{
     margin-top: 5px;
 }
+.free_delivery .bootbox-body {
+    text-align: center;
+    font-size: 28px;
+    font-family: "Helvetica Neue", arial , sans-serif;
+}

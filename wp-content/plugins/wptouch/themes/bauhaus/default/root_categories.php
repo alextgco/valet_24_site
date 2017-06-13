@@ -32,6 +32,11 @@
 
         include 'basket_top.php';
 
+        echo '<div class="free_delivery">'.
+                '<i class="fa fa-phone"></i> +7 (495) 134-39-12<br/>'.
+                '<i class="fa fa-whatsapp"></i><i class="fa fa-viber"></i><i class="fa fa-telegram"></i> +7 (901) 773-52-38<br/><br/>'.
+                'Первые 2 доставки БЕСПЛАТНО!</div><br/>';
+
         echo '<div class="categories-holder">';
         $cats_html = '';
 

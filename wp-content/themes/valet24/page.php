@@ -100,7 +100,7 @@
 <!--            Добро пожаловать в наш онлайн супермаркет!<br/>-->
             <div class="feature-1"><i class="feature-icon fa fa-clock-o"></i>&nbsp;&nbsp;Доставим Ваш заказ за <span class="feature-number">59</span> минут!</div>
             <div class="feature-2"><i class="feature-icon fa fa-money"></i>&nbsp;&nbsp;Доставка <span class="feature-number">150</span> рублей!</div>
-            <div class="feature-3"><i class="feature-icon fa fa-thumbs-o-up"></i>&nbsp;&nbsp;Гарантия качества и свежести!</div>
+            <div class="feature-3"><i class="feature-icon fa fa-phone"></i>&nbsp;&nbsp;Заказывайте по телефону!</div>
         </div>
     </div>
 </div>

@@ -1505,6 +1505,30 @@ $(document).ready(function () {
 
             });
 
+            if(localStorage.getItem('free_delivery_appears') == null){
+
+                var dlg = bootbox.dialog({
+                    title: 'Поздравляем!',
+                    message: 'Первые 2 доставки в нашем магазине для Вас будут БЕСПЛАТНЫМИ!',
+                    className: 'free_delivery',
+                    buttons: {
+                        success: {
+                            label: 'Понятно!',
+                            callback: function () {
+
+                            }
+                        }
+                    }
+                });
+
+                localStorage.setItem('free_delivery_appears',true);
+
+                window.setTimeout(function () {
+                    dlg.modal('hide');
+                }, 4000);
+
+            }
+
         },
 
         updateBasket: function(cart){
