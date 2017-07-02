@@ -96,6 +96,7 @@ function my_theme_load_resources() {
     wp_enqueue_script('bootstrap',      get_stylesheet_directory_uri() . '/assets/plugins/bootstrap-3.3.6-dist/js/bootstrap.min.js');
     wp_enqueue_script('script',         get_stylesheet_directory_uri() . '/assets/js/script.js');
     wp_enqueue_script('uitabs',         get_stylesheet_directory_uri() . '/assets/js/uiTabs.js');
+    wp_enqueue_script('ymaps',         'https://api-maps.yandex.ru/1.1/index.xml');
     wp_enqueue_script('recaptcha',          'https://www.google.com/recaptcha/api.js');
 
 }

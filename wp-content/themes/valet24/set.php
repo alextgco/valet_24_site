@@ -97,7 +97,7 @@
         }
     }
 
-    $cc_back = '/';
+    $cc_back = '/shop/';
 
 
 ?>

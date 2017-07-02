@@ -126,7 +126,7 @@
 
 
         $cc_name = $current_category[array_search('name',$columns)];
-        $cc_back = strlen($current_category[array_search('parent_category_id',$columns)] > 0)? '/category_'.$current_category[array_search('parent_category_id',$columns)] : '/';
+        $cc_back = strlen($current_category[array_search('parent_category_id',$columns)] > 0)? '/category_'.$current_category[array_search('parent_category_id',$columns)] : '/shop/';
 
 
 
@@ -151,7 +151,7 @@ include 'float_cart.php';
 
 <div class="after-header">
     <div class="container">
-        <a class="notd" href="/"><div class="back-page"><i class="fa fa-arrow-circle-o-left "></i>&nbsp;&nbsp;Назад</div></a>
+        <a class="notd" href="/shop/"><div class="back-page"><i class="fa fa-arrow-circle-o-left "></i>&nbsp;&nbsp;Назад</div></a>
         <div class="category-title">Результаты поиска:</div>
     </div>
 </div>

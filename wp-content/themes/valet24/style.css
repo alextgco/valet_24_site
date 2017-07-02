@@ -3193,3 +3193,27 @@ a.sidebar-set-item-link:hover {
     font-size: 28px;
     font-family: "Helvetica Neue", arial , sans-serif;
 }
+.free-block {
+    position: absolute;
+    margin-top: 30px;
+    color: #e4ff00;
+    font-size: 20px;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 1);
+    font-family: PTSans-Bold, arial, sans-serif;
+}
+.free-block-white{
+    color: #fff;
+}
+.go-shop-link {
+    display: block;
+    width: 400px;
+    height: 50px;
+    text-align: center;
+    font-weight: bold;
+    border: 2px solid;
+    box-sizing: border-box;
+    padding-top: 14px;
+    background-color: aliceblue;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}

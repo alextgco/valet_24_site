@@ -99,7 +99,7 @@ include 'header.php';
 
 <div class="after-header">
     <div class="container">
-        <a class="notd" href="/"><div class="back-page"><i class="fa fa-arrow-circle-o-left "></i>&nbsp;&nbsp;Назад</div></a>
+        <a class="notd" href="/shop/"><div class="back-page"><i class="fa fa-arrow-circle-o-left "></i>&nbsp;&nbsp;Назад</div></a>
         <div class="category-title"><?php echo get_the_title($page_id); ?></div>
     </div>
 </div>

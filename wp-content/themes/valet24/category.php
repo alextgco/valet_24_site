@@ -131,7 +131,7 @@
         }
 
         $cc_name = $current_category[array_search('name',$columns)];
-        $cc_back = strlen($current_category[array_search('parent_category_id',$columns)] > 0)? '/category_'.$current_category[array_search('parent_category_id',$columns)] : '/';
+        $cc_back = strlen($current_category[array_search('parent_category_id',$columns)] > 0)? '/category_'.$current_category[array_search('parent_category_id',$columns)] : '/shop/';
 
 
 

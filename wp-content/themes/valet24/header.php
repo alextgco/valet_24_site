@@ -103,7 +103,7 @@
     <div class="container">
 
         <div alt="VALET24.RU - КРУГЛОСУТОЧНАЯ ДОСТАВКА ПРОДУКТОВ ЗА 1 ЧАС" class="logo-overlay"></div>
-        <a class="logo-a" href="/">
+        <a class="logo-a" href="/shop/">
         </a>
 
 <!--        <div class="logo-holder">-->
@@ -140,7 +140,15 @@
 
             </div>
 
+            <div class="free-block">
+                <span class="free-block-white">Акция: </span>Первые 2 доставки БЕСПЛАТНО!
+            </div>
+
+
         </div>
+
+
+
 
         <div class="to-top"><i class="fa fa-arrow-up"></i><br/>Наверх</div>
 

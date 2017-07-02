@@ -10,7 +10,7 @@
 
         </div>
 
-        <a href="<?php wptouch_bloginfo( 'url' ); ?>" id="header-logo-my" class="header-center tappable">
+        <a href="/shop/" id="header-logo-my" class="header-center tappable">
 
             <img id="header-logo" src="<?php foundation_the_logo_image(); ?>" alt="logo image" />
 

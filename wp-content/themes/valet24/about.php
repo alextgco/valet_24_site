@@ -92,7 +92,7 @@
     <?php include 'head_css.php'; ?>
 
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() ?>/assets/css/about.css" />
-
+    <script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
 </head>
 <body>
 <?php
@@ -105,6 +105,27 @@ include 'header.php';
     <div class="row">
 
         <div class="container">
+
+
+
+
+
+<!--            <div id="YMapsID" style="width:600px;height:400px"></div>-->
+
+            <script type="text/javascript">
+                // Создает обработчик события window.onLoad
+                YMaps.jQuery(function () {
+                    // Создает экземпляр карты и привязывает его к созданному контейнеру
+                    var map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
+
+                    // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
+                    map.setCenter(new YMaps.GeoPoint(55.75399400, 37.62209300), 16);
+                })
+            </script>
+
+
+
+
 
             <div class="about-row">
                 <img alt="valet24.ru круглосуточная доставка продуктов по районам Гагаринский, Академический, Ломоносовский, Черемушки" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/about_1.png" />
@@ -308,6 +329,17 @@ include 'foot_js.php';
 ?>
 
 <!--SCRIPTS-->
+
+<script type="text/javascript">
+
+    var map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
+
+    map.setCenter(new YMaps.GeoPoint(55.75399400, 37.62209300), 10);
+
+
+</script>
+
+
 
 <!--<script type="text/javascript" src="--><?php //echo get_stylesheet_directory_uri() ?><!--/assets/plugins/jquery/jquery-1.12.0.min.js"></script>-->
 <!---->

@@ -92,8 +92,6 @@
 
                     foreach($cart_jData['products'] as $cp_key=>$cp_value){
 
-
-
                         $cart_products_html .= render_product_m($cp_value, 'cart');
 
 

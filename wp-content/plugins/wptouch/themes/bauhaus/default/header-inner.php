@@ -176,7 +176,7 @@
 
         </div>
 
-        <a href="<?php wptouch_bloginfo( 'url' ); ?>" id="header-logo-my" class="header-center tappable <?php echo $openedSearch; ?>">
+        <a href="/shop/" id="header-logo-my" class="header-center tappable <?php echo $openedSearch; ?>">
 
             <img id="header-logo" src="<?php foundation_the_logo_image(); ?>" alt="logo image" />
 
@@ -210,7 +210,7 @@
             </div>
         <?php } ?>
 
-        <?php wptouch_the_content() ; ?>
+<!--        --><?php //wptouch_the_content() ; ?>
 
     </div>
 </div>

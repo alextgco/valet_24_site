@@ -19,4 +19,3 @@
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() ?>/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" type="text/css"/>
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() ?>/assets/plugins/toastr/toastr.min.css" type="text/css"/>
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() ?>/assets/css/core.css" type="text/css"/>
-
