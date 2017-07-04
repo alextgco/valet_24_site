@@ -69,7 +69,7 @@ include 'float_cart.php';
 <div class="after-header">
     <div class="container">
         <a class="notd" href="<?php echo $cc_back; ?>"><div class="back-page"><i class="fa fa-arrow-circle-o-left "></i>&nbsp;&nbsp;Назад</div></a>
-        <div class="category-title"><?php echo $cc_name; ?></div>
+        <div class="category-title">Отзывы наших покупателей</div>
     </div>
 </div>
 
@@ -83,7 +83,32 @@ include 'float_cart.php';
 
             <?php
 
-                var_export($data);
+            $rev_html = '';
+
+
+
+            foreach($data as $key1=>$val1){
+
+
+                $id = $val1[array_search('id', $columns)];
+                $user_name = $val1[array_search('user_name', $columns)];
+                $review_date = $val1[array_search('review_date', $columns)];
+                $rating = $val1[array_search('rating', $columns)];
+                $review_title = $val1[array_search('review_title', $columns)];
+                $text = $val1[array_search('text', $columns)];
+
+
+                $rev_html .= '<div class="col-md-12"><div class="rev-item">'.
+                                '<div class="rev-title">'.$review_title.'</div>'.
+                                '<div class="rev-date">'.$review_date.'</div>'.
+                                '<div class="rev-text">'.$text.'</div>'.
+                                '<div class="rev-user">'.$user_name.'</div>'.
+                                '<div class="rev-rating">'.$rating.'</div>'.
+                            '</div></div>';
+
+            }
+
+            echo $rev_html;
 
             ?>
 

@@ -3217,3 +3217,25 @@ a.sidebar-set-item-link:hover {
     margin: 0 auto;
     margin-bottom: 40px;
 }
+.rev-item{
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+    position: relative;
+}
+.rev-title {
+    font-size: 26px;
+    font-family: "PTSans-Regular", arial, sans-serif;
+}
+.rev-date {
+    position: absolute;
+    top: 21px;
+    right: 20px;
+    color: #a7a7a7;
+}
+.rev-text {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
