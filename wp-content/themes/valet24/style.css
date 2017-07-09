@@ -3242,3 +3242,26 @@ a.sidebar-set-item-link:hover {
 .rev-user {
     font-size: 18px;
 }
+.product-old-price-holder {
+    text-align: center;
+    text-decoration: line-through;
+    color: red;
+    font-size: 13px;
+    margin-top: -3px;
+}
+.ap-holder {
+    background-color: rgb(226, 250, 249);
+    width: 100%;
+    padding: 20px 7px;
+    float: left;
+    border-top: 1px solid #ade4e2;
+    margin-bottom: 60px;
+    border-bottom: 2px solid #0c9d96;
+}
+.ap-header{
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: arial, sans-serif;
+    margin-left: 15px;
+}

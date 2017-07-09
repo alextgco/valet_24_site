@@ -45,6 +45,38 @@
 
 
 
+    //---ACTION PRODUCTS----------------------------
+
+    $post_data3 = http_build_query(array(
+        'sid' => $PHPSESSID,
+        'site' => $global_site,
+        'json' => '{"command":"get_action_product","params":{"limit":"4"}}'
+    ));
+
+    $ch3 = curl_init();
+
+    curl_setopt($ch3, CURLOPT_URL, $url );
+    curl_setopt($ch3, CURLOPT_POST, 1 );
+    curl_setopt($ch3, CURLOPT_POSTFIELDS, $post_data3);
+    curl_setopt($ch3, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch3, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch3, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch3,CURLOPT_TIMEOUT,10);
+    $resp3 = curl_exec($ch3);
+
+    if (curl_errno($ch3)) {
+        print curl_error($ch3);
+    }
+    curl_close($ch3);
+
+
+    $jData3 = json_decode($resp3, true);
+
+    $action_products_columns = $jData3['data_columns'];
+    $action_products_data = $jData3['data'];
+
+
+
 
 
 ?>

@@ -169,6 +169,67 @@ function render_product($p, $mode, $columns)
             '<div class="product-add-holder sc-product-add ' . $addedClass . '"  data-id="' . $id . '">' . $btn_html . '</div></div>' .
             '</div>';
 
+    }else if ($mode == 'action_card') {
+
+        $id = $p[array_search('id', $columns)];
+        $name = $p[array_search('name', $columns)];
+        $prev_price = $p[array_search('price_action', $columns)];
+        $price = $p[array_search('price_site', $columns)];
+        $product_count = $p[array_search('product_count', $columns)];
+
+        $image = (strlen($p[array_search('image', $columns)]) > 0) ? $p[array_search('image', $columns)] : $global_images_dir . 'cat-default.jpg';
+        $is_gramm = ($p[array_search('qnt_type_sys', $columns)] == 'KG') ? true : false;
+        $in_basket_count = $p[array_search('in_basket_count', $columns)];
+        $is_in_favorites = ($p[array_search('in_favorite', $columns)] == true) ? 'in_favorite' : '';
+
+
+        if ($is_gramm) {
+
+            if ($in_basket_count > 0) {
+                $btn_html = '<div class="modify-gt-value gramm-type added" data-id="' . $id . '">' .
+                    '<div class="gt-ib-values-holder">' .
+                    '<div class="gt-ib-count"><span class="gt-ib-count-int">' . $in_basket_count . '</span> кг</div>' .
+                    '</div>' .
+                    '<div class="gt-ib-modify">' .
+                    '<div class="gt-ib-amount">' . round($in_basket_count * $price, 2) . ' р.</div>' .
+                    '<div class="gt-ib-modify-text">Изменить</div>' .
+                    '</div>' .
+                    '</div>';
+
+            } else {
+                $btn_html = '<div class="first-add-cart gramm-type">В корзину</div>';
+            }
+
+        } else {
+
+            if ($in_basket_count > 0) {
+                $btn_html = '<div class="inc-btn-holder"><div class="inc-btn-dec" data-id="' . $id . '">-</div><div class="inc-btn-value">' . $in_basket_count . '</div><div class="inc-btn-inc" data-id="' . $id . '">+</div></div>';
+            } else {
+                $btn_html = '<div class="first-add-cart">В корзину</div>';
+            }
+
+        }
+
+        $price = ($is_gramm) ? '<span class="product-item-price-int">' . $price . '</span>' . '<span class="price-rub">&nbsp;руб/кг</span>' : '<span class="product-item-price-int">' . $price . '</span>' . '<span class="price-rub">&nbsp;руб.</span>';
+
+        $addedClass = ($in_basket_count > 0) ? 'added' : '';
+
+        $tpl .=
+            '<div class="action-product col-sm-6 p-parent col-md-3 notd">' .
+            '<div class="product-item" data-id="' . $id . '">' .
+            //<a href="/product_'.$id.'/">
+            '<div class="product-image-holder"><img src="' . $image . '" alt=" ' . $name . '"/></div>' .
+            //</a>
+            //'<a href="/product_'.$id.'/">
+            '<div class="cart-item-to-favorite ' . $is_in_favorites . '" data-id="' . $id . '"><i class="fa fa-heart-o"></i><div class="cart-item-to-favorite-dd">Добавить в избранное</div></div>' .
+            //</a>
+            '<div class="product-title-holder">' . $name . '</div>' .
+            '<div class="product-old-price-holder">Старая цена: ' . $prev_price . ' руб.</div>' .
+            '<div class="product-price-holder">Цена: ' . $price . '</div>' .
+
+            '<div class="product-add-holder sc-product-add ' . $addedClass . '"  data-id="' . $id . '">' . $btn_html . '</div></div>' .
+            '</div>';
+
     }else if($mode == 'set'){
 
         $id = $p[array_search('id', $columns)];

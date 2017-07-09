@@ -69,6 +69,40 @@ $columns2 = $jData2['data_columns'];
 $data2 = $jData2['data'];
 
 
+
+    //---ACTION PRODUCTS----------------------------
+
+//    $post_data3 = http_build_query(array(
+//        'sid' => $PHPSESSID,
+//        'site' => $global_site,
+//        'json' => '{"command":"get_action_product","params":{}}'
+//    ));
+//
+//    $ch3 = curl_init();
+//
+//    curl_setopt($ch3, CURLOPT_URL, $url );
+//    curl_setopt($ch3, CURLOPT_POST, 1 );
+//    curl_setopt($ch3, CURLOPT_POSTFIELDS, $post_data3);
+//    curl_setopt($ch3, CURLOPT_SSL_VERIFYHOST, 0);
+//    curl_setopt($ch3, CURLOPT_SSL_VERIFYPEER, 0);
+//    curl_setopt($ch3, CURLOPT_RETURNTRANSFER, 1);
+//    curl_setopt($ch3,CURLOPT_TIMEOUT,10);
+//    $resp3 = curl_exec($ch3);
+//
+//    if (curl_errno($ch3)) {
+//        print curl_error($ch3);
+//    }
+//    curl_close($ch3);
+//
+//
+//    $jData3 = json_decode($resp3, true);
+//
+//    $action_products_columns = $jData3['data_columns'];
+//    $action_products_data = $jData3['data'];
+
+
+
+
 //echo '<pre>';
 //var_dump($jData['data_columns']);
 //var_dump($jData['data']);
@@ -109,6 +143,16 @@ $data2 = $jData2['data'];
     <div class="container">
 
         <div class="main-page-headline">Выбирайте, мы привезем!</div>
+
+
+    </div>
+
+    <?php include 'action_products.php'; ?>
+
+    <div class="container">
+
+
+        <div class="main-page-headline">Категории товаров:</div>
 
         <div class="row">
 
