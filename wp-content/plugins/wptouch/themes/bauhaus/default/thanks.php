@@ -32,6 +32,14 @@
 
     <title><?php wp_title('-', true, 'right'); ?></title>
 
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-WZPNKCM');</script>
+    <!-- End Google Tag Manager -->
+
     <!--    <title>&nbsp;&nbsp;Мир Билета - Электронные билеты</title>-->
 
     <link href="/wp-content/themes/mirbileta_new_life/assets/img/favicon.png" rel="shortcut icon" type="image/i-icon">
@@ -48,6 +56,12 @@
 </head>
 
 <body <?php body_class(); ?> data-page="inner" >
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZPNKCM"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 
 <div class="mmb-page-holder blank-page">
     <?php
